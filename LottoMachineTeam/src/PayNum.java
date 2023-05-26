@@ -21,14 +21,13 @@ public class PayNum {
 		
 	}
 	//선택번호value값 [i] return
-	public Integer getSelectNum() {
+	public Integer[] getSelectNum() {
 		Payment selectNum = new Payment();
-		for (int i = 0; i < selectNum.getSelectNum().length; i++) {
-			
-			Integer integerSelectNum = selectNum.getSelectNum()[i];
-			return integerSelectNum;
+		Integer[] allElements = new Integer[selectNum.getSelectNum().length];
+		for(int i = 0; i < selectNum.getSelectNum().length; i++) {
+			allElements[i] = selectNum.getSelectNum()[i];
 		}
-		return null;
+		return allElements;
 	}
 	
 	//각 위치에 있는 취소버튼으로 remove 적용하기
