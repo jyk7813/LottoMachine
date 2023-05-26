@@ -88,7 +88,7 @@ public class MainFrame extends JFrame {
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
         
-    }
+    }//나중에 각 취소버튼에 접근할 때
     public JButton getBtn() {
 		return buyButton;
 	}
