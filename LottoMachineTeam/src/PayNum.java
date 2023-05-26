@@ -20,17 +20,15 @@ public class PayNum {
 		return new LinkedHashMap<>(paymentMap);
 		
 	}
-	
-	public Payment getSelectNum() {
+	//선택번호value값 [i] return
+	public Integer getSelectNum() {
 		Payment selectNum = new Payment();
 		for (int i = 0; i < selectNum.getSelectNum().length; i++) {
-			Integer integer = selectNum.getSelectNum()[i];
-			return integer;
+			
+			Integer integerSelectNum = selectNum.getSelectNum()[i];
+			return integerSelectNum;
 		}
-		
-		for(Entry<Integer, Payment> e : paymentMap.entrySet()) {
-			e.
-		}
+		return null;
 	}
 	
 	//각 위치에 있는 취소버튼으로 remove 적용하기
