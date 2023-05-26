@@ -1,9 +1,6 @@
 
 public class first {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+		// 게시판입니다.아무렇게나 써주세요
 
 }
