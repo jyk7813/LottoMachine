@@ -37,11 +37,11 @@ public class MainFrame extends JFrame {
         setResizable(false);
 
         // 이미지 아이콘 로드
-        ImageIcon icon = new ImageIcon("mainImege.jpeg");
-        ImageIcon buyIcon = new ImageIcon("buyButten.png");
-        ImageIcon myNumIcon = new ImageIcon("myNumButten.png");
-        ImageIcon makeLotteryIcon = new ImageIcon("makeLotteryButten.png");
-        ImageIcon nextTurnIcon = new ImageIcon("nextTurnButten.png");
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("mainImege.jpeg"));
+        ImageIcon buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyButten.png"));
+        ImageIcon myNumIcon = new ImageIcon(getClass().getClassLoader().getResource("myNumButten.png"));
+        ImageIcon makeLotteryIcon = new ImageIcon(getClass().getClassLoader().getResource("makeLotteryButten.png"));
+        ImageIcon nextTurnIcon = new ImageIcon(getClass().getClassLoader().getResource("nextTurnButten.png"));
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon);
 
@@ -69,16 +69,22 @@ public class MainFrame extends JFrame {
         layeredPane.add(myNumButton,new Integer(2));
         layeredPane.add(makeLotteryButton, new Integer(2));
         layeredPane.add(nextTurnButton, new Integer(3));
-//        button.setOpaque(false);
-//        button.setContentAreaFilled(false);
+        buyButton.setOpaque(false);
+        buyButton.setContentAreaFilled(false);
         buyButton.setBorderPainted(false);
+        myNumButton.setOpaque(false);
+        myNumButton.setContentAreaFilled(false);
         myNumButton.setBorderPainted(false);
+        makeLotteryButton.setOpaque(false);
+        makeLotteryButton.setContentAreaFilled(false);
         makeLotteryButton.setBorderPainted(false);
+        nextTurnButton.setOpaque(false);
+        nextTurnButton.setContentAreaFilled(false);
         nextTurnButton.setBorderPainted(false);
         
 
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
-        pack();
+        
     }
 }
