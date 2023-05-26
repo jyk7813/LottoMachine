@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
+	private JButton buyButton;
 
     private JPanel contentPane;
 
@@ -46,7 +47,7 @@ public class MainFrame extends JFrame {
         JLabel label = new JLabel(icon);
 
         // 버튼 생성
-        JButton buyButton = new JButton(buyIcon);
+        buyButton = new JButton(buyIcon);
         buyButton.setBounds(78, 610, 280, 81); // 위치와 크기 설정
         JButton myNumButton = new JButton(myNumIcon);
         myNumButton.setBounds(30,780,111,36);
@@ -54,6 +55,7 @@ public class MainFrame extends JFrame {
         makeLotteryButton.setBounds(160, 780, 111, 36);
         JButton nextTurnButton = new JButton(nextTurnIcon);
         nextTurnButton.setBounds(290, 780, 111, 36);
+        
         
 
         // JLayeredPane 생성 및 설정
@@ -87,4 +89,8 @@ public class MainFrame extends JFrame {
         setContentPane(layeredPane);
         
     }
+    public JButton getBtn() {
+		return buyButton;
+	}
+    
 }
