@@ -1,7 +1,14 @@
+package database;
+import java.util.HashMap;
 import java.util.Map;
 
 public class SelectNumHashMap {
 	private Map<Integer, SelectNum> selectNumHashMap;
+
+	
+	public SelectNumHashMap() {
+		this.selectNumHashMap = new HashMap();
+	}
 
 	public Map<Integer, SelectNum> getSelectNumHashMap() {
 		return selectNumHashMap;
