@@ -34,18 +34,21 @@ public class SelectNumPage extends JFrame {
      */
     public SelectNumPage() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(430, 932); // 창의 크기를 설정
+        setSize(430, 890); // 창의 크기를 설정
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘 로드
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("selectNum(BG).png"));
+        ImageIcon backIcon = new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));
+        
 
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon);
+        
 
         // 버튼 생성
-        JButton button = new JButton("Click me");
-        button.setBounds(50, 50, 120, 30); // 위치와 크기 설정
+        JButton button = new JButton(backIcon);
+        button.setBounds(20, 41, 33, 38); // 위치와 크기 설정
 
         // JLayeredPane 생성 및 설정
         JLayeredPane layeredPane = new JLayeredPane();
@@ -60,5 +63,9 @@ public class SelectNumPage extends JFrame {
 
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
+        // 버튼숨기기
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
     }
 }
