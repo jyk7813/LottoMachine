@@ -40,7 +40,7 @@ public class MainPage extends JFrame {
 	 */
 	public MainPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(430, 890);
+		
 		setResizable(false);
 		
 		iconSetting();
@@ -68,6 +68,7 @@ public class MainPage extends JFrame {
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
+		pack();
 
 	}
 	/**
