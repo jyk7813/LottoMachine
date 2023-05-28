@@ -1,9 +1,12 @@
+package database;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
 import javax.swing.JButton;
+
+import org.omg.CORBA.portable.ValueBase;
 
 public class PayNum {
 	
@@ -31,10 +34,9 @@ public class PayNum {
 	}
 	
 	//각 위치에 있는 취소버튼으로 remove 적용하기
-	public void allRemove() {
-		MainFrame callBtn = new MainFrame();
-		JButton cancleBtn = callBtn.getBtn();
-		paymentMap.remove(cancleBtn);
+	//  수정 인트값 받기
+	public void allRemove(Integer key) {
+		paymentMap.remove(key);
 		//각 위치해 있는 취소버튼으로 값을 넣으면 됨
 		
 	}
