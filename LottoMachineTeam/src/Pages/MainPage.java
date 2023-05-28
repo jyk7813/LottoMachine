@@ -40,7 +40,7 @@ public class MainPage extends JFrame {
 	 */
 	public MainPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(430, 932);
+		setSize(430, 890);
 		setResizable(false);
 		
 		iconSetting();
@@ -62,7 +62,7 @@ public class MainPage extends JFrame {
 		layeredPane.add(buyButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
 		layeredPane.add(myNumButton, new Integer(2));
 		layeredPane.add(makeLotteryButton, new Integer(2));
-		layeredPane.add(nextTurnButton, new Integer(3));
+		layeredPane.add(nextTurnButton, new Integer(2));
 		
 		btnUnVisuable();
 
@@ -75,11 +75,11 @@ public class MainPage extends JFrame {
 	 */
 	private void iconSetting() {
 		
-		icon = new ImageIcon(getClass().getClassLoader().getResource("mainImege.jpeg"));
-		buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyButten.png"));
-		myNumIcon = new ImageIcon(getClass().getClassLoader().getResource("myNumButten.png"));
-		makeLotteryIcon = new ImageIcon(getClass().getClassLoader().getResource("makeLotteryButten.png"));
-		nextTurnIcon = new ImageIcon(getClass().getClassLoader().getResource("nextTurnButten.png"));
+		icon = new ImageIcon(getClass().getClassLoader().getResource("main(BG).png"));
+		buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBigBtn.png"));
+		myNumIcon = new ImageIcon(getClass().getClassLoader().getResource("myNumBtn.png"));
+		makeLotteryIcon = new ImageIcon(getClass().getClassLoader().getResource("lotteryBtn.png"));
+		nextTurnIcon = new ImageIcon(getClass().getClassLoader().getResource("nextBtn.png"));
 		
 	}
 	/**

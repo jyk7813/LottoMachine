@@ -32,14 +32,14 @@ public class BuyPage extends JFrame {
      */
     public BuyPage() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(430, 932);
+        setSize(430, 890);
 		setResizable(false);
         // 이미지 아이콘 로드
-        ImageIcon buyPageIcon = new ImageIcon(getClass().getClassLoader().getResource("buyPage.jpeg"));
+        ImageIcon buyPageIcon = new ImageIcon(getClass().getClassLoader().getResource("buy(BG).png"));
         ImageIcon initBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("initButten.png"));
         ImageIcon autoBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("autoBtn.png"));
         ImageIcon addBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("addBtn.png"));
-        ImageIcon longBuyBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("LBuyBtn.png"));
+        ImageIcon longBuyBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBtn.png"));
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(buyPageIcon);
 

@@ -1,12 +1,8 @@
 package database;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
 
-import javax.swing.JButton;
 
-import org.omg.CORBA.portable.ValueBase;
 
 public class PayNum {
 	
