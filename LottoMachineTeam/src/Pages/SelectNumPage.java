@@ -20,7 +20,7 @@ public class SelectNumPage extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    UnderLotteryPage frame = new UnderLotteryPage();
+                	SelectNumPage frame = new SelectNumPage();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -38,7 +38,7 @@ public class SelectNumPage extends JFrame {
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘 로드
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("selectNum(BG).png"));;
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("selectNum(BG).png"));
 
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon);
