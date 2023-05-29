@@ -5,47 +5,34 @@ import database.SelectNum;
 import database.SelectNumHashMap;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class SelectNumPage extends JFrame {
+public class SelectNumPage extends JDialog {
 
     private JPanel contentPane;
     SelectNumHashMap selectNumHashMap = new SelectNumHashMap();
     
     
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	SelectNumPage frame = new SelectNumPage();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        
-      
-    }
-    
+   
     /**
      * Create the frame.
      */
     public SelectNumPage() {
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(430, 890); // 창의 크기를 설정
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setModal(true);
+   
         setResizable(false); // 창 크기 변경을 비활성화
 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -132,8 +119,15 @@ public class SelectNumPage extends JFrame {
         buyButton.setContentAreaFilled(false);
         buyButton.setBorderPainted(false);
         
-       
-
+        backButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+        pack();
        
     }
 }

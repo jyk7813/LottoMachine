@@ -1,6 +1,9 @@
 package Pages;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -68,6 +71,16 @@ public class MainPage extends JFrame {
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
+		buyButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BuyPage buyPage = new BuyPage();
+				buyPage.setVisible(true);
+				
+			}
+		});
+		
 		pack();
 
 	}
@@ -106,7 +119,7 @@ public class MainPage extends JFrame {
 	 */
 	private void btnBounds() {
 		buyButton = new JButton(buyIcon);
-		buyButton.setBounds(78, 610, 280, 81); // 위치와 크기 설정
+		buyButton.setBounds(76, 610, 280, 81); // 위치와 크기 설정
 		myNumButton = new JButton(myNumIcon);
 		myNumButton.setBounds(30, 780, 111, 36);
 		makeLotteryButton = new JButton(makeLotteryIcon);
