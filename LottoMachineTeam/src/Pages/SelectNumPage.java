@@ -90,9 +90,9 @@ public class SelectNumPage extends JFrame {
         Map<Integer, SelectNum> map;
         SelectNum selectNum;
         int[] arr = new int[6];
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < 7; i++) {
             	map = selectNumHashMap.getSelectNumHashMap();
-            	for (int i = 0; i < 7; i++) {
+            		for (int j = 0; j < 10; j++) {
             	if (i == 0) {
             		  numLabel[i][j] = new JLabel();
 				} else {
