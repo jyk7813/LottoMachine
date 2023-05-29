@@ -41,6 +41,8 @@ public class WinningNumPage extends JFrame {
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("winningNum(BG).png"));;
         ImageIcon backIcon = new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));;
         ImageIcon bNumber = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));;
+        ImageIcon sNumber = new ImageIcon(getClass().getClassLoader().getResource("emptySBtn.png"));;
+        ImageIcon cancel = new ImageIcon(getClass().getClassLoader().getResource("emptySBtn.png"));;
 
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon);
@@ -58,6 +60,21 @@ public class WinningNumPage extends JFrame {
         lottoNum6.setBounds(283, 225, 40, 40);
         JLabel lottoNum7 = new JLabel(bNumber);
         lottoNum7.setBounds(357, 225, 40, 40);
+        
+        JLabel lottoNum1_1 = new JLabel(sNumber);
+        lottoNum1_1.setBounds(71, 340, 36, 36);
+        JLabel lottoNum1_2 = new JLabel(sNumber);
+        lottoNum1_2.setBounds(115, 340, 36, 36);
+        JLabel lottoNum1_3 = new JLabel(sNumber);
+        lottoNum1_3.setBounds(159, 340, 36, 36);
+        JLabel lottoNum1_4 = new JLabel(sNumber);
+        lottoNum1_4.setBounds(203, 340, 36, 36);
+        JLabel lottoNum1_5 = new JLabel(sNumber);
+        lottoNum1_5.setBounds(247, 340, 36, 36);
+        JLabel lottoNum1_6 = new JLabel(sNumber);
+        lottoNum1_6.setBounds(291, 340, 36, 36);
+        JLabel lottoNum1_0 = new JLabel(sNumber);
+        lottoNum1_0.setBounds(291, 340, 36, 36);
 
         // 버튼 생성
         JButton backBtn = new JButton(backIcon);
@@ -82,6 +99,14 @@ public class WinningNumPage extends JFrame {
         layeredPane.add(lottoNum5, new Integer(2));
         layeredPane.add(lottoNum6, new Integer(2));
         layeredPane.add(lottoNum7, new Integer(2));
+        
+        layeredPane.add(lottoNum1_1, new Integer(2));
+        layeredPane.add(lottoNum1_2, new Integer(2));
+        layeredPane.add(lottoNum1_3, new Integer(2));
+        layeredPane.add(lottoNum1_4, new Integer(2));
+        layeredPane.add(lottoNum1_5, new Integer(2));
+        layeredPane.add(lottoNum1_6, new Integer(2));
+        layeredPane.add(lottoNum1_0, new Integer(2));
         
 
         // JLayeredPane을 프레임의 contentPane에 추가
