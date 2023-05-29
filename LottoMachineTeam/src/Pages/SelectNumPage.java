@@ -1,10 +1,12 @@
 package Pages;
 import java.awt.Dimension;
 
+
 import database.SelectNum;
 import database.SelectNumHashMap;
 
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -21,8 +23,7 @@ import javax.swing.border.EmptyBorder;
 public class SelectNumPage extends JDialog {
 
     private JPanel contentPane;
-    SelectNumHashMap selectNumHashMap = new SelectNumHashMap();
-    
+    private SelectNumHashMap selectNumHashMap = new SelectNumHashMap();
     
    
     /**
@@ -36,9 +37,9 @@ public class SelectNumPage extends JDialog {
         setResizable(false); // 창 크기 변경을 비활성화
 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        int[] intarr = {1, 55, 33, 28, 6, 19};
-        SelectNum selNum = new SelectNum(intarr, 1);
-        selectNumHashMap.addMap(1, selNum);
+//        int[] intarr = {1, 55, 33, 28, 6, 19};
+//        SelectNum selNum = new SelectNum(intarr, 1);
+//        selectNumHashMap.addMap(1, selNum);
         
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         
@@ -47,6 +48,7 @@ public class SelectNumPage extends JDialog {
         ImageIcon backIcon = new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));
         ImageIcon buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBtn.png"));
         ImageIcon numIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
+        ImageIcon cancelIcon = new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
         
         
 
@@ -72,24 +74,29 @@ public class SelectNumPage extends JDialog {
         
 
         // 레이블 및 버튼을 JLayeredPane에 추가
-        JLabel[][] numLabel = new JLabel[7][10];
-        JLabel[][] numLabel2 = new JLabel[7][10];
+        JLabel[][] numLabel = new JLabel[8][10];
+        JLabel[][] numLabel2 = new JLabel[8][10];
+        JButton[] cancelButton = new JButton[10];
         Map<Integer, SelectNum> map;
+        map = selectNumHashMap.getSelectNumHashMap();
         SelectNum selectNum;
         int[] arr = new int[6];
-        for (int i = 0; i < 7; i++) {
-            	map = selectNumHashMap.getSelectNumHashMap();
+        for (int i = 0; i < 8; i++) {
             		for (int j = 0; j < 10; j++) {
             	if (i == 0) {
             		  numLabel[i][j] = new JLabel();
+            		  numLabel[i][j].setBounds(20, 117 + j * 70, 40, 40);
+				} else if (i == 7) {
+					cancelButton[j] = new JButton(cancelIcon);
+					cancelButton[j].setBounds(355, 120 + j * 70, 52, 36);
+					
 				} else {
-					  numLabel[i][j] = new JLabel(numIcon);
+					numLabel[i][j] = new JLabel(numIcon);
+					numLabel[i][j].setBounds(3 + i * 50, 117 + j * 70, 40, 40);
 				}
-                
-                numLabel[i][j].setBounds(2 + i * 50, 117 + j * 70, 40, 40);
-                
+                              
                 numLabel2[i][j] = new JLabel();
-                numLabel2[i][j].setBounds(2 + i * 50, 117 + j * 70, 40, 40);
+                numLabel2[i][j].setBounds(20 + i * 50, 117 + j * 70, 40, 40);
                 if (i == 0) {
           		  	numLabel2[i][j].setText(Integer.toString(j + 1));
 				} else {
@@ -100,8 +107,15 @@ public class SelectNumPage extends JDialog {
 						numLabel2[i][j].setText(Integer.toString(selectNum.getSelectNum()[i - 1]));						
 					}
 				}
-                layeredPane.add(numLabel2[i][j], new Integer(1));
-                layeredPane.add(numLabel[i][j], new Integer(1));
+                if (i == 7) {
+                	layeredPane.add(cancelButton[j], new Integer(2)); // 버튼은 앞쪽 레이어에 추가
+                	cancelButton[j].setOpaque(false);
+                	cancelButton[j].setContentAreaFilled(false);
+                	cancelButton[j].setBorderPainted(false);	
+				} else {
+					layeredPane.add(numLabel2[i][j], new Integer(1));
+					layeredPane.add(numLabel[i][j], new Integer(1));					
+				}
             }
         }
         layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
@@ -119,6 +133,19 @@ public class SelectNumPage extends JDialog {
         buyButton.setContentAreaFilled(false);
         buyButton.setBorderPainted(false);
         
+        
+        	
+        for (int i = 0; i < cancelButton.length; i++) {
+            final int index = i;
+            cancelButton[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("이벤트 발생" + index);
+                    map.remove(index);
+                }
+            });
+        }
+		
         backButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -129,5 +156,6 @@ public class SelectNumPage extends JDialog {
 		});
         pack();
        
+        
     }
 }
