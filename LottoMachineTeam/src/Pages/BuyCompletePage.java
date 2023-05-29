@@ -11,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 
 public class BuyCompletePage extends JFrame {
 
-    private JPanel contentPane;
 
     /**
      * Launch the application.
@@ -34,7 +33,6 @@ public class BuyCompletePage extends JFrame {
      */
     public BuyCompletePage() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(430, 932); // 창의 크기를 설정
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘 로드
@@ -49,7 +47,7 @@ public class BuyCompletePage extends JFrame {
 
         // JLayeredPane 생성 및 설정
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(430, 890)); // JLayeredPane의 크기 설정
+        layeredPane.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
 
         // 레이블 및 버튼 위치 설정
         label.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
@@ -60,5 +58,6 @@ public class BuyCompletePage extends JFrame {
 
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
+        pack();
     }
 }
