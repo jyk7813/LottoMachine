@@ -14,7 +14,7 @@ public class UnderLotteryPage extends JFrame {
 
     private JPanel contentPane;
 
-    /**
+    /**aa
      * Launch the application.
      */
     public static void main(String[] args) {
