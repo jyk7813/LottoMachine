@@ -35,13 +35,6 @@ public class SelectNumPage extends JDialog {
         setModal(true);
    
         setResizable(false); // 창 크기 변경을 비활성화
-
-      //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//        int[] intarr = {1, 55, 33, 28, 6, 19};
-//        SelectNum selNum = new SelectNum(intarr, 1);
-//        selectNumHashMap.addMap(1, selNum);
-        
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         
         // 이미지 아이콘 로드
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("selectNum(BG).png"));
