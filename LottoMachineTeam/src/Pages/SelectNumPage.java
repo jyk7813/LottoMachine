@@ -5,47 +5,34 @@ import database.SelectNum;
 import database.SelectNumHashMap;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class SelectNumPage extends JFrame {
+public class SelectNumPage extends JDialog {
 
     private JPanel contentPane;
     SelectNumHashMap selectNumHashMap = new SelectNumHashMap();
     
     
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	SelectNumPage frame = new SelectNumPage();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        
-      
-    }
-    
+   
     /**
      * Create the frame.
      */
     public SelectNumPage() {
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(430, 890); // 창의 크기를 설정
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setModal(true);
+   
         setResizable(false); // 창 크기 변경을 비활성화
 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -74,7 +61,7 @@ public class SelectNumPage extends JFrame {
         JButton backButton = new JButton(backIcon);
         backButton.setBounds(20, 41, 33, 38); // 위치와 크기 설정
         JButton buyButton = new JButton(buyIcon);
-        buyButton.setBounds(89, 812, 251, 41); // 위치와 크기 설정
+        buyButton.setBounds(90, 815, 251, 41); // 위치와 크기 설정
 
         // JLayeredPane 생성 및 설정
         JLayeredPane layeredPane = new JLayeredPane();
@@ -99,10 +86,10 @@ public class SelectNumPage extends JFrame {
 					  numLabel[i][j] = new JLabel(numIcon);
 				}
                 
-                numLabel[i][j].setBounds(20 + i * 55, 115 + j * 71, 40, 40);
+                numLabel[i][j].setBounds(2 + i * 50, 117 + j * 70, 40, 40);
                 
                 numLabel2[i][j] = new JLabel();
-                numLabel2[i][j].setBounds(33 + i * 55, 115 + j * 71, 40, 40);
+                numLabel2[i][j].setBounds(2 + i * 50, 117 + j * 70, 40, 40);
                 if (i == 0) {
           		  	numLabel2[i][j].setText(Integer.toString(j + 1));
 				} else {
@@ -127,13 +114,20 @@ public class SelectNumPage extends JFrame {
         // 버튼숨기기
         backButton.setOpaque(false);
         backButton.setContentAreaFilled(false);
-        backButton.setBorderPainted(true);
+        backButton.setBorderPainted(false);
         buyButton.setOpaque(false);
         buyButton.setContentAreaFilled(false);
-        buyButton.setBorderPainted(true);
+        buyButton.setBorderPainted(false);
         
-       
-
+        backButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+        pack();
        
     }
 }
