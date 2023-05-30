@@ -13,12 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import database.SelectNum;
+import database.SelectNumMap;
+import database.WinningNum;
 import utility.IconData;
 
 public class WinningNumPage extends JDialog {
 	private IconData icon = new IconData();
 	private JPanel contentPane;
 	private JLayeredPane layeredPane;
+	private int[] Num;
+	private int i;
 
   
     /**
@@ -29,7 +33,7 @@ public class WinningNumPage extends JDialog {
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
-     // 이미지 아이콘을 사용하는 레이블 생성a
+     // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon.winningNumIcon());
         
         JLabel[][] lottoNum = new JLabel[8][10];
@@ -101,5 +105,17 @@ public class WinningNumPage extends JDialog {
         backBtn.setOpaque(false);
         backBtn.setContentAreaFilled(false);
         backBtn.setBorderPainted(false);
+    }
+    private void winningNum() {
+    	SelectNumMap sm = new SelectNumMap();
+    	SelectNum num = new SelectNum(Num, i);
+    	
+    	boolean added = sm.addLinkedHashMap(num);
+    	if (added) {
+    	    // LinkedHashMap에 추가되었을 때의 처리
+    	} else {
+    	    // LinkedHashMap의 크기가 10 이상일 때의 처리
+    	}
+    	
     }
 }
