@@ -16,9 +16,10 @@ import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
 
 import database.SelectNumMap;
+import utility.Utility;
 
 public class BuyPage extends JDialog {
-
+	private Utility utility = new Utility();
 	private int count = 0;
 	private ImageIcon buyPageIcon;
 	private ImageIcon initBtnIcon;
@@ -259,20 +260,16 @@ public class BuyPage extends JDialog {
 
 	}
 
-	private void setButtonProperties(JButton button) {
-		button.setOpaque(false);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-	}
+	
 
 	private void removeButtonVisualEffects() {
-		setButtonProperties(resetButton);
-		setButtonProperties(autoButton);
-		setButtonProperties(addButton);
-		setButtonProperties(lbuyButton);
-		setButtonProperties(moreButton);
-		setButtonProperties(backButton);
-		setButtonProperties(cancleButton);
+		utility.setButtonProperties(resetButton);
+		utility.setButtonProperties(autoButton);
+		utility.setButtonProperties(addButton);
+		utility.setButtonProperties(lbuyButton);
+		utility.setButtonProperties(moreButton);
+		utility.setButtonProperties(backButton);
+		utility.setButtonProperties(cancleButton);
 	}
 
 }

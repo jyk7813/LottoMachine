@@ -13,15 +13,17 @@ import javax.swing.JLayeredPane;
 
 import database.WinningNumData;
 import utility.IconData;
+import utility.Utility;
 
 public class MainPage extends JFrame {
 
 
+	private IconData iconData = new IconData();
+	private Utility utility = new Utility();
 	private JButton buyButton;
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	IconData iconData = new IconData();
 	private ImageIcon[] colorNumIcon;
 	private WinningNumData winningNumData = new WinningNumData();
 	private static Integer currentRound = 1;
@@ -118,7 +120,6 @@ public class MainPage extends JFrame {
 			}
 		});
 		
-		
 		pack();
 
 	}
@@ -132,26 +133,16 @@ public class MainPage extends JFrame {
 			String filename = "LC" + (i + 1) + ".png";
 			colorNumIcon[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
 		}
-		
-		
 	}
 	/**
 	 * 버튼 안보이게 만듬
 	 */
 	private void btnUnVisuable() {
 		
-		buyButton.setOpaque(false);
-		buyButton.setContentAreaFilled(false);
-		buyButton.setBorderPainted(false);
-		myNumButton.setOpaque(false);
-		myNumButton.setContentAreaFilled(false);
-		myNumButton.setBorderPainted(false);
-		makeLotteryButton.setOpaque(false);
-		makeLotteryButton.setContentAreaFilled(false);
-		makeLotteryButton.setBorderPainted(false);
-		nextTurnButton.setOpaque(false);
-		nextTurnButton.setContentAreaFilled(false);
-		nextTurnButton.setBorderPainted(false);
+		utility.setButtonProperties(buyButton);
+		utility.setButtonProperties(myNumButton);
+		utility.setButtonProperties(makeLotteryButton);
+		utility.setButtonProperties(nextTurnButton);
 	}
 	/**
 	 * 버튼 크기 및 위치 조정
