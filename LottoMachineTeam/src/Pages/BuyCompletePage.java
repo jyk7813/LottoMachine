@@ -32,7 +32,7 @@ public class BuyCompletePage extends JFrame {
 	 */
 	public BuyCompletePage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false); // 창 크기 변경을 비활성화
+		setResizable(false);
 		// 이미지 아이콘 로드
 		iconSetting();
 
