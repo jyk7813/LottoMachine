@@ -112,7 +112,8 @@ public class MainPage extends JFrame {
 					UnderLotteryPage underLotteryPage = new UnderLotteryPage();
 					underLotteryPage.setVisible(true);
 				} else {
-					
+					WinningNumPage winningNumPage = new WinningNumPage();
+					winningNumPage.setVisible(true);
 				}
 			}
 		});
