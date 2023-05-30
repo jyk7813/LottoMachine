@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import database.WinningNumData;
+
 public class MainPage extends JFrame {
 
 
@@ -22,6 +24,8 @@ public class MainPage extends JFrame {
 	private ImageIcon myNumIcon;
 	private ImageIcon makeLotteryIcon;
 	private ImageIcon nextTurnIcon;
+	private WinningNumData winningNumData = new WinningNumData();
+	private static Integer currentRound = 1;
 	/**
 	 * Launch the application.
 	 */
@@ -85,9 +89,14 @@ public class MainPage extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				if (currentRound > winningNumData.getLastTurn()) {
+					
+				} else {
+					
+				}
 			}
 		});
+		
 		
 		pack();
 
