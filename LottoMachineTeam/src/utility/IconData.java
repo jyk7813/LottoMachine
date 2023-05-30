@@ -19,7 +19,31 @@ public class IconData {
 	public ImageIcon nextTurnIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("nextBtn.png"));
 	}
+	public ImageIcon buyPageIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("buy(BG).png"));
+	}
+	public ImageIcon initBtnIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("initButten.png"));
+	}
+	public ImageIcon autoBtnIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("autoBtn.png"));
+	}
+	public ImageIcon addBtnIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("addBtn.png"));
+	}
+	public ImageIcon longBuyBtnIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("buyBtn.png"));
+	}
+	public ImageIcon moreIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("moreBtn.png"));
+	}
+	public ImageIcon backIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));
+	}
+	public ImageIcon cancleIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
+	}
 	public ImageIcon emptyIcon() {
-		return new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
+		return  new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
 	}
 }
