@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,19 +17,13 @@ import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
 
 import database.SelectNumMap;
+import utility.IconData;
+import utility.Utility;
 
 public class BuyPage extends JDialog {
-
+	private IconData icon = new IconData();
+	private Utility utility = new Utility();
 	private int count = 0;
-	private ImageIcon buyPageIcon;
-	private ImageIcon initBtnIcon;
-	private ImageIcon autoBtnIcon;
-	private ImageIcon addBtnIcon;
-	private ImageIcon longBuyBtnIcon;
-	private ImageIcon emptyIcon;
-	private ImageIcon moreIcon;
-	private ImageIcon backIcon;
-	private ImageIcon cancleIcon;
 	private ImageIcon[] numIcons;
 	private JLabel label;
 	private JLabel[] selectEmptyJLabels;
@@ -60,7 +55,7 @@ public class BuyPage extends JDialog {
 		// 버튼만들기
 		makeButten();
 		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(buyPageIcon.getIconWidth(), buyPageIcon.getIconHeight()));
+		layeredPane.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
 		// 레이블 및 버튼 위치 설정
 		labelBounds();
 		// 레이블 및 버튼을 JLayeredPane에 추가
@@ -205,7 +200,7 @@ public class BuyPage extends JDialog {
 	}
 
 	private void labelBounds() {
-		label.setBounds(0, 0, buyPageIcon.getIconWidth(), buyPageIcon.getIconHeight());
+		label.setBounds(0, 0, icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight());
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i].setBounds(52 + i * 50, 680, 40, 40);
 
@@ -214,43 +209,35 @@ public class BuyPage extends JDialog {
 	}
 
 	private void makeButten() {
-		resetButton = new JButton(initBtnIcon);
+		resetButton = new JButton(icon.initBtnIcon());
 		resetButton.setBounds(40, 523, 80, 37); // 위치와 크기 설정
-		autoButton = new JButton(autoBtnIcon);
+		autoButton = new JButton(icon.autoBtnIcon());
 		autoButton.setBounds(140, 523, 80, 37);
-		addButton = new JButton(addBtnIcon);
+		addButton = new JButton(icon.addBtnIcon());
 		addButton.setBounds(240, 523, 152, 36);
-		lbuyButton = new JButton(longBuyBtnIcon);
+		lbuyButton = new JButton(icon.longBuyBtnIcon());
 		lbuyButton.setBounds(90, 815, 251, 41);
-		moreButton = new JButton(moreIcon);
+		moreButton = new JButton(icon.moreIcon());
 		moreButton.setBounds(195, 740, 40, 45);
-		backButton = new JButton(backIcon);
+		backButton = new JButton(icon.backIcon());
 		backButton.setBounds(20, 42, 33, 38);
-		cancleButton = new JButton(cancleIcon);
+		cancleButton = new JButton(icon.cancleIcon());
 		cancleButton.setBounds(356, 682, 52, 36);
 		selectNum = new JToggleButton[45];
 
 	}
 
 	private void makeLabel() {
-		label = new JLabel(buyPageIcon);
+		label = new JLabel(icon.buyPageIcon());
 		selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
-			selectEmptyJLabels[i] = new JLabel(emptyIcon);
+			selectEmptyJLabels[i] = new JLabel(icon.emptyIcon());
 		}
 
 	}
 
 	private void makeIcon() {
-		buyPageIcon = new ImageIcon(getClass().getClassLoader().getResource("buy(BG).png"));
-		initBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("initButten.png"));
-		autoBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("autoBtn.png"));
-		addBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("addBtn.png"));
-		longBuyBtnIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBtn.png"));
-		emptyIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
-		moreIcon = new ImageIcon(getClass().getClassLoader().getResource("moreBtn.png"));
-		backIcon = new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));
-		cancleIcon = new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
+		
 		numIcons = new ImageIcon[45];
 		for (int i = 0; i < numIcons.length; i++) {
 			String filename = "LC" + (i + 1) + ".png";
@@ -259,20 +246,16 @@ public class BuyPage extends JDialog {
 
 	}
 
-	private void setButtonProperties(JButton button) {
-		button.setOpaque(false);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-	}
+	
 
 	private void removeButtonVisualEffects() {
-		setButtonProperties(resetButton);
-		setButtonProperties(autoButton);
-		setButtonProperties(addButton);
-		setButtonProperties(lbuyButton);
-		setButtonProperties(moreButton);
-		setButtonProperties(backButton);
-		setButtonProperties(cancleButton);
+		utility.setButtonProperties(resetButton);
+		utility.setButtonProperties(autoButton);
+		utility.setButtonProperties(addButton);
+		utility.setButtonProperties(lbuyButton);
+		utility.setButtonProperties(moreButton);
+		utility.setButtonProperties(backButton);
+		utility.setButtonProperties(cancleButton);
 	}
 
 }
