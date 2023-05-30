@@ -10,8 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class BuyCheckPage extends JFrame {
+	private JButton backBtn;
+	private JButton yesBtn;
+	private JButton noBtn;
+	private ImageIcon icon;
+	private ImageIcon backIcon;
+	private ImageIcon yesIcon;
+	private ImageIcon noIcon;
 
-    private JPanel contentPane;
 
     /**
      * Launch the application.
@@ -33,19 +39,23 @@ public class BuyCheckPage extends JFrame {
      * Create the frame.
      */
     public BuyCheckPage() {
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(430, 932); // 창의 크기를 설정
         setResizable(false); // 창 크기 변경을 비활성화
 
+        iconSettingBuyCheckPage();
+
         // 이미지 아이콘 로드
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("buycheck(BG).png"));;
+        
 
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon);
+        btnBoundsBuyCheckPage();
 
         // 버튼 생성
-        JButton button = new JButton("Click me");
-        button.setBounds(50, 50, 120, 30); // 위치와 크기 설정
+        //yesBtn = new JButton("Click me");
+         // 위치와 크기 설정
 
         // JLayeredPane 생성 및 설정
         JLayeredPane layeredPane = new JLayeredPane();
@@ -56,9 +66,44 @@ public class BuyCheckPage extends JFrame {
 
         // 레이블 및 버튼을 JLayeredPane에 추가
         layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
-        layeredPane.add(button, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
+        layeredPane.add(backBtn, new Integer(2));
+        layeredPane.add(yesBtn, new Integer(3)); // 버튼은 앞쪽 레이어에 추가
+        layeredPane.add(noBtn, new Integer(4));
 
+        btnUnVisuableBuyCheckPage();
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
+    }
+    
+    private void iconSettingBuyCheckPage() {
+    	icon = new ImageIcon(getClass().getClassLoader().getResource("buycheck(BG).png"));
+    	backIcon = new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));
+    	yesIcon = new ImageIcon(getClass().getClassLoader().getResource("yesBtn.png"));
+    	noIcon = new ImageIcon(getClass().getClassLoader().getResource("noBtn.png"));
+    	
+    }
+    private void btnBoundsBuyCheckPage() {
+    	backBtn = new JButton(backIcon);
+    	backBtn.setBounds(19,41,33,38);
+    	
+    	yesBtn = new JButton(yesIcon);
+    	yesBtn.setBounds(94,459,107,41);
+    	
+    	noBtn = new JButton(noIcon);
+    	noBtn.setBounds(229,459,107,41);
+    	
+    }
+    private void btnUnVisuableBuyCheckPage() {
+    	backBtn.setOpaque(false);
+    	backBtn.setContentAreaFilled(false);
+    	yesBtn.setBorderPainted(false);
+    	
+    	yesBtn.setOpaque(false);
+    	yesBtn.setContentAreaFilled(false);
+    	yesBtn.setBorderPainted(false);
+    	
+    	noBtn.setOpaque(false);
+    	noBtn.setContentAreaFilled(false);
+    	noBtn.setBorderPainted(false);
     }
 }

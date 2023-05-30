@@ -11,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 
 public class WinningNumPage extends JFrame {
 
-    private JPanel contentPane;
 
     /**
      * Launch the application.

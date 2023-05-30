@@ -51,9 +51,9 @@ public class BuyPage extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
-		//아이콘 세팅
+		// 아이콘 세팅
 		makeIcon();
-		//label만들기
+		// label만들기
 		makeLabel();
 		// 버튼만들기
 		makeButten();
@@ -69,50 +69,16 @@ public class BuyPage extends JDialog {
 		removeButtonVisualEffects();
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
+
+		resetActionListener();
+		autoActionListener();
+		moreActionListener();
+		backActionListener();
 		
-		
-		resetButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        for (JToggleButton toggleButton : selectNum) {
-		            toggleButton.setSelected(false);
-		            toggleButton.setIcon(null); // 선택이 해제되었으므로 아이콘도 초기화합니다.
-		        }
-		        // 선택한 버튼 수도 초기화해야 합니다.
-		        selectedCount.set(0);
-		    }
-		});
-		
-		autoButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        int[] num = new int[6 - selectedCount.get()];
-		        int i = 0;
-		        autoCount = 0;
-		        while (i < num.length) {
-		            int randomNum = random.nextInt(45);
-		            if (!selectNum[randomNum].isSelected()) {
-		                selectNum[randomNum].setSelected(true);
-		                selectNum[randomNum].setIcon(numIcons[randomNum]);
-		                selectedCount.incrementAndGet();
-		                i++;
-		                autoCount++;
-		            }
-		        }
-		    }
-		});
-		
-		moreButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SelectNumPage selectNumPage = new SelectNumPage();
-				selectNumPage.setAlwaysOnTop(true);
-				selectNumPage.setVisible(true);
-				
-			}
-		});
-		
+		pack();
+	}
+
+	private void backActionListener() {
 		backButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -120,8 +86,57 @@ public class BuyPage extends JDialog {
 				dispose();
 				
 			}
+		});		
+	}
+
+	private void moreActionListener() {
+		moreButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SelectNumPage selectNumPage = new SelectNumPage();
+				selectNumPage.setAlwaysOnTop(true);
+				selectNumPage.setVisible(true);
+
+			}
 		});
-		pack();
+	}
+
+	private void autoActionListener() {
+		autoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int[] num = new int[6 - selectedCount.get()];
+				int i = 0;
+				autoCount = 0;
+				while (i < num.length) {
+					int randomNum = random.nextInt(45);
+					if (!selectNum[randomNum].isSelected()) {
+						selectNum[randomNum].setSelected(true);
+						selectNum[randomNum].setIcon(numIcons[randomNum]);
+						selectedCount.incrementAndGet();
+						i++;
+						autoCount++;
+					}
+				}
+			}
+		});
+
+	}
+
+	private void resetActionListener() {
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JToggleButton toggleButton : selectNum) {
+					toggleButton.setSelected(false);
+					toggleButton.setIcon(null); // 선택이 해제되었으므로 아이콘도 초기화합니다.
+				}
+				// 선택한 버튼 수도 초기화해야 합니다.
+				selectedCount.set(0);
+			}
+		});
+
 	}
 
 	private void maxSelect() {
@@ -144,11 +159,11 @@ public class BuyPage extends JDialog {
 				}
 			});
 		});
-		
+
 	}
 
 	private void addLableAndBtn() {
-		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
+		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가a
 
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			layeredPane.add(selectEmptyJLabels[i], new Integer(2));
@@ -174,7 +189,6 @@ public class BuyPage extends JDialog {
 			}
 		}
 
-		
 	}
 
 	private void labelBounds() {
@@ -183,7 +197,7 @@ public class BuyPage extends JDialog {
 			selectEmptyJLabels[i].setBounds(52 + i * 50, 680, 40, 40);
 
 		}
-		
+
 	}
 
 	private void makeButten() {
