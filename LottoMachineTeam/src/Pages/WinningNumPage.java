@@ -29,7 +29,7 @@ public class WinningNumPage extends JDialog {
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
-     // 이미지 아이콘을 사용하는 레이블 생성
+     // 이미지 아이콘을 사용하는 레이블 생성a
         JLabel label = new JLabel(icon.winningNumIcon());
         
         JLabel[][] lottoNum = new JLabel[8][10];

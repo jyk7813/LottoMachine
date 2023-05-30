@@ -144,7 +144,7 @@ public class MainPage extends JFrame {
 		}
 	}
 	/**
-	 * 버튼 안보이게 만듬a
+	 * 버튼 안보이게 만듬
 	 */
 	private void btnUnVisuable() {
 		
