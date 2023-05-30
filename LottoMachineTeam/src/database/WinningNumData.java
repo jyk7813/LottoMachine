@@ -7,7 +7,7 @@ import java.util.TreeSet;
 public class WinningNumData {
 	
 	private static Map<Integer,WinningNum> winningNum;
-	
+	private static Integer turn;
 	public WinningNumData() {
 		this.winningNum = new LinkedHashMap<>();
 	}
@@ -28,9 +28,12 @@ public class WinningNumData {
      * 작성자 : 주하태 버젼 : 1.0.0
      * @param winningNum 새로운 당첨 번호 맵
      */
-    public void setWinningNum(Map<Integer, WinningNum> winningNum) {
-        this.winningNum = new LinkedHashMap<>(winningNum);
+    public void setWinningNum(WinningNum winningNum) {
+    	this.winningNum.put(turn, winningNum);
+    	turn++;
     }
+    
+    
 
 	
 	/**

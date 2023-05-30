@@ -3,7 +3,9 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -14,10 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;
 
+import database.WinningNum;
+import database.WinningNumData;
 import utility.IconData;
 
 public class UnderLotteryPage extends JDialog implements ActionListener{
-	
+	private WinningNumData winningNumData;
 	private JLabel label;
 	private ImageIcon underLotteryPage;
 	private ImageIcon bonuseIcon;
@@ -33,9 +37,12 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 	private Set<Integer> randomNums;
 	private int bonusNum;
 	
-
-  
-    /**
+    
+    public void name() {
+		winningNumData.setWinningNum(new WinningNum(randomNums, 5));
+	}
+    
+	/**
      * Create the frame.
      */
     public UnderLotteryPage() {
@@ -71,6 +78,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
         	int num = random.nextInt(45);
         	randomNums.add(num);
 		}
+        
         generateBonusNumber();
         
         pack();

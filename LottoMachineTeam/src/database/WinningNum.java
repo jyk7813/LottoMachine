@@ -1,19 +1,21 @@
 package database;
 
+import java.util.Collection;
+
 public class WinningNum {
-	int[] winningNum;
+	Collection winningNum;
 	int bonusNum;
 	
-	public WinningNum(int[] winningNum, int bonusNum) {
+	public WinningNum(Collection winningNum, int bonusNum) {
 		this.winningNum = winningNum;
 		this.bonusNum = bonusNum;
 	}
 
-	public int[] getWinningNum() {
+	public Collection getWinningNum() {
 		return winningNum;
 	}
 
-	public void setWinningNum(int[] winningNum) {
+	public void setWinningNum(Collection winningNum) {
 		this.winningNum = winningNum;
 	}
 
