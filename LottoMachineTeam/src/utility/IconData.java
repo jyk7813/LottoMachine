@@ -58,6 +58,10 @@ public class IconData {
 	public ImageIcon winningNumIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("winningNum(BG).png"));
 	}
+	public ImageIcon myNumCheckIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("myNumCheck(BG).png"));
+	}
+	
 	
 }
 
