@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -13,33 +14,18 @@ import javax.swing.border.EmptyBorder;
 
 import database.SelectNum;
 
-public class WinningNumPage extends JFrame {
+public class WinningNumPage extends JDialog {
 
 	private JPanel contentPane;
 	private JLayeredPane layeredPane;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    WinningNumPage frame = new WinningNumPage();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+  
     /**
      * Create the frame.
      */
     public WinningNumPage() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(430, 890); // 창의 크기를 설정
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘 로드

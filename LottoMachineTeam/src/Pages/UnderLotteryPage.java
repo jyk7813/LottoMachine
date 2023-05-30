@@ -4,11 +4,12 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-public class UnderLotteryPage extends JFrame {
+public class UnderLotteryPage extends JDialog {
 	private JButton backBtn;
 	private JLabel label;
 	private ImageIcon underLotteryPage;
@@ -20,28 +21,13 @@ public class UnderLotteryPage extends JFrame {
 	private JLayeredPane layeredPane;
 	
 
-    /**aa
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	UnderLotteryPage frame = new UnderLotteryPage();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+  
     /**
      * Create the frame.
      */
     public UnderLotteryPage() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(430, 932); // 창의 크기를 설정
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘 로드
@@ -65,6 +51,7 @@ public class UnderLotteryPage extends JFrame {
 
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
+        pack();
     }
     private void makeLabel() {
     	label = new JLabel(underLotteryPage);//기본 페이지화면

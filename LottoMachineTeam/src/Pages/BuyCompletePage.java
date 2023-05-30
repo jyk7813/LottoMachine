@@ -1,10 +1,9 @@
 package Pages;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import javax.swing.*;
 
-public class BuyCompletePage extends JFrame {
+public class BuyCompletePage extends JDialog {
 	private JButton returnBtn;
 	private ImageIcon buyCompletePage;
 	private ImageIcon returnIcon;
@@ -12,26 +11,11 @@ public class BuyCompletePage extends JFrame {
 	private JLabel buyCompletePageLabel;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuyCompletePage frame = new BuyCompletePage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public BuyCompletePage() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setModal(true);
 		setResizable(false);
 		// 이미지 아이콘 로드
 		iconSetting();

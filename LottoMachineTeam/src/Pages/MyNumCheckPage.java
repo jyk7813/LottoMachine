@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -14,32 +15,17 @@ import javax.swing.border.EmptyBorder;
 
 import database.SelectNum;
 
-public class MyNumCheckPage extends JFrame {
+public class MyNumCheckPage extends JDialog {
 
     private JPanel contentPane;
-	private JLayeredPane layeredPane;
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    MyNumCheckPage frame = new MyNumCheckPage();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+	private JLayeredPane layeredPane; 
+	
     /**
      * Create the frame.
      */
     public MyNumCheckPage() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘 로드
