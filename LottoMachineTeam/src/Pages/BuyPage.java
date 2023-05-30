@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
 
+import database.SelectNumMap;
+
 public class BuyPage extends JDialog {
 
 	private int count = 0;
@@ -74,6 +76,17 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
+		addButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < selectNum.length; i++) {
+					if (selectNum[i].isSelected()) {
+						SelectNumMap selectNumMap = new SelectNumMap();
+					}
+				}
+			}
+		});
 		
 		pack();
 	}
