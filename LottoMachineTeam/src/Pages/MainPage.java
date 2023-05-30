@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -16,7 +18,6 @@ import utility.IconData;
 import utility.Utility;
 
 public class MainPage extends JFrame {
-
 
 	private IconData iconData = new IconData();
 	private Utility utility = new Utility();
@@ -88,21 +89,18 @@ public class MainPage extends JFrame {
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
-		buyButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				BuyPage buyPage = new BuyPage();
-				buyPage.setVisible(true);
-				
-			}
-		});
+		
+		buyButton.addActionListener(e -> {
+	            new BuyPage(this).setVisible(true); // pass this frame to the next one
+	            setVisible(false); // hide this frame
+	        });
 		
 		myNumButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MyNumCheckPage myNumCheckPage = new MyNumCheckPage();
+				
 				myNumCheckPage.setVisible(true);
 			}
 		});
@@ -133,6 +131,7 @@ public class MainPage extends JFrame {
 		pack();
 
 	}
+
 	/**
 	 * 아이콘값 세팅
 	 */

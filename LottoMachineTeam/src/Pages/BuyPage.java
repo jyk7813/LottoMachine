@@ -12,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
@@ -40,11 +41,14 @@ public class BuyPage extends JDialog {
 	private AtomicInteger selectedCount;
 	private Random random = new Random();
 	private int autoCount;
+	private JFrame mainPage;
+
 
 	/**
 	 * Create the frame.
 	 */
-	public BuyPage() {
+	public BuyPage(JFrame mainPage) {
+		this.mainPage = mainPage;
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
@@ -86,8 +90,11 @@ public class BuyPage extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BuyCheckPage buyCheckPage = new BuyCheckPage();
+				BuyCheckPage buyCheckPage = new BuyCheckPage(mainPage);
+				buyCheckPage.setAlwaysOnTop(true);
 				buyCheckPage.setVisible(true);
+				setVisible(false);
+				
 			}
 		});
 		
@@ -111,6 +118,7 @@ public class BuyPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SelectNumPage selectNumPage = new SelectNumPage();
+				setVisible(false);
 				selectNumPage.setAlwaysOnTop(true);
 				selectNumPage.setVisible(true);
 

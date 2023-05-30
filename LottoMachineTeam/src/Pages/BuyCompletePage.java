@@ -1,6 +1,9 @@
 package Pages;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class BuyCompletePage extends JDialog {
@@ -9,11 +12,13 @@ public class BuyCompletePage extends JDialog {
 	private ImageIcon returnIcon;
 	private JLayeredPane layeredPane;
 	private JLabel buyCompletePageLabel;
+	private JFrame mainPage;
 
 	/**
 	 * Create the frame.
 	 */
-	public BuyCompletePage() {
+	public BuyCompletePage(JFrame mainPage) {
+		this.mainPage = mainPage;
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
@@ -32,6 +37,16 @@ public class BuyCompletePage extends JDialog {
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
+		returnBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 if (!mainPage.isVisible()) {
+				        mainPage.setVisible(true);
+				    }
+				    dispose();
+			}
+		});
 		pack();
 	}
 
