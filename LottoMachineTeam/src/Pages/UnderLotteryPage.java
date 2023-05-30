@@ -3,24 +3,35 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Timer;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.Timer;
 
-public class UnderLotteryPage extends JDialog {
-	private JButton backBtn;
+import utility.IconData;
+
+public class UnderLotteryPage extends JDialog implements ActionListener{
+	
 	private JLabel label;
 	private ImageIcon underLotteryPage;
 	private ImageIcon bonuseIcon;
 	private ImageIcon emptyIcon;
-	private ImageIcon backIcon;
 	private JLabel selectEmptyJLabels[];
 	private JLabel bonuseEmptyJLabels;
 	private JLayeredPane layeredPane;
+	private Random random = new Random();
+	int count;
+	IconData iconData = new IconData();
+	private Timer timer;
+	private int randomNum;
+	private Set<Integer> randomNums;
+	private int bonusNum;
 	
 
   
@@ -53,6 +64,14 @@ public class UnderLotteryPage extends JDialog {
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
         
+        timer = new Timer(1000, this);
+        timer.start();
+        randomNums = new HashSet<>();
+        while (randomNums.size() < 6) {
+        	int num = random.nextInt(45);
+        	randomNums.add(num);
+		}
+        generateBonusNumber();
         
         pack();
     }
@@ -97,5 +116,24 @@ public class UnderLotteryPage extends JDialog {
     	layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(430, 890)); 
     }
-    
+    @Override
+	public void actionPerformed(ActionEvent e) {
+    	
+    	if (count < 6) {
+			selectEmptyJLabels[count].setIcon(iconData.LCIcons()[randomNums.toArray(new Integer[0])[count]]);
+		}
+    	if (count == 6) {
+			bonuseEmptyJLabels.setIcon(iconData.LCIcons()[bonusNum]);
+		}
+    	if (count > 6) {
+			timer.stop();
+			dispose();
+		}
+    	count++;
+	}
+    private void generateBonusNumber() {
+        do {
+            bonusNum = random.nextInt(45);
+        } while (randomNums.contains(bonusNum));
+    }
 }
