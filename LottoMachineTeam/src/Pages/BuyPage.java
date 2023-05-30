@@ -41,14 +41,12 @@ public class BuyPage extends JDialog {
 	private AtomicInteger selectedCount;
 	private Random random = new Random();
 	private int autoCount;
-	private JFrame mainPage;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public BuyPage(JFrame mainPage) {
-		this.mainPage = mainPage;
+	public BuyPage() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
@@ -90,10 +88,10 @@ public class BuyPage extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BuyCheckPage buyCheckPage = new BuyCheckPage(mainPage);
+				BuyCheckPage buyCheckPage = new BuyCheckPage();
+				dispose();
 				buyCheckPage.setAlwaysOnTop(true);
 				buyCheckPage.setVisible(true);
-				setVisible(false);
 				
 			}
 		});

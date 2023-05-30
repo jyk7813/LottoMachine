@@ -27,7 +27,7 @@ public class MyNumCheckPage extends JDialog{
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘을 사용하는 레이블 생성
-        JLabel label = new JLabel(icon.winningNumIcon());
+        JLabel label = new JLabel(icon.myNumCheckIcon());
         
         JLabel[][] lottoNum = new JLabel[8][10];
         JLabel[][] lottoNum2 = new JLabel[8][10];

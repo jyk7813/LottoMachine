@@ -122,7 +122,22 @@ public class SelectNumPage extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				 dispose();
+				  BuyPage buyPage = new BuyPage();
+				  buyPage.setVisible(true);
+				  buyPage.setAlwaysOnTop(true);
+				
+			}
+		});
+        buyButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BuyCheckPage buyCheckPage = new BuyCheckPage();
 				dispose();
+				
+				buyCheckPage.setAlwaysOnTop(true);
+				buyCheckPage.setVisible(true);
 				
 			}
 		});
