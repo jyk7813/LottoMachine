@@ -33,32 +33,22 @@ public class SelectNumPage extends JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
-
-      //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        int[] intarr = {1, 55, 33, 28, 6, 19};
-        SelectNum selNum = new SelectNum(intarr, 1);
-        selectNumHashMap.addMap(1, selNum);
-        
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         
         // 이미지 아이콘 로드
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("selectNum(BG).png"));
         ImageIcon backIcon = new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));
         ImageIcon buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBtn.png"));
         ImageIcon numIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
+        ImageIcon cancleBtn = new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
         
-        
-
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon);
-        
-        
-        
         
 
         // 버튼 생성
         JButton backButton = new JButton(backIcon);
         backButton.setBounds(20, 41, 33, 38); // 위치와 크기 설정
+       
         JButton buyButton = new JButton(buyIcon);
         buyButton.setBounds(90, 815, 251, 41); // 위치와 크기 설정
 
@@ -66,6 +56,16 @@ public class SelectNumPage extends JDialog {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(430, 890)); // JLayeredPane의 크기 설정
 
+        JButton[] cancel = new JButton[10];
+        for(int i = 0; i < 10; i++) {
+        	cancel[i] = new JButton(cancleBtn);
+        	cancel[i].setBounds(356, 119 + i * 70, 52, 36);
+        	layeredPane.add(cancel[i], new Integer(2));
+        	cancel[i].setOpaque(false);
+            cancel[i].setContentAreaFilled(false);
+            cancel[i].setBorderPainted(false);
+        }
+        
         // 레이블 및 버튼 위치 설정
         label.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
         
@@ -114,9 +114,13 @@ public class SelectNumPage extends JDialog {
         backButton.setOpaque(false);
         backButton.setContentAreaFilled(false);
         backButton.setBorderPainted(false);
+        
         buyButton.setOpaque(false);
         buyButton.setContentAreaFilled(false);
         buyButton.setBorderPainted(false);
+        
+        
+        
         
         backButton.addActionListener(new ActionListener() {
 			
