@@ -91,8 +91,8 @@ public class MainPage extends JFrame {
 		setContentPane(layeredPane);
 		
 		buyButton.addActionListener(e -> {
-	            new BuyPage(this).setVisible(true); // pass this frame to the next one
-	            setVisible(false); // hide this frame
+	            new BuyPage().setVisible(true); // pass this frame to the next one
+	            setVisible(true);
 	        });
 		
 		myNumButton.addActionListener(new ActionListener() {

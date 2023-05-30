@@ -12,13 +12,11 @@ public class BuyCompletePage extends JDialog {
 	private ImageIcon returnIcon;
 	private JLayeredPane layeredPane;
 	private JLabel buyCompletePageLabel;
-	private JFrame mainPage;
-
+	private MainPage mainPage;
 	/**
 	 * Create the frame.
 	 */
-	public BuyCompletePage(JFrame mainPage) {
-		this.mainPage = mainPage;
+	public BuyCompletePage() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
@@ -41,10 +39,8 @@ public class BuyCompletePage extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 if (!mainPage.isVisible()) {
-				        mainPage.setVisible(true);
-				    }
-				    dispose();
+				
+			    dispose();
 			}
 		});
 		pack();
