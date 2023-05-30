@@ -44,6 +44,28 @@ public class IconData {
 		return new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
 	}
 	public ImageIcon emptyIcon() {
-		return  new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
+		return new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
 	}
+	public ImageIcon emptyBtn() {
+		return new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
+	}
+	public ImageIcon emptySBtn() {
+		return new ImageIcon(getClass().getClassLoader().getResource("emptySBtn.png"));
+	}
+	public ImageIcon emptyLBtn() {
+		return new ImageIcon(getClass().getClassLoader().getResource("emptyLBtn.png"));
+	}
+	public ImageIcon winningNumIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("winningNum(BG).png"));
+	}
+	
 }
+
+
+
+
+
+
+
+
+
