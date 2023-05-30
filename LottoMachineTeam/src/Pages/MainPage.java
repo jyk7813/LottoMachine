@@ -136,11 +136,7 @@ public class MainPage extends JFrame {
 	 */
 	private void iconSetting() {
 		
-		colorNumIcon = new ImageIcon[45];
-		for (int i = 0; i < colorNumIcon.length; i++) {
-			String filename = "LC" + (i + 1) + ".png";
-			colorNumIcon[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
-		}
+	
 	}
 	/**
 	 * 버튼 안보이게 만듬
