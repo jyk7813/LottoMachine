@@ -32,7 +32,6 @@ public class SelectNumPage extends JDialog {
 
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
-   
         setResizable(false); // 창 크기 변경을 비활성화
 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

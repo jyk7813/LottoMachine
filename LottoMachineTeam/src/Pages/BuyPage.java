@@ -246,7 +246,6 @@ public class BuyPage extends JDialog {
 
 	}
 
-	
 
 	private void removeButtonVisualEffects() {
 		utility.setButtonProperties(resetButton);

@@ -1,86 +1,70 @@
 package Pages;
+
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.*;
 
-public class BuyCompletePage extends JFrame {
+public class BuyCompletePage extends JDialog {
 	private JButton returnBtn;
-	private ImageIcon icon;
+	private ImageIcon buyCompletePage;
 	private ImageIcon returnIcon;
+	private JLayeredPane layeredPane;
+	private JLabel buyCompletePageLabel;
 
+	/**
+	 * Create the frame.
+	 */
+	public BuyCompletePage() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setModal(true);
+		setResizable(false);
+		// 이미지 아이콘 로드
+		iconSetting();
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    BuyCompletePage frame = new BuyCompletePage();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+		// 이미지 아이콘 생성 및 크기위치 설정
+		btnBounds();
 
-    /**
-     * Create the frame.
-     */
-    public BuyCompletePage() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false); // 창 크기 변경을 비활성화
-        
-        iconSettingBuyCompletePage();
+		// JLayeredPane 생성 및 설정
+		addLayeredPane1();
+		addLayeredPane2();
 
+		// 버튼 숨기기
+		btnUnVisuable();
 
-        // 이미지 아이콘을 사용하는 레이블 생성
-        JLabel label = new JLabel(icon);
-        
-        // 이미지 아이콘 생성 및 크기위치 설정
-        btnBoundsBuyCompletePage();
+		// JLayeredPane을 프레임의 contentPane에 추가
+		setContentPane(layeredPane);
+		pack();
+	}
 
-        // 버튼 생성
-//        JButton button = new JButton("Click me");
-//        button.setBounds(50, 50, 120, 30); // 위치와 크기 설정
+	private void addLayeredPane1() {
+		layeredPane = new JLayeredPane();
+		layeredPane.setPreferredSize(new Dimension(430, 890));
+	}
 
-        // JLayeredPane 생성 및 설정
-        JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+	private void addLayeredPane2() {
+		layeredPane = new JLayeredPane();
+		layeredPane.setPreferredSize(new Dimension(430, 890));
+		layeredPane.add(buyCompletePageLabel, new Integer(1));
+		layeredPane.add(returnBtn, new Integer(2));
 
-        // 레이블 및 버튼 위치 설정
-        label.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
+	}
 
-        // 레이블 및 버튼을 JLayeredPane에 추가
-        layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
-        layeredPane.add(returnBtn, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
-        
-        //버튼 숨기기
-        btnUnVisuableBuyCompletePage();
+	private void iconSetting() {
+		buyCompletePage = new ImageIcon(getClass().getClassLoader().getResource("buyComplete(BG).png"));
+		returnIcon = new ImageIcon(getClass().getClassLoader().getResource("returnBtn.png"));
+	}
 
-        // JLayeredPane을 프레임의 contentPane에 추가
-        setContentPane(layeredPane);
-        pack();
-    }
-    private void iconSettingBuyCompletePage() {
-    	icon = new ImageIcon(getClass().getClassLoader().getResource("buyComplete(BG).png"));
-    	returnIcon = new ImageIcon(getClass().getClassLoader().getResource("returnBtn.png"));
-    }
-    private void btnBoundsBuyCompletePage() {
-    	returnBtn = new JButton(returnIcon);
-    	returnBtn.setBounds(161, 458, 107, 41);
-	   
-   }
-    private void btnUnVisuableBuyCompletePage() {
-    	returnBtn.setOpaque(false);
-    	returnBtn.setContentAreaFilled(false);
-    	returnBtn.setBorderPainted(false);
-    }
+	private void btnBounds() {
+		buyCompletePageLabel = new JLabel(buyCompletePage);
+		buyCompletePageLabel.setBounds(0, 0, buyCompletePage.getIconWidth(), buyCompletePage.getIconHeight());
+
+		returnBtn = new JButton(returnIcon);
+		returnBtn.setBounds(161, 458, 107, 41);
+
+	}
+
+	private void btnUnVisuable() {
+		returnBtn.setOpaque(false);
+		returnBtn.setContentAreaFilled(false);
+		returnBtn.setBorderPainted(false);
+	}
 }
