@@ -2,6 +2,8 @@ package Pages;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
@@ -18,7 +20,7 @@ import utility.IconData;
 
 public class MyNumCheckPage extends JDialog{
 	private IconData icon = new IconData();
-    private JPanel contentPane;
+
 	private JLayeredPane layeredPane; 
 	
     /**
@@ -95,6 +97,14 @@ public class MyNumCheckPage extends JDialog{
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
         pack();
+        
+        backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
         
         backBtn.setOpaque(false);
         backBtn.setContentAreaFilled(false);

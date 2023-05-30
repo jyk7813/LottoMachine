@@ -1,11 +1,13 @@
 package Pages;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Timer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
@@ -46,11 +48,12 @@ public class UnderLotteryPage extends JDialog {
         // 레이블 및 버튼을 JLayeredPane에 추가
         addLabeleAndBtn();
         // 뒤로가기버튼 숨기기
-        UnVisuable();
         
 
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
+        
+        
         pack();
     }
     private void makeLabel() {
@@ -71,10 +74,6 @@ public class UnderLotteryPage extends JDialog {
 			selectEmptyJLabels[i].setBounds(34 + i * 50, 362, 40, 40);
 
 		}
-		//뒤로가기 버튼 생성 및 위치와 크기설정
-		backBtn = new JButton(backIcon);
-		backBtn.setBounds(19,41,33,38);
-		
 		//보너스번호 라벨 위치와 크기설정
 		bonuseEmptyJLabels.setBounds(358, 362, 40, 40);	
 
@@ -84,7 +83,6 @@ public class UnderLotteryPage extends JDialog {
     	underLotteryPage = new ImageIcon(getClass().getClassLoader().getResource("underLottery(BG).png"));
     	emptyIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
     	bonuseIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
-    	backIcon = new ImageIcon(getClass().getClassLoader().getResource("backBtn.png"));
     }
     private void addLabeleAndBtn() {
     	layeredPane.add(label, new Integer(1));
@@ -92,16 +90,9 @@ public class UnderLotteryPage extends JDialog {
     	for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			layeredPane.add(selectEmptyJLabels[i], new Integer(2));
     	}
-    	layeredPane.add(backBtn, new Integer(3));
     	layeredPane.add(bonuseEmptyJLabels, new Integer(4));
     	
 	}
-    private void UnVisuable() {
-    	//뒤로가기버튼 투명으로 설정
-    	backBtn.setOpaque(false);
-    	backBtn.setContentAreaFilled(false);
-    	backBtn.setBorderPainted(false);
-    }
     private void JLayeredPaneAdd() {
     	layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(430, 890)); 

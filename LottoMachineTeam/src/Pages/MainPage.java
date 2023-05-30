@@ -98,12 +98,22 @@ public class MainPage extends JFrame {
 			}
 		});
 		
+		myNumButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MyNumCheckPage myNumCheckPage = new MyNumCheckPage();
+				myNumCheckPage.setVisible(true);
+			}
+		});
+		
 		makeLotteryButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (currentRound > winningNumData.getLastTurn()) {
-					
+					UnderLotteryPage underLotteryPage = new UnderLotteryPage();
+					underLotteryPage.setVisible(true);
 				} else {
 					
 				}
