@@ -66,6 +66,16 @@ public class BuyCheckPage extends JDialog {
 				
 			}
 		});
+		backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 dispose();
+				  BuyPage buyPage = new BuyPage();
+				  buyPage.setVisible(true);
+				  buyPage.setAlwaysOnTop(true);				
+			}
+		});
 		pack();
 	}
 
