@@ -1,6 +1,9 @@
 package Pages;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class BuyCompletePage extends JDialog {
@@ -32,6 +35,14 @@ public class BuyCompletePage extends JDialog {
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
+		returnBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
 		pack();
 	}
 

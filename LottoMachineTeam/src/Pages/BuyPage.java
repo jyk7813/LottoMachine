@@ -12,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
@@ -87,6 +88,8 @@ public class BuyPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BuyCheckPage buyCheckPage = new BuyCheckPage();
+				setVisible(false);
+				buyCheckPage.setAlwaysOnTop(true);
 				buyCheckPage.setVisible(true);
 			}
 		});
@@ -111,6 +114,7 @@ public class BuyPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SelectNumPage selectNumPage = new SelectNumPage();
+				setVisible(false);
 				selectNumPage.setAlwaysOnTop(true);
 				selectNumPage.setVisible(true);
 

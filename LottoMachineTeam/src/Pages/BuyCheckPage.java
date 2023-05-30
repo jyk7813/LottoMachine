@@ -1,18 +1,17 @@
 package Pages;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayer;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-public class BuyCheckPage extends JDialog{
+public class BuyCheckPage extends JDialog {
 	private JButton backBtn;
 	private JButton yesBtn;
 	private JButton noBtn;
@@ -22,13 +21,12 @@ public class BuyCheckPage extends JDialog{
 	private ImageIcon noIcon;
 	private JLabel buyCheckPageLabel;
 	private JLayeredPane layeredPane;
-
-
+	private JFrame mainFrame;
 	/**
 	 * Create the frame.
 	 */
 	public BuyCheckPage() {
-
+		this.mainFrame = mainFrame;
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false); // 창 크기 변경을 비활성화
@@ -47,6 +45,25 @@ public class BuyCheckPage extends JDialog{
 		btnUnVisuableBuyCheckPage();
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
+		yesBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BuyCompletePage buyCompletePage = new BuyCompletePage();
+				setVisible(false);
+				buyCompletePage.setAlwaysOnTop(true);
+				buyCompletePage.setVisible(true);
+
+			}
+		});
+		noBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();// TODO Auto-generated method stub
+				
+			}
+		});
 		pack();
 	}
 

@@ -93,6 +93,7 @@ public class MainPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BuyPage buyPage = new BuyPage();
+				setVisible(false);
 				buyPage.setVisible(true);
 				
 			}
@@ -103,6 +104,7 @@ public class MainPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MyNumCheckPage myNumCheckPage = new MyNumCheckPage();
+				
 				myNumCheckPage.setVisible(true);
 			}
 		});
