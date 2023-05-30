@@ -100,6 +100,8 @@ public class WinningNumPage extends JDialog {
         
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
+        
+
         pack();
         
         backBtn.setOpaque(false);
