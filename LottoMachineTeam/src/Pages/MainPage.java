@@ -81,6 +81,14 @@ public class MainPage extends JFrame {
 			}
 		});
 		
+		makeLotteryButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		pack();
 
 	}
