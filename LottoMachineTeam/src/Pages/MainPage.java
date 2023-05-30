@@ -97,6 +97,16 @@ public class MainPage extends JFrame {
 			}
 		});
 		
+		nextTurnButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentRound++;
+				System.out.println(currentRound);
+				
+			}
+		});
+		
 		
 		pack();
 
