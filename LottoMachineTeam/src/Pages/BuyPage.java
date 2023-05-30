@@ -176,7 +176,7 @@ public class BuyPage extends JDialog {
 	}
 
 	private void addLableAndBtn() {
-		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
+		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가a
 
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			layeredPane.add(selectEmptyJLabels[i], new Integer(2));

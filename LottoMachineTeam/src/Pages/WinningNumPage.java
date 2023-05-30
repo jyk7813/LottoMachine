@@ -45,6 +45,7 @@ public class WinningNumPage extends JFrame {
 
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon);
+        
         JLabel lottoNum1 = new JLabel(bNumber);
         lottoNum1.setBounds(33, 225, 40, 40); // 위치와 크기 설정
         JLabel lottoNum2 = new JLabel(bNumber);
