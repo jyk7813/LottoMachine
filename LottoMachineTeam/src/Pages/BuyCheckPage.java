@@ -21,12 +21,13 @@ public class BuyCheckPage extends JDialog {
 	private ImageIcon noIcon;
 	private JLabel buyCheckPageLabel;
 	private JLayeredPane layeredPane;
-	private JFrame mainFrame;
+	private JFrame mainPage;
+
 	/**
 	 * Create the frame.
 	 */
-	public BuyCheckPage() {
-		this.mainFrame = mainFrame;
+	public BuyCheckPage(JFrame mainPage) {
+		this.mainPage = mainPage;
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false); // 창 크기 변경을 비활성화
@@ -46,21 +47,21 @@ public class BuyCheckPage extends JDialog {
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 		yesBtn.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BuyCompletePage buyCompletePage = new BuyCompletePage();
+				BuyCompletePage buyCompletePage = new BuyCompletePage(mainPage);
 				setVisible(false);
 				buyCompletePage.setAlwaysOnTop(true);
 				buyCompletePage.setVisible(true);
-
+				
 			}
 		});
 		noBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();// TODO Auto-generated method stub
+				  dispose();
 				
 			}
 		});
