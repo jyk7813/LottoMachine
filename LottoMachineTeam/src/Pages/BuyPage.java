@@ -82,6 +82,14 @@ public class BuyPage extends JDialog {
 				}
 			}
 		});
+		lbuyButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BuyCheckPage buyCheckPage = new BuyCheckPage();
+				buyCheckPage.setVisible(true);
+			}
+		});
 		
 		pack();
 	}
