@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.WinningNumData;
+import icon.IconData;
 
 public class MainPage extends JFrame {
 
@@ -19,11 +21,8 @@ public class MainPage extends JFrame {
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	private ImageIcon icon;
-	private ImageIcon buyIcon;
-	private ImageIcon myNumIcon;
-	private ImageIcon makeLotteryIcon;
-	private ImageIcon nextTurnIcon;
+	IconData iconData = new IconData();
+	private ImageIcon[] colorNumIcon;
 	private WinningNumData winningNumData = new WinningNumData();
 	private static Integer currentRound = 1;
 	/**
@@ -53,16 +52,24 @@ public class MainPage extends JFrame {
 		iconSetting();
 		
 		// 이미지 아이콘을 사용하는 레이블 생성
-		JLabel label = new JLabel(icon);
+		JLabel label = new JLabel(iconData.mainIcon());
+		JLabel[] lastWinningNum = new JLabel[6];
+		JLabel lastBonusNum = new JLabel(iconData.emptyIcon());
 		
 		btnBounds();
 	
 		// JLayeredPane 생성 및 설정
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+		layeredPane.setPreferredSize(new Dimension(iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight()));
 
 		// 레이블 및 버튼 위치 설정
-		label.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
+		label.setBounds(0, 0, iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight());
+		for (int i = 0; i < lastWinningNum.length; i++) {
+			lastWinningNum[i] = new JLabel(iconData.emptyIcon());
+			lastWinningNum[i].setBounds(33+ i*50, 199, 40, 40);
+		}
+		lastBonusNum.setBounds(357, 199, 40, 40);
+		
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
@@ -70,6 +77,10 @@ public class MainPage extends JFrame {
 		layeredPane.add(myNumButton, new Integer(2));
 		layeredPane.add(makeLotteryButton, new Integer(2));
 		layeredPane.add(nextTurnButton, new Integer(2));
+		layeredPane.add(lastBonusNum, new Integer(2));
+		for (int i = 0; i < lastWinningNum.length; i++) {
+			layeredPane.add(lastWinningNum[i], new Integer(2));
+		}
 		
 		btnUnVisuable();
 
@@ -116,11 +127,12 @@ public class MainPage extends JFrame {
 	 */
 	private void iconSetting() {
 		
-		icon = new ImageIcon(getClass().getClassLoader().getResource("main(BG).png"));
-		buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBigBtn.png"));
-		myNumIcon = new ImageIcon(getClass().getClassLoader().getResource("myNumBtn.png"));
-		makeLotteryIcon = new ImageIcon(getClass().getClassLoader().getResource("lotteryBtn.png"));
-		nextTurnIcon = new ImageIcon(getClass().getClassLoader().getResource("nextBtn.png"));
+		colorNumIcon = new ImageIcon[45];
+		for (int i = 0; i < colorNumIcon.length; i++) {
+			String filename = "LC" + (i + 1) + ".png";
+			colorNumIcon[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
+		}
+		
 		
 	}
 	/**
@@ -145,13 +157,13 @@ public class MainPage extends JFrame {
 	 * 버튼 크기 및 위치 조정
 	 */
 	private void btnBounds() {
-		buyButton = new JButton(buyIcon);
+		buyButton = new JButton(iconData.buyIcon());
 		buyButton.setBounds(76, 610, 280, 81); // 위치와 크기 설정
-		myNumButton = new JButton(myNumIcon);
+		myNumButton = new JButton(iconData.myNumIcon());
 		myNumButton.setBounds(30, 780, 111, 36);
-		makeLotteryButton = new JButton(makeLotteryIcon);
+		makeLotteryButton = new JButton(iconData.makeLotteryIcon());
 		makeLotteryButton.setBounds(160, 780, 111, 36);
-		nextTurnButton = new JButton(nextTurnIcon);
+		nextTurnButton = new JButton(iconData.nextTurnIcon());
 		nextTurnButton.setBounds(290, 780, 111, 36);
 	}
 }
