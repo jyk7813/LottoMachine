@@ -25,7 +25,6 @@ public class MainPage extends JFrame {
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	private ImageIcon[] colorNumIcon;
 	private WinningNumData winningNumData = new WinningNumData();
 	private static Integer currentRound = 1;
 	/**
@@ -51,8 +50,6 @@ public class MainPage extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setResizable(false);
-		
-		iconSetting();
 		
 		// 이미지 아이콘을 사용하는 레이블 생성
 		JLabel label = new JLabel(iconData.mainIcon());
@@ -132,13 +129,6 @@ public class MainPage extends JFrame {
 
 	}
 
-	/**
-	 * 아이콘값 세팅
-	 */
-	private void iconSetting() {
-		
-	
-	}
 	/**
 	 * 버튼 안보이게 만듬
 	 */
