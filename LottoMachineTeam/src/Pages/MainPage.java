@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.WinningNumData;
-import icon.IconData;
+import utility.IconData;
 
 public class MainPage extends JFrame {
 

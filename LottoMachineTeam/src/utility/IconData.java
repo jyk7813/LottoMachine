@@ -1,4 +1,4 @@
-package icon;
+package utility;
 	//나중에 혼자 작업
 import javax.swing.ImageIcon;
 
