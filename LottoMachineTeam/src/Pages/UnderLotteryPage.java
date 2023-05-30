@@ -115,6 +115,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 		}
     	if (count > 6) {
 			timer.stop();
+			dispose();
 		}
     	count++;
 	}
