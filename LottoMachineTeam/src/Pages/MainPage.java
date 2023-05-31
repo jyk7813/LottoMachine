@@ -39,8 +39,10 @@ public class MainPage extends JFrame {
 	private JLabel lastBonusNum;
 	private JLayeredPane layeredPane;
 	private JLabel mainBackGround;
-	private JLabel turnLabel;
+	private JLabel lastTurnLabel;
+	private JLabel curruntTurnLabel;
 	private String lastTurnString;
+	private String curruntTurnString;
 	private FontData fontData = new FontData();
 	
 	
@@ -69,20 +71,24 @@ public class MainPage extends JFrame {
 
 		setResizable(false);
 		
-		lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 번호";
-
+		lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 결과";
+		curruntTurnString = currentRound+"회";
 		mainBackGround = new JLabel(iconData.mainIcon());
 		lastWinningNums = new JLabel[6];
 		lastBonusNum = new JLabel();
-		turnLabel = new JLabel(lastTurnString);
+		lastTurnLabel = new JLabel(lastTurnString);
+		curruntTurnLabel = new JLabel(curruntTurnString);
 		
-		Font customFont = fontData.nanumFont();
-		turnLabel.setFont(customFont);
-		
+		Font customFont = fontData.nanumFont25();
 		Color customColor = Color.WHITE;
-		turnLabel.setForeground(customColor);
+		lastTurnLabel.setFont(customFont);
+		curruntTurnLabel.setFont(customFont);
 		
-		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lastTurnLabel.setForeground(customColor);
+		curruntTurnLabel.setForeground(customColor);
+		
+		lastTurnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		curruntTurnLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
 
 		btnBounds();
@@ -99,7 +105,8 @@ public class MainPage extends JFrame {
 			lastWinningNums[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
-		turnLabel.setBounds(115, 110, 200, 40);
+		lastTurnLabel.setBounds(115, 110, 200, 40);
+		curruntTurnLabel.setBounds(52, 411, 72, 31);
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		addLayeredPan();
@@ -130,7 +137,8 @@ public class MainPage extends JFrame {
 		layeredPane.add(makeLotteryButton, new Integer(2));
 		layeredPane.add(nextTurnButton, new Integer(2));
 		layeredPane.add(lastBonusNum, new Integer(2));
-		layeredPane.add(turnLabel, new Integer(2));
+		layeredPane.add(lastTurnLabel, new Integer(2));
+		layeredPane.add(curruntTurnLabel, new Integer(2));
 		for (int i = 0; i < lastWinningNums.length; i++) {
 			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
