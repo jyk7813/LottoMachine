@@ -89,7 +89,7 @@ public class MyNumCheckPage extends JDialog {
 		layeredPane.add(backBtn, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
 		layeredPane.add(bonusNum, new Integer(2));
 
-		// JLayeredPane을 프레임의 contentPane에 추가a
+		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 		pack();
 
