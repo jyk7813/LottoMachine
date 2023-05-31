@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 import database.SelectNum;
 import database.SelectNumData;
