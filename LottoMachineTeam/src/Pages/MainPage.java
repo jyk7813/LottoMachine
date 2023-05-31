@@ -139,9 +139,9 @@ public class MainPage extends JFrame {
 		System.out.println(winningNumData);
 		System.out.println(winningNumData.getLastTurn());
 		System.out.println(winningNumData.getLastWinningNum());
-//		if (winningNumData != null) {
-//			showWinningNum();
-//		}
+		if (winningNumData.getLastWinningNum() != null) {
+			showWinningNum();
+		}
 
 		pack();
 
@@ -157,9 +157,10 @@ public class MainPage extends JFrame {
 		    int element = sortedList.get(i);
 		    // 원하는 작업 수행
 		    lastWinningNums[i].setIcon(iconData.LCIcons()[element]);
+		    
 		}
 		lastBonusNum.setIcon(iconData.LCIcons()[winningNumData.getLastWinningNum().getBonusNum()]);
-
+		
 	}
 
 	/**
