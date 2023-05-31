@@ -54,6 +54,7 @@ public class SelectNumPage extends JDialog {
         
         numLabels = new JLabel[6][10];
         keyLabels = new JLabel[10];
+        JButton[] cancelButton = new JButton[10];
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon); // 배경 Label
         
@@ -74,19 +75,19 @@ public class SelectNumPage extends JDialog {
        
         JButton buyButton = new JButton(buyIcon);
         buyButton.setBounds(90, 815, 251, 41); // 위치와 크기 설정
+        
+        for (int i = 0; i < cancelButton.length; i++) {
+			cancelButton[i] = new JButton(cancleBtn);
+		}
+        
+        for (int i = 0; i < cancelButton.length; i++) {
+        	cancelButton[i].setBounds(356, 119 + i * 70, 52, 36);
+		}
 
         // JLayeredPane 생성 및 설정
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(430, 890)); // JLayeredPane의 크기 설정
 
-        JButton[] cancelButton = new JButton[10];
-        for(int i = 0; i < 10; i++) {
-        	cancelButton[i] = new JButton(cancleBtn);
-        	cancelButton[i].setBounds(356, 119 + i * 70, 52, 36);
-        	layeredPane.add(cancelButton[i], new Integer(2));
-        	utility.setButtonProperties(cancelButton[i]);
-        }
-        
         // 레이블 및 버튼 위치 설정
         label.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight()); // 배경 위치
         
@@ -109,6 +110,10 @@ public class SelectNumPage extends JDialog {
         for (int i = 0; i < keyLabels.length; i++) {
 			layeredPane.add(keyLabels[i], new Integer(2));
 		}
+        
+        for (int i = 0; i < cancelButton.length; i++) {
+        	layeredPane.add(cancelButton[i], new Integer(2));
+		}
         layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
         layeredPane.add(backButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
         layeredPane.add(buyButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
@@ -119,22 +124,12 @@ public class SelectNumPage extends JDialog {
         // 버튼숨기기
         utility.setButtonProperties(backButton);
         utility.setButtonProperties(buyButton);
+        for (int i = 0; i < cancelButton.length; i++) {
+        	utility.setButtonProperties(cancelButton[i]);
+		}
         
         // 버튼 ActionListener
-        
-        for (int i = 0; i < cancelButton.length; i++) {
-            final int index = i;
-            cancelButton[i].addActionListener(new ActionListener() {
-                private Container map;
-
-				@Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("이벤트 발생" + index);
-                    map.remove(index);
-                }
-            });
-        }
-        
+                       
         backButton.addActionListener(new ActionListener() {
 			
 			@Override

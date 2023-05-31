@@ -13,13 +13,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import database.SelectNum;
+import database.SelectNumMap;
+import database.WinningNum;
 import utility.IconData;
 import utility.Utility;
 
 public class WinningNumPage extends JDialog {
 	private IconData icon = new IconData();
 	private JLayeredPane layeredPane;
+	private int[] Num;
+	private int i;
 	private Utility utility = new Utility();
+
 
   
     /**
@@ -96,4 +101,5 @@ public class WinningNumPage extends JDialog {
         
         utility.setButtonProperties(backBtn);
     }
+   
 }

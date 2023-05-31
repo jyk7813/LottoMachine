@@ -82,6 +82,7 @@ public class IconData {
 	}
 	public ImageIcon underLotteryIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("underLottery(BG).png"));
+
 	}
 
 	public ImageIcon[] LCIcons() {
