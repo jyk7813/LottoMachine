@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.SelectNum;
-import database.SelectNumHashMap;
+import database.SelectNumData;
 import database.SelectNumMap;
 import utility.IconData;
 
