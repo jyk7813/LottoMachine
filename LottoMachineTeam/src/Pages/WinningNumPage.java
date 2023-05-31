@@ -14,11 +14,12 @@ import javax.swing.border.EmptyBorder;
 
 import database.SelectNum;
 import utility.IconData;
+import utility.Utility;
 
 public class WinningNumPage extends JDialog {
 	private IconData icon = new IconData();
-	private JPanel contentPane;
 	private JLayeredPane layeredPane;
+	private Utility utility = new Utility();
 
   
     /**
@@ -33,7 +34,6 @@ public class WinningNumPage extends JDialog {
         JLabel label = new JLabel(icon.winningNumIcon());
         
         JLabel[][] lottoNum = new JLabel[8][10];
-        JLabel[][] lottoNum2 = new JLabel[8][10];
         JLabel[] lottoAuto = new JLabel[10];
         JLabel[] winnerNum = new JLabel[10];
         
@@ -73,10 +73,6 @@ public class WinningNumPage extends JDialog {
         		winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);
         		layeredPane.add(winnerNum[i], new Integer(2));
         	}
-        	
-        	
-        	
-        	
         
         // 버튼 생성
         JButton backBtn = new JButton(icon.backIcon());
@@ -98,8 +94,6 @@ public class WinningNumPage extends JDialog {
 
         pack();
         
-        backBtn.setOpaque(false);
-        backBtn.setContentAreaFilled(false);
-        backBtn.setBorderPainted(false);
+        utility.setButtonProperties(backBtn);
     }
 }

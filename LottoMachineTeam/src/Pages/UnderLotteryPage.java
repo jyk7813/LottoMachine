@@ -3,13 +3,10 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -33,7 +30,6 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 	int count;
 	IconData iconData = new IconData();
 	private Timer timer;
-	private int randomNum;
 	private Set<Integer> randomNums;
 	private int bonusNum;
 	
@@ -50,9 +46,6 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
-        // 이미지 아이콘 로드
-        makeIcon();
-
         // 이미지 아이콘을 사용하는 레이블 생성
         makeLabel();
         
@@ -62,12 +55,9 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
         // 레이블 및 버튼 위치 설정
         labelBounds();
         
-
         // 레이블 및 버튼을 JLayeredPane에 추가
         addLabeleAndBtn();
-        // 뒤로가기버튼 숨기기
         
-
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
         
@@ -84,18 +74,18 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
         pack();
     }
     private void makeLabel() {
-    	label = new JLabel(underLotteryPage);//기본 페이지화면
+    	label = new JLabel(iconData.underLotteryIcon());//기본 페이지화면
     	
     	//선택된 empty라벨 6개 배열선언
     	selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
-			selectEmptyJLabels[i] = new JLabel(emptyIcon);
+			selectEmptyJLabels[i] = new JLabel(iconData.emptyBtn());
 		}
-		bonuseEmptyJLabels = new JLabel(bonuseIcon);//empty보너스 라벨 1개
+		bonuseEmptyJLabels = new JLabel(iconData.emptyBtn());//empty보너스 라벨 1개
     }
     private void labelBounds() {
     	//기본 페이지화면 위치와 크기설정
-		label.setBounds(0, 0, underLotteryPage.getIconWidth(), underLotteryPage.getIconHeight());
+		label.setBounds(0, 0, iconData.underLotteryIcon().getIconWidth(), iconData.underLotteryIcon().getIconHeight());
 		//선택된 empty라벨 위치와 크기설정
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i].setBounds(34 + i * 50, 362, 40, 40);
@@ -107,9 +97,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 	} 
     private void makeIcon() {
     	//그림파일 로드
-    	underLotteryPage = new ImageIcon(getClass().getClassLoader().getResource("underLottery(BG).png"));
-    	emptyIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
-    	bonuseIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
+    	
     }
     private void addLabeleAndBtn() {
     	layeredPane.add(label, new Integer(1));
