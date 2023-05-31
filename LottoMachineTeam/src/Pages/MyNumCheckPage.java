@@ -63,7 +63,7 @@ public class MyNumCheckPage extends JDialog {
 		//반복문을 종료한 후 선택된 숫자의 이미지를 변경함
 		getChangeNumsImage();
 
-		// 자동 반자동 수동
+		// 자동 반자동 수동 //할 일 자동 반자동 이미지 수정하기ㅁ
 		for (int i = 0; i < 10; i++) {
 			lottoAuto[i] = new JLabel(icon.emptyLBtn());
 			lottoAuto[i].setBounds(337, 340 + i * 50, 52, 36);
@@ -71,9 +71,9 @@ public class MyNumCheckPage extends JDialog {
 		}
 		// 당첨된 번호
 		for (int i = 0; i < 6; i++) {
-			winnerNum[i] = new JLabel(icon.emptyBtn());
-			winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);
-			layeredPane.add(winnerNum[i], new Integer(2));
+			winnerNum[i] = new JLabel(icon.emptyBtn());//각 배열원소는 라벨이미지
+			winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);//위치
+			layeredPane.add(winnerNum[i], new Integer(2));//레이어드패널에 추가 각 배열원소
 		}
 
 		// 버튼 생성
