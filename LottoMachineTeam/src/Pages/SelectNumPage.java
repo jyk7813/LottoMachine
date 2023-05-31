@@ -170,13 +170,7 @@ public class SelectNumPage extends JDialog {
 			}
 		});
         pack(); 
-        
-		// 저장되는 곳
-		List<Integer> selList = new ArrayList<>();
-		while (selList.size() < 6) {
-			
-			
-		}
+   
     }
     
     // 자동 여부
