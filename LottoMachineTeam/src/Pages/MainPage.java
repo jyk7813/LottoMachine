@@ -1,7 +1,9 @@
 package Pages;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -16,8 +18,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.SwingConstants;
 
 import database.WinningNumData;
+import utility.FontData;
 import utility.IconData;
 import utility.Utility;
 
@@ -37,6 +41,8 @@ public class MainPage extends JFrame {
 	private JLabel mainBackGround;
 	private JLabel turnLabel;
 	private String lastTurnString;
+	private FontData fontData = new FontData();
+	
 	
 
 	/**
@@ -63,12 +69,20 @@ public class MainPage extends JFrame {
 
 		setResizable(false);
 		
-		lastTurnString = "이전 회 당첨 번호"+ WINNING_NUM_DATA.getLastTurn();
+		lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 번호";
 
 		mainBackGround = new JLabel(iconData.mainIcon());
 		lastWinningNums = new JLabel[6];
 		lastBonusNum = new JLabel();
 		turnLabel = new JLabel(lastTurnString);
+		
+		Font customFont = fontData.nanumFont();
+		turnLabel.setFont(customFont);
+		
+		Color customColor = Color.WHITE;
+		turnLabel.setForeground(customColor);
+		
+		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 
 		btnBounds();
@@ -85,7 +99,7 @@ public class MainPage extends JFrame {
 			lastWinningNums[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
-		turnLabel.setBounds(115, 110, 200, 20);
+		turnLabel.setBounds(115, 110, 200, 40);
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		addLayeredPan();

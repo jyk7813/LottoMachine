@@ -9,11 +9,11 @@ public class FontData {
 	public Font nanumFont() {
 		try {
             // 폰트 파일 로드
-            InputStream is = getClass().getClassLoader().getResourceAsStream("NanumSquareNeo-Variable.ttf");
+            InputStream is = getClass().getClassLoader().getResourceAsStream("NanumSquareNeo-dEb.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
 
             // 폰트 크기 및 스타일 설정
-            Font customFont = font.deriveFont(Font.BOLD, 16);
+            Font customFont = font.deriveFont(Font.BOLD, 27);
             return customFont;
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
