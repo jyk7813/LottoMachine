@@ -3,6 +3,8 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -11,17 +13,23 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.SelectNum;
+import database.SelectNumHashMap;
+import database.SelectNumMap;
 import utility.IconData;
 
 public class MyNumCheckPage extends JDialog{
 	private IconData icon = new IconData();
-
 	private JLayeredPane layeredPane; 
+	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
+	private SelectNumMap selectNum = new SelectNumMap();
+	
+	
 	
     /**
-     * Create the frame.a
+     * Create the frame.
      */
     public MyNumCheckPage() {
+
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
@@ -38,8 +46,6 @@ public class MyNumCheckPage extends JDialog{
         bonusNum.setBounds(357, 225, 40, 40);
         
         
-        
-        Map<Integer, SelectNum> map;
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
         
@@ -52,26 +58,33 @@ public class MyNumCheckPage extends JDialog{
         				
         			} else {
         				lottoNum[i][j] = new JLabel(icon.emptySBtn());
+        				if(j == 0) {
+        					for(int k = 0; k < j; k++) {
+        						
+        					}
+        				}
+        				
         			}
         			
         			lottoNum[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
-        			layeredPane.add(lottoNum[i][j], new Integer(2));	
-        		}
+        			layeredPane.add(lottoNum[i][j], new Integer(2));
+        		
+        		} 
         	}
-        	
+        	//자동 반자동 수동
         	for (int i = 0; i < 10; i++) {
         		lottoAuto[i]= new JLabel(icon.emptyLBtn());
         		lottoAuto[i].setBounds(337, 340 + i * 50, 52, 36);
         		layeredPane.add(lottoAuto[i], new Integer(2));
         	}
-        	
+        	//당첨된 번호
         	for (int i = 0; i < 6; i++) {
         		winnerNum[i]= new JLabel(icon.emptyBtn());
         		winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);
         		layeredPane.add(winnerNum[i], new Integer(2));
         	}
         	
-        	
+        	name();
         	
         	
         
@@ -105,4 +118,11 @@ public class MyNumCheckPage extends JDialog{
         backBtn.setContentAreaFilled(false);
         backBtn.setBorderPainted(false);
     }
+    public void name() {
+    	map = selectNum.getSelectNumMap();
+    	for (int i = 0; i < map.size(); i++) {
+    		SelectNum key = map.get(i);
+			
+		}
+	}
 }
