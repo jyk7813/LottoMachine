@@ -88,7 +88,7 @@ public class BuyPage extends JDialog {
 				if (0<autoCount&&autoCount<6) isAuto = 2;
 				if (autoCount==0) isAuto = 3;
 				
-				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+				SELECT_NUM_DATA.getLastKey();
 			}
 		});
 		lbuyButton.addActionListener(new ActionListener() {
