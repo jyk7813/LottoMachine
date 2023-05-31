@@ -45,6 +45,9 @@ public class BuyCompletePage extends JDialog {
 		});
 		pack();
 	}
+	public JButton getBoughtBtn() {
+		return returnBtn;
+	}
 
 	private void addLayeredPane1() {
 		layeredPane = new JLayeredPane();

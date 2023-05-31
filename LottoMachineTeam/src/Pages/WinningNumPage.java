@@ -18,18 +18,26 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import database.SelectNum;
+import database.SelectNumMap;
+import database.WinningNum;
 import utility.IconData;
+import utility.Utility;
 
 public class WinningNumPage extends JDialog {
 	private IconData icon = new IconData();
-	private JPanel contentPane;
 	private JLayeredPane layeredPane;
+	private int[] Num;
+	private int i;
+	private Utility utility = new Utility();
+	private MainPage mainPage;
+
 
   
     /**
      * Create the frame.
      */
     public WinningNumPage() {
+    	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
@@ -38,7 +46,6 @@ public class WinningNumPage extends JDialog {
         JLabel label = new JLabel(icon.winningNumIcon());
         
         JLabel[][] lottoNum = new JLabel[8][10];
-        JLabel[][] lottoNum2 = new JLabel[8][10];
         JLabel[] lottoAuto = new JLabel[10];
         JLabel[] winnerNum = new JLabel[10];
         
@@ -78,10 +85,6 @@ public class WinningNumPage extends JDialog {
         		winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);
         		layeredPane.add(winnerNum[i], new Integer(2));
         	}
-        	
-        	
-        	
-        	
         
         // 버튼 생성
         JButton backBtn = new JButton(icon.backIcon());
@@ -99,12 +102,14 @@ public class WinningNumPage extends JDialog {
         
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
-        
+        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum());
+        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()); 
 
         pack();
         
-        backBtn.setOpaque(false);
-        backBtn.setContentAreaFilled(false);
-        backBtn.setBorderPainted(false);
+        utility.setButtonProperties(backBtn);
+        
+        
     }
+   
 }

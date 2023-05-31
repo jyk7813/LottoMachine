@@ -3,25 +3,48 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 import database.SelectNum;
+import database.SelectNumData;
+import database.SelectNumMap;
 import utility.IconData;
+import utility.Utility;
 
 public class MyNumCheckPage extends JDialog{
 	private IconData icon = new IconData();
-
 	private JLayeredPane layeredPane; 
+	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
+	private SelectNumMap selectNum = new SelectNumMap();
+<<<<<<< HEAD
+	private SelectNum nums;
+	private Collection<Integer> selecteNums;
+	java.util.List<Integer> number;
+=======
+	private Utility utility = new Utility();
+>>>>>>> branch 'master' of https://github.com/jyk7813/LottoMachine.git
+	
 	
     /**
      * Create the frame.
      */
     public MyNumCheckPage() {
+    	
+    	selecteNums = nums.getSelectNum();
+    	
+
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
@@ -38,8 +61,6 @@ public class MyNumCheckPage extends JDialog{
         bonusNum.setBounds(357, 225, 40, 40);
         
         
-        
-        Map<Integer, SelectNum> map;
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
         
@@ -52,25 +73,47 @@ public class MyNumCheckPage extends JDialog{
         				
         			} else {
         				lottoNum[i][j] = new JLabel(icon.emptySBtn());
+        				if(j == 0) {
+        				//SelectNumMap 에 저장된 번호들만 이미지가 저장됩니다
+        					map = selectNum.getSelectNumMap();
+                	    	for (int k = 0; i < map.size(); k++) {
+                	    		SelectNum value = map.get(k);
+                	    		for(Integer number : value.getSelectNum()) {
+                	    			if(number == (i - 1)) {
+                	    				lottoNum[i][j].setIcon(icon); //icon 은 변경할 이미지파일을 넣으면 됩니다.
+                	    				//이제 icon데이터베이스에 LC파일명들을 반복순환하며 파일명들을 변경하면 됩니다. 아마도?..ㅈㅅ
+                	    				break;
+                	    				
+                	    			}
+                	    			
+                	    		}
+                	    			
+                	    	}
+        				}
+        				
         			}
         			
         			lottoNum[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
-        			layeredPane.add(lottoNum[i][j], new Integer(2));	
-        		}
-        	}
+        			layeredPane.add(lottoNum[i][j], new Integer(2));
+        			
+        				
+        			
         	
+        		
+        		} 
+        	}
+        	//자동 반자동 수동
         	for (int i = 0; i < 10; i++) {
         		lottoAuto[i]= new JLabel(icon.emptyLBtn());
         		lottoAuto[i].setBounds(337, 340 + i * 50, 52, 36);
         		layeredPane.add(lottoAuto[i], new Integer(2));
         	}
-        	
+        	//당첨된 번호
         	for (int i = 0; i < 6; i++) {
         		winnerNum[i]= new JLabel(icon.emptyBtn());
         		winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);
         		layeredPane.add(winnerNum[i], new Integer(2));
         	}
-        	
         	
         	
         	
@@ -100,9 +143,8 @@ public class MyNumCheckPage extends JDialog{
 				dispose();
 			}
 		});
+        utility.setButtonProperties(backBtn);
         
-        backBtn.setOpaque(false);
-        backBtn.setContentAreaFilled(false);
-        backBtn.setBorderPainted(false);
     }
+   
 }

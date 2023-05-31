@@ -1,19 +1,21 @@
 package database;
 
+import java.util.Collection;
+
 public class WinningNum {
-	int[] winningNum;
+	Collection<Integer> winningNum;
 	int bonusNum;
 	
-	public WinningNum(int[] winningNum, int bonusNum) {
+	public WinningNum(Collection<Integer> winningNum, int bonusNum) {
 		this.winningNum = winningNum;
 		this.bonusNum = bonusNum;
 	}
 
-	public int[] getWinningNum() {
+	public Collection<Integer> getWinningNum() {
 		return winningNum;
 	}
 
-	public void setWinningNum(int[] winningNum) {
+	public void setWinningNum(Collection<Integer> winningNum) {
 		this.winningNum = winningNum;
 	}
 
@@ -23,6 +25,11 @@ public class WinningNum {
 
 	public void setBonusNum(int bonusNum) {
 		this.bonusNum = bonusNum;
+	}
+
+	@Override
+	public String toString() {
+		return "WinningNum [winningNum=" + winningNum + ", bonusNum=" + bonusNum + "]";
 	}
 	
 	
