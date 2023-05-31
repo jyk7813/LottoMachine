@@ -16,13 +16,14 @@ import database.SelectNum;
 import database.SelectNumData;
 import database.SelectNumMap;
 import utility.IconData;
+import utility.Utility;
 
 public class MyNumCheckPage extends JDialog{
 	private IconData icon = new IconData();
 	private JLayeredPane layeredPane; 
 	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
 	private SelectNumMap selectNum = new SelectNumMap();
-	
+	private Utility utility = new Utility();
 	
 	
     /**
@@ -113,10 +114,8 @@ public class MyNumCheckPage extends JDialog{
 				dispose();
 			}
 		});
+        utility.setButtonProperties(backBtn);
         
-        backBtn.setOpaque(false);
-        backBtn.setContentAreaFilled(false);
-        backBtn.setBorderPainted(false);
     }
     public void name() {
     	map = selectNum.getSelectNumMap();
