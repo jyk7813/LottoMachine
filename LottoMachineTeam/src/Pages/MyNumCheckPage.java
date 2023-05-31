@@ -19,7 +19,7 @@ public class MyNumCheckPage extends JDialog{
 	private JLayeredPane layeredPane; 
 	
     /**
-     * Create the frame.
+     * Create the frame.a
      */
     public MyNumCheckPage() {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
