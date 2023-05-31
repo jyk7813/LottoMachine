@@ -148,6 +148,7 @@ public class BuyCheckPage extends JDialog {
 		java.util.Collections.sort(sortedList);
 		for (int i = 0; i < sortedList.size(); i++) {
 			int elem = sortedList.get(i);
+			
 		}
 	}
 }
