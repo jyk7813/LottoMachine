@@ -139,9 +139,9 @@ public class MainPage extends JFrame {
 		System.out.println(winningNumData);
 		System.out.println(winningNumData.getLastTurn());
 		System.out.println(winningNumData.getLastWinningNum());
-		if (winningNumData.getLastWinningNum() != null) {
-			showWinningNum();
-		}
+//		if (winningNumData != null) {
+//			showWinningNum();
+//		}
 
 		pack();
 

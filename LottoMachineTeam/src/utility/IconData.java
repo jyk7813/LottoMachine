@@ -84,6 +84,9 @@ public class IconData {
 		return new ImageIcon(getClass().getClassLoader().getResource("underLottery(BG).png"));
 
 	}
+	public ImageIcon lottoMachineIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("lottoMachine.gif"));
+	}
 
 	public ImageIcon[] LCIcons() {
 		ImageIcon[] colorNumIcon = new ImageIcon[45];
