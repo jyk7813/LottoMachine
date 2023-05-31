@@ -95,10 +95,6 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 		bonuseEmptyJLabels.setBounds(358, 362, 40, 40);	
 
 	} 
-    private void makeIcon() {
-    	//그림파일 로드
-    	
-    }
     private void addLabeleAndBtn() {
     	layeredPane.add(label, new Integer(1));
     	//empty라벨6개 레이어에 추가
