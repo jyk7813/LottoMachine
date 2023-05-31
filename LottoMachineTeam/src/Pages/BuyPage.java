@@ -6,13 +6,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -192,6 +190,7 @@ public class BuyPage extends JDialog {
 				}
 				// 선택한 버튼 수도 초기화해야 합니다.
 				selectedCount.set(0);
+				autoCount = 0;
 			}
 		});
 
@@ -214,6 +213,7 @@ public class BuyPage extends JDialog {
 				} else {
 					selectedCount.decrementAndGet();
 					btn.setIcon(null);
+					autoCount--;
 				}
 			});
 		});
