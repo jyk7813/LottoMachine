@@ -6,6 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -28,6 +34,9 @@ public class MainPage extends JFrame {
 	private JButton nextTurnButton;
 	private WinningNumData winningNumData;
 	private static Integer currentRound = 1;
+	private JLabel[] lastWinningNums;
+	private JLabel lastBonusNum;
+	
 
 	/**
 	 * Launch the application.
@@ -49,14 +58,15 @@ public class MainPage extends JFrame {
 	 * Create the frame.
 	 */
 	public MainPage() {
+		winningNumData = new WinningNumData();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setResizable(false);
 
 		// 이미지 아이콘을 사용하는 레이블 생성
 		JLabel label = new JLabel(iconData.mainIcon());
-		JLabel[] lastWinningNum = new JLabel[6];
-		JLabel lastBonusNum = new JLabel(iconData.emptyIcon());
+		lastWinningNums = new JLabel[6];
+		lastBonusNum = new JLabel(iconData.emptyIcon());
 
 		btnBounds();
 
@@ -67,9 +77,9 @@ public class MainPage extends JFrame {
 
 		// 레이블 및 버튼 위치 설정
 		label.setBounds(0, 0, iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight());
-		for (int i = 0; i < lastWinningNum.length; i++) {
-			lastWinningNum[i] = new JLabel(iconData.emptyIcon());
-			lastWinningNum[i].setBounds(33 + i * 50, 199, 40, 40);
+		for (int i = 0; i < lastWinningNums.length; i++) {
+			lastWinningNums[i] = new JLabel(iconData.emptyIcon());
+			lastWinningNums[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
 
@@ -80,8 +90,8 @@ public class MainPage extends JFrame {
 		layeredPane.add(makeLotteryButton, new Integer(2));
 		layeredPane.add(nextTurnButton, new Integer(2));
 		layeredPane.add(lastBonusNum, new Integer(2));
-		for (int i = 0; i < lastWinningNum.length; i++) {
-			layeredPane.add(lastWinningNum[i], new Integer(2));
+		for (int i = 0; i < lastWinningNums.length; i++) {
+			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
 
 		btnUnVisuable();
@@ -126,12 +136,23 @@ public class MainPage extends JFrame {
 
 			}
 		});
+		
 
 		pack();
 
 	}
 	private void showWinningNum() {
-		winningNumData.getLastWinningNum();
+		Collection<Integer> set = winningNumData.getLastWinningNum().getWinningNum();
+		List<Integer> sortedList = new ArrayList<>(set);
+		Collections.sort(sortedList);
+		
+		for (int i = 0; i < sortedList.size(); i++) {
+		    int element = sortedList.get(i);
+		    // 원하는 작업 수행
+		    lastWinningNums[i].setIcon(iconData.LCIcons()[element]);
+		}
+		lastBonusNum.setIcon(iconData.LCIcons()[winningNumData.getLastWinningNum().getBonusNum()]);
+
 	}
 
 	/**
