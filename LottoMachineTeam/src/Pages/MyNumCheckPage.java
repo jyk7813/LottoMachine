@@ -121,7 +121,7 @@ public class MyNumCheckPage extends JDialog{
     public void name() {
     	map = selectNum.getSelectNumMap();
     	for (int i = 0; i < map.size(); i++) {
-    		SelectNum key = map.get(i);
+    		SelectNum value = map.get(i);
 			
 		}
 	}
