@@ -4,12 +4,13 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -24,7 +25,6 @@ public class BuyPage extends JDialog {
 	private IconData icon = new IconData();
 	private Utility utility = new Utility();
 	private int count = 0;
-	private ImageIcon[] numIcons;
 	private JLabel label;
 	private JLabel[] selectEmptyJLabels;
 	private JButton resetButton;
@@ -50,8 +50,6 @@ public class BuyPage extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
-		// 아이콘 세팅
-		makeIcon();
 		// label만들기
 		makeLabel();
 		// 버튼만들기
@@ -80,7 +78,7 @@ public class BuyPage extends JDialog {
 				List<Integer> selectList = new ArrayList<Integer>();
 				for (int i = 0; i < selectNum.length; i++) {
 					if (selectNum[i].isSelected()) {
-						selectList.add(i + 1);
+						selectList.add(i);
 					}
 				}
 				System.out.println(selectList);
@@ -88,7 +86,18 @@ public class BuyPage extends JDialog {
 				if (0<autoCount&&autoCount<6) isAuto = 2;
 				if (autoCount==0) isAuto = 3;
 				
-				SELECT_NUM_DATA.getLastKey();
+				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+				System.out.println(SELECT_NUM_DATA);
+				
+				Collection<Integer> set = SELECT_NUM_DATA.getLastMap().getSelectNum();
+				List<Integer> sortedList = new ArrayList<>(set);
+				Collections.sort(sortedList);
+				System.out.println(sortedList);
+				for (int i = 0; i < sortedList.size(); i++) {
+					int element = sortedList.get(i);
+					selectEmptyJLabels[i].setIcon(icon.LCIcons()[element]);
+				}
+				
 			}
 		});
 		lbuyButton.addActionListener(new ActionListener() {
@@ -142,7 +151,7 @@ public class BuyPage extends JDialog {
 					int randomNum = random.nextInt(45);
 					if (!selectNum[randomNum].isSelected()) {
 						selectNum[randomNum].setSelected(true);
-						selectNum[randomNum].setIcon(numIcons[randomNum]);
+						selectNum[randomNum].setIcon(icon.LCIcons()[randomNum]);
 						selectedCount.incrementAndGet();
 						i++;
 						autoCount++;
@@ -163,6 +172,7 @@ public class BuyPage extends JDialog {
 				}
 				// 선택한 버튼 수도 초기화해야 합니다.
 				selectedCount.set(0);
+				autoCount = 0;
 			}
 		});
 
@@ -178,13 +188,14 @@ public class BuyPage extends JDialog {
 				if (btn.isSelected()) {
 					if (selectedCount.get() < maxSelected) {
 						selectedCount.incrementAndGet();
-						btn.setIcon(numIcons[i]);
+						btn.setIcon(icon.LCIcons()[i]);
 					} else {
 						btn.setSelected(false);
 					}
 				} else {
 					selectedCount.decrementAndGet();
 					btn.setIcon(null);
+					autoCount--;
 				}
 			});
 		});
@@ -253,16 +264,6 @@ public class BuyPage extends JDialog {
 		selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i] = new JLabel();
-		}
-
-	}
-
-	private void makeIcon() {
-		
-		numIcons = new ImageIcon[45];
-		for (int i = 0; i < numIcons.length; i++) {
-			String filename = "LC" + (i + 1) + ".png";
-			numIcons[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
 		}
 
 	}
