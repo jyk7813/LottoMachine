@@ -36,6 +36,7 @@ public class MainPage extends JFrame {
 	private static Integer currentRound = 1;
 	private JLabel[] lastWinningNums;
 	private JLabel lastBonusNum;
+	private JLayeredPane layeredPane;
 	
 
 	/**
@@ -69,9 +70,9 @@ public class MainPage extends JFrame {
 		lastBonusNum = new JLabel(iconData.emptyIcon());
 
 		btnBounds();
+		btnUnVisuable();
 
-		// JLayeredPane 생성 및 설정
-		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(
 				new Dimension(iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight()));
 
@@ -94,11 +95,9 @@ public class MainPage extends JFrame {
 			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
 
-		btnUnVisuable();
-
+		
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
-
 		buyButton.addActionListener(e -> {
 			new BuyPage().setVisible(true); // pass this frame to the next one
 		});
@@ -135,14 +134,17 @@ public class MainPage extends JFrame {
 				System.out.println(currentRound);
 
 			}
+			
 		});
 		System.out.println(winningNumData);
 		System.out.println(winningNumData.getLastTurn());
 		System.out.println(winningNumData.getLastWinningNum());
+		
+		
 		if (winningNumData.getLastWinningNum() != null) {
 			showWinningNum();
 		}
-
+		
 		pack();
 
 	}
@@ -151,7 +153,7 @@ public class MainPage extends JFrame {
 		Collection<Integer> set = winningNumData.getLastWinningNum().getWinningNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
-		
+		System.out.println(sortedList);
 		
 		for (int i = 0; i < sortedList.size(); i++) {
 		    int element = sortedList.get(i);
