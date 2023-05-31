@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
@@ -78,12 +80,14 @@ public class BuyPage extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				List<Integer> selectList = new ArrayList<Integer>();
 				for (int i = 0; i < selectNum.length; i++) {
 					if (selectNum[i].isSelected()) {
-						SelectNumPage selectNumPage = new SelectNumPage();
-						
+						selectList.add(i + 1);
+						System.out.println(selectList);
 					}
 				}
+				SELECT_NUM_DATA.addSelectNumHashMap(selectList, autoCount);
 			}
 		});
 		lbuyButton.addActionListener(new ActionListener() {
