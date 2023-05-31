@@ -87,6 +87,7 @@ public class BuyPage extends JDialog {
 				if (autoCount==0) isAuto = 3;
 				
 				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
 				System.out.println(SELECT_NUM_DATA);
 				
 				Collection<Integer> set = SELECT_NUM_DATA.getLastMap().getSelectNum();

@@ -132,7 +132,7 @@ public class SelectNumPage extends JDialog {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("이벤트 발생" + index);
-                    map.clear();
+                    map.remove(index);
                 }
             });
         }
