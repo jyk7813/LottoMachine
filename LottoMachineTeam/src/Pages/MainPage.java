@@ -10,11 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,17 +22,18 @@ import utility.Utility;
 
 public class MainPage extends JFrame {
 
+	public static final WinningNumData WINNING_NUM_DATA = new WinningNumData();
 	private IconData iconData = new IconData();
 	private Utility utility = new Utility();
 	private JButton buyButton;
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	public static final WinningNumData WINNING_NUM_DATA = new WinningNumData();
 	private static Integer currentRound = 1;
 	private JLabel[] lastWinningNums;
 	private JLabel lastBonusNum;
 	private JLayeredPane layeredPane;
+	private JLabel label;
 	
 
 	/**
@@ -63,10 +60,9 @@ public class MainPage extends JFrame {
 
 		setResizable(false);
 
-		// 이미지 아이콘을 사용하는 레이블 생성
-		JLabel label = new JLabel(iconData.mainIcon());
+		label = new JLabel(iconData.mainIcon());
 		lastWinningNums = new JLabel[6];
-		lastBonusNum = new JLabel(iconData.emptyIcon());
+		lastBonusNum = new JLabel();
 
 		btnBounds();
 		btnUnVisuable();
@@ -78,12 +74,34 @@ public class MainPage extends JFrame {
 		// 레이블 및 버튼 위치 설정
 		label.setBounds(0, 0, iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight());
 		for (int i = 0; i < lastWinningNums.length; i++) {
-			lastWinningNums[i] = new JLabel(iconData.emptyIcon());
+			lastWinningNums[i] = new JLabel();
 			lastWinningNums[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
+		addLayeredPan();
+	
+		
+		// JLayeredPane을 프레임의 contentPane에 추가
+		setContentPane(layeredPane);
+	
+
+		buyBtn();
+		myNumBtn();
+		makeLotteryBtn();
+		nextTurnBtn();
+		
+		System.out.println(WINNING_NUM_DATA);
+		System.out.println(WINNING_NUM_DATA.getLastTurn());
+		System.out.println(WINNING_NUM_DATA.getLastWinningNum());
+		
+		
+		
+		pack();
+
+	}
+	private void addLayeredPan() {
 		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
 		layeredPane.add(buyButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
 		layeredPane.add(myNumButton, new Integer(2));
@@ -93,13 +111,15 @@ public class MainPage extends JFrame {
 		for (int i = 0; i < lastWinningNums.length; i++) {
 			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
-
 		
-		// JLayeredPane을 프레임의 contentPane에 추가
-		setContentPane(layeredPane);
+	}
+
+	private void buyBtn() {
 		buyButton.addActionListener(e -> {
 			new BuyPage().setVisible(true); // pass this frame to the next one
 		});
+	}
+	private void myNumBtn() {
 
 		myNumButton.addActionListener(new ActionListener() {
 
@@ -110,7 +130,8 @@ public class MainPage extends JFrame {
 				myNumCheckPage.setVisible(true);
 			}
 		});
-
+	}
+	private void makeLotteryBtn() {
 		makeLotteryButton.addActionListener(new ActionListener() {
 
 		    @Override
@@ -133,7 +154,8 @@ public class MainPage extends JFrame {
 		        }
 		    }
 		});
-
+	}
+	private void nextTurnBtn() {
 
 		nextTurnButton.addActionListener(new ActionListener() {
 
@@ -145,14 +167,6 @@ public class MainPage extends JFrame {
 			}
 			
 		});
-		System.out.println(WINNING_NUM_DATA);
-		System.out.println(WINNING_NUM_DATA.getLastTurn());
-		System.out.println(WINNING_NUM_DATA.getLastWinningNum());
-		
-		
-		
-		pack();
-
 	}
 	private void showWinningNum() {
 		System.out.println("진입");

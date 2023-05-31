@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
 
+import database.SelectNumData;
 import database.SelectNumMap;
 import utility.IconData;
 import utility.Utility;
@@ -41,7 +42,7 @@ public class BuyPage extends JDialog {
 	private AtomicInteger selectedCount;
 	private Random random = new Random();
 	private int autoCount;
-
+	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData(); 	 
 
 	/**
 	 * Create the frame.
@@ -79,7 +80,8 @@ public class BuyPage extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < selectNum.length; i++) {
 					if (selectNum[i].isSelected()) {
-						SelectNumMap selectNumMap = new SelectNumMap();
+						SelectNumPage selectNumPage = new SelectNumPage();
+						
 					}
 				}
 			}
@@ -245,7 +247,7 @@ public class BuyPage extends JDialog {
 		label = new JLabel(icon.buyPageIcon());
 		selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
-			selectEmptyJLabels[i] = new JLabel(icon.emptyIcon());
+			selectEmptyJLabels[i] = new JLabel();
 		}
 
 	}
