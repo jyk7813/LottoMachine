@@ -57,4 +57,12 @@ public class SelectNumData {
 	    // TreeSet이 비어있지 않다면 가장 마지막 값을 반환하고, 그렇지 않다면 -1을 반환
 	    return !SelectNumKeySet.isEmpty() ? SelectNumKeySet.last() : -1;
 	}
+	public SelectNum getLastMap() {
+		return selectNumHashMap.get(getLastKey());
+	}
+
+	@Override
+	public String toString() {
+		return "SelectNumData [selectNumHashMap=" + selectNumHashMap + "]";
+	}
 }

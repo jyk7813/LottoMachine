@@ -31,4 +31,9 @@ public class SelectNum {
 	public SelectNum() {
 		
 	}
+	@Override
+	public String toString() {
+		return "SelectNum [selectNum=" + selectNum + ", isAuto=" + isAuto + "]";
+	}			
+	
 }
