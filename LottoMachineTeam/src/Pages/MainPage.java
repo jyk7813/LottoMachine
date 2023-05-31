@@ -105,7 +105,7 @@ public class MainPage extends JFrame {
 			lastWinningNums[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
-		lastTurnLabel.setBounds(15, 130, 400, 40);
+		lastTurnLabel.setBounds(15, 110, 400, 40);
 		curruntTurnLabel.setBounds(52, 411, 72, 31);
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
