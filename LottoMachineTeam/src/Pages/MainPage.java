@@ -136,15 +136,22 @@ public class MainPage extends JFrame {
 
 			}
 		});
-		
+		System.out.println(winningNumData);
+		System.out.println(winningNumData.getLastTurn());
+		System.out.println(winningNumData.getLastWinningNum());
+		if (winningNumData.getLastWinningNum() != null) {
+			showWinningNum();
+		}
 
 		pack();
 
 	}
 	private void showWinningNum() {
+		System.out.println("진입");
 		Collection<Integer> set = winningNumData.getLastWinningNum().getWinningNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
+		
 		
 		for (int i = 0; i < sortedList.size(); i++) {
 		    int element = sortedList.get(i);
