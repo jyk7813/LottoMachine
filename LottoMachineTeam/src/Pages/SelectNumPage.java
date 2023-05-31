@@ -5,7 +5,6 @@ import java.awt.Dimension;
 
 import database.SelectNum;
 import database.SelectNumData;
-import jdk.nashorn.internal.ir.WhileNode;
 import utility.IconData;
 import utility.Utility;
 
