@@ -80,14 +80,14 @@ public class BuyPage extends JDialog {
 				List<Integer> selectList = new ArrayList<Integer>();
 				for (int i = 0; i < selectNum.length; i++) {
 					if (selectNum[i].isSelected()) {
-						selectList.add(i + 1);
+						selectList.add(i);
 					}
 				}
 				System.out.println(selectList);
 				if (autoCount==6) isAuto = 1;
 				if (0<autoCount&&autoCount<6) isAuto = 2;
 				if (autoCount==0) isAuto = 3;
-				
+				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
 				SELECT_NUM_DATA.getLastKey();
 			}
 		});
