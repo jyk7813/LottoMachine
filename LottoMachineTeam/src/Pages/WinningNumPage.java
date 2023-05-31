@@ -95,8 +95,6 @@ public class WinningNumPage extends JDialog {
         
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
-        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum());
-        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()); 
         showWinningNum();
         
         backBtn.addActionListener(new ActionListener() {
