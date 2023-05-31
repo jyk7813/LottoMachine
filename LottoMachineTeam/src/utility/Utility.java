@@ -8,5 +8,6 @@ public class Utility {
 		button.setOpaque(false);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
+		button.setFocusPainted(false);
 	}
 }
