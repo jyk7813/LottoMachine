@@ -1,4 +1,5 @@
 package Pages;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import database.SelectNum;
@@ -28,6 +29,11 @@ public class SelectNumPage extends JDialog {
 	private JLabel[][] numLabels;
     private Utility utility = new Utility();
 	private JLabel[] keyLabels;
+	private int isAuto;
+	public static final int AUTO = 1;
+	public static final int SEMIAUTO = 2;
+	public static final int MANUAL = 3;
+	
 	
    
     /**
@@ -73,12 +79,12 @@ public class SelectNumPage extends JDialog {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(430, 890)); // JLayeredPane의 크기 설정
 
-        JButton[] cancel = new JButton[10];
+        JButton[] cancelButton = new JButton[10];
         for(int i = 0; i < 10; i++) {
-        	cancel[i] = new JButton(cancleBtn);
-        	cancel[i].setBounds(356, 119 + i * 70, 52, 36);
-        	layeredPane.add(cancel[i], new Integer(2));
-        	utility.setButtonProperties(cancel[i]);
+        	cancelButton[i] = new JButton(cancleBtn);
+        	cancelButton[i].setBounds(356, 119 + i * 70, 52, 36);
+        	layeredPane.add(cancelButton[i], new Integer(2));
+        	utility.setButtonProperties(cancelButton[i]);
         }
         
         // 레이블 및 버튼 위치 설정
@@ -97,6 +103,10 @@ public class SelectNumPage extends JDialog {
 		}
         
         for (int i = 0; i < keyLabels.length; i++) {
+			keyLabels[i].setBounds(10, 117 + i * 70, 40, 40);
+		}
+        
+        for (int i = 0; i < keyLabels.length; i++) {
 			layeredPane.add(keyLabels[i], new Integer(2));
 		}
         layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
@@ -111,6 +121,19 @@ public class SelectNumPage extends JDialog {
         utility.setButtonProperties(buyButton);
         
         // 버튼 ActionListener
+        
+        for (int i = 0; i < cancelButton.length; i++) {
+            final int index = i;
+            cancelButton[i].addActionListener(new ActionListener() {
+                private Container map;
+
+				@Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("이벤트 발생" + index);
+                    map.remove(index);
+                }
+            });
+        }
         
         backButton.addActionListener(new ActionListener() {
 			
@@ -136,9 +159,14 @@ public class SelectNumPage extends JDialog {
 				
 			}
 		});
-        pack();
-        
-        
-       
+        pack(); 
     }
+    
+    // 자동 여부
+    public int autoStat() {
+    	if (isAuto == AUTO) return AUTO;
+    	if (isAuto == SEMIAUTO) return SEMIAUTO; 
+    	if (isAuto == MANUAL) return MANUAL;
+    	return -1;
+	}  
 }
