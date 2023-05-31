@@ -3,14 +3,19 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import database.SelectNum;
 import database.SelectNumHashMap;
@@ -22,13 +27,18 @@ public class MyNumCheckPage extends JDialog{
 	private JLayeredPane layeredPane; 
 	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
 	private SelectNumMap selectNum = new SelectNumMap();
-	
+	private SelectNum nums;
+	private Collection<Integer> selecteNums;
+	java.util.List<Integer> number;
 	
 	
     /**
      * Create the frame.
      */
     public MyNumCheckPage() {
+    	
+    	selecteNums = nums.getSelectNum();
+    	
 
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -59,15 +69,31 @@ public class MyNumCheckPage extends JDialog{
         			} else {
         				lottoNum[i][j] = new JLabel(icon.emptySBtn());
         				if(j == 0) {
-        					for(int k = 0; k < j; k++) {
-        						
-        					}
+        				//SelectNumMap 에 저장된 번호들만 이미지가 저장됩니다
+        					map = selectNum.getSelectNumMap();
+                	    	for (int k = 0; i < map.size(); k++) {
+                	    		SelectNum value = map.get(k);
+                	    		for(Integer number : value.getSelectNum()) {
+                	    			if(number == (i - 1)) {
+                	    				lottoNum[i][j].setIcon(icon); //icon 은 변경할 이미지파일을 넣으면 됩니다.
+                	    				//이제 icon데이터베이스에 LC파일명들을 반복순환하며 파일명들을 변경하면 됩니다. 아마도?..ㅈㅅ
+                	    				break;
+                	    				
+                	    			}
+                	    			
+                	    		}
+                	    			
+                	    	}
         				}
         				
         			}
         			
         			lottoNum[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
         			layeredPane.add(lottoNum[i][j], new Integer(2));
+        			
+        				
+        			
+        	
         		
         		} 
         	}
@@ -84,7 +110,6 @@ public class MyNumCheckPage extends JDialog{
         		layeredPane.add(winnerNum[i], new Integer(2));
         	}
         	
-        	name();
         	
         	
         
@@ -118,11 +143,5 @@ public class MyNumCheckPage extends JDialog{
         backBtn.setContentAreaFilled(false);
         backBtn.setBorderPainted(false);
     }
-    public void name() {
-    	map = selectNum.getSelectNumMap();
-    	for (int i = 0; i < map.size(); i++) {
-    		SelectNum value = map.get(i);
-			
-		}
-	}
+   
 }
