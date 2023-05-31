@@ -3,22 +3,15 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import database.SelectNum;
-import database.SelectNumData;
 import database.SelectNumMap;
 import utility.IconData;
 import utility.Utility;
@@ -28,13 +21,10 @@ public class MyNumCheckPage extends JDialog{
 	private JLayeredPane layeredPane; 
 	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
 	private SelectNumMap selectNum = new SelectNumMap();
-<<<<<<< HEAD
 	private SelectNum nums;
 	private Collection<Integer> selecteNums;
 	java.util.List<Integer> number;
-=======
 	private Utility utility = new Utility();
->>>>>>> branch 'master' of https://github.com/jyk7813/LottoMachine.git
 	
 	
     /**
@@ -80,8 +70,8 @@ public class MyNumCheckPage extends JDialog{
                 	    		SelectNum value = map.get(k);
                 	    		for(Integer number : value.getSelectNum()) {
                 	    			if(number == (i - 1)) {
-                	    				lottoNum[i][j].setIcon(icon); //icon 은 변경할 이미지파일을 넣으면 됩니다.
-                	    				//이제 icon데이터베이스에 LC파일명들을 반복순환하며 파일명들을 변경하면 됩니다. 아마도?..ㅈㅅ
+//                	    				lottoNum[i][j].setIcon(icon.LCIcons[]); //icon 은 변경할 이미지파일을 넣으면 됩니다.
+//                	    				//이제 icon데이터베이스에 LC파일명들을 반복순환하며 파일명들을 변경하면 됩니다. 아마도?..ㅈㅅ
                 	    				break;
                 	    				
                 	    			}
