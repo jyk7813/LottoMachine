@@ -1,23 +1,22 @@
 package Pages;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
 
-import database.SelectNumMap;
+import database.SelectNumData;
 import utility.IconData;
 import utility.Utility;
 
@@ -41,7 +40,8 @@ public class BuyPage extends JDialog {
 	private AtomicInteger selectedCount;
 	private Random random = new Random();
 	private int autoCount;
-
+	private int isAuto;
+	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData(); 	 
 
 	/**
 	 * Create the frame.
@@ -77,11 +77,18 @@ public class BuyPage extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				List<Integer> selectList = new ArrayList<Integer>();
 				for (int i = 0; i < selectNum.length; i++) {
 					if (selectNum[i].isSelected()) {
-						SelectNumMap selectNumMap = new SelectNumMap();
+						selectList.add(i + 1);
 					}
 				}
+				System.out.println(selectList);
+				if (autoCount==6) isAuto = 1;
+				if (0<autoCount&&autoCount<6) isAuto = 2;
+				if (autoCount==0) isAuto = 3;
+				
+				SELECT_NUM_DATA.getLastKey();
 			}
 		});
 		lbuyButton.addActionListener(new ActionListener() {
@@ -245,7 +252,7 @@ public class BuyPage extends JDialog {
 		label = new JLabel(icon.buyPageIcon());
 		selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
-			selectEmptyJLabels[i] = new JLabel(icon.emptyIcon());
+			selectEmptyJLabels[i] = new JLabel();
 		}
 
 	}

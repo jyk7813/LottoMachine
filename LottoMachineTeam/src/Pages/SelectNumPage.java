@@ -1,25 +1,21 @@
 package Pages;
-import java.awt.Container;
+
 import java.awt.Dimension;
 
 import database.SelectNum;
 import database.SelectNumData;
-import utility.IconData;
 import utility.Utility;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class SelectNumPage extends JDialog {
 
@@ -31,8 +27,8 @@ public class SelectNumPage extends JDialog {
 	public static final int AUTO = 1;
 	public static final int SEMIAUTO = 2;
 	public static final int MANUAL = 3;
-	
-	
+	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
+	private List<Integer> selectList;
    
     /**
      * Create the frame.
@@ -60,7 +56,7 @@ public class SelectNumPage extends JDialog {
         
         for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장 Label
 			for (int j = 0; j < numLabels[i].length; j++) {
-				numLabels[i][j] = new JLabel(numIcon);
+				numLabels[i][j] = new JLabel();
 			}
 		}
         
@@ -166,6 +162,7 @@ public class SelectNumPage extends JDialog {
 			}
 		});
         pack(); 
+   
     }
     
     // 자동 여부
@@ -174,5 +171,6 @@ public class SelectNumPage extends JDialog {
     	if (isAuto == SEMIAUTO) return SEMIAUTO; 
     	if (isAuto == MANUAL) return MANUAL;
     	return -1;
-	}  
+	}
 }
+

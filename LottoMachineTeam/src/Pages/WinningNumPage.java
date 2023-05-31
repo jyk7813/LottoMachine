@@ -5,31 +5,33 @@
 
 package Pages;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import database.SelectNum;
-import database.SelectNumMap;
-import database.WinningNum;
 import utility.IconData;
 import utility.Utility;
 
 public class WinningNumPage extends JDialog {
 	private IconData icon = new IconData();
 	private JLayeredPane layeredPane;
-	private int[] Num;
-	private int i;
 	private Utility utility = new Utility();
 	private MainPage mainPage;
+	private JLabel label;
+	private JLabel[][] lottoNums;
+	private JLabel[] lottoAutos;
+	private JLabel[] winnerNums;
+	private JLabel bonusNum;
+	private JButton backBtn;
+	
 
 
   
@@ -42,52 +44,48 @@ public class WinningNumPage extends JDialog {
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
-     // 이미지 아이콘을 사용하는 레이블 생성
-        JLabel label = new JLabel(icon.winningNumIcon());
+		label = new JLabel(icon.winningNumIcon());
         
-        JLabel[][] lottoNum = new JLabel[8][10];
-        JLabel[] lottoAuto = new JLabel[10];
-        JLabel[] winnerNum = new JLabel[10];
+        lottoNums = new JLabel[8][10];
+        lottoAutos = new JLabel[10];
+        winnerNums = new JLabel[10];
         
-        JLabel bonusNum = new JLabel(icon.emptyBtn());
+        bonusNum = new JLabel(icon.emptyBtn());
         bonusNum.setBounds(357, 225, 40, 40);
         
         
         
-        Map<Integer, SelectNum> map;
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
         
-        int[] arr = new int[6];
         
         	for (int j = 0; j < 10; j++) {
         		for (int i = 0; i < 7; i++) {
         			if(i == 0) {
-        				lottoNum[i][j] = new JLabel();
+        				lottoNums[i][j] = new JLabel();
         				
         			} else {
-        				lottoNum[i][j] = new JLabel(icon.emptySBtn());
+        				lottoNums[i][j] = new JLabel();
         			}
         			
-        			lottoNum[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
-        			layeredPane.add(lottoNum[i][j], new Integer(2));	
+        			lottoNums[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
+        			layeredPane.add(lottoNums[i][j], new Integer(2));	
         		}
         	}
         	
         	for (int i = 0; i < 10; i++) {
-        		lottoAuto[i]= new JLabel(icon.emptyLBtn());
-        		lottoAuto[i].setBounds(337, 340 + i * 50, 52, 36);
-        		layeredPane.add(lottoAuto[i], new Integer(2));
+        		lottoAutos[i]= new JLabel(icon.emptyLBtn());
+        		lottoAutos[i].setBounds(337, 340 + i * 50, 52, 36);
+        		layeredPane.add(lottoAutos[i], new Integer(2));
         	}
         	
         	for (int i = 0; i < 6; i++) {
-        		winnerNum[i]= new JLabel(icon.emptyBtn());
-        		winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);
-        		layeredPane.add(winnerNum[i], new Integer(2));
+        		winnerNums[i]= new JLabel();
+        		winnerNums[i].setBounds(33 + (i * 50), 225, 40, 40);
+        		layeredPane.add(winnerNums[i], new Integer(2));
         	}
         
-        // 버튼 생성
-        JButton backBtn = new JButton(icon.backIcon());
+        backBtn = new JButton(icon.backIcon());
         backBtn.setBounds(18, 45, 38, 33); // 위치와 크기 설정
 
 
@@ -102,14 +100,35 @@ public class WinningNumPage extends JDialog {
         
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
-        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum());
-        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()); 
-
+        showWinningNum();
+        
+        backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
         pack();
         
         utility.setButtonProperties(backBtn);
         
         
     }
+    private void showWinningNum() {
+		System.out.println("진입");
+		Collection<Integer> set = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+		List<Integer> sortedList = new ArrayList<>(set);
+		Collections.sort(sortedList);
+		System.out.println(sortedList);
+		
+		for (int i = 0; i < sortedList.size(); i++) {
+		    int element = sortedList.get(i);
+		    winnerNums[i].setIcon(icon.LCIcons()[element]);
+		}
+		bonusNum.setIcon(icon.LCIcons()[mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
+		
+	}
    
 }
