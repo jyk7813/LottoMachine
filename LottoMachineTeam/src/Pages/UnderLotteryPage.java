@@ -52,7 +52,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
         
-        timer = new Timer(1000, this);
+        timer = new Timer(800, this);
         timer.start();
         randomNums = new HashSet<>();
         while (randomNums.size() < 6) {
