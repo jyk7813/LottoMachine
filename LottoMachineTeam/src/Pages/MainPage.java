@@ -192,8 +192,16 @@ public class MainPage extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				currentRound++;
-				System.out.println(currentRound);
+				if (WINNING_NUM_DATA.getLastTurn()!= currentRound) {
+					System.out.println("추첨 진행 해라");
+				} else {
+					currentRound++;
+					curruntTurnString = currentRound+"회";
+					curruntTurnLabel.setText(curruntTurnString);
+					
+					System.out.println(currentRound);
+					
+				}
 
 			}
 			
