@@ -76,7 +76,7 @@ public class MainPage extends JFrame {
 		mainBackGround = new JLabel(iconData.mainIcon());
 		lastWinningNums = new JLabel[6];
 		lastBonusNum = new JLabel();
-		lastTurnLabel = new JLabel(lastTurnString);
+		lastTurnLabel = new JLabel("이전회차 당첨결과가 없습니다.");
 		curruntTurnLabel = new JLabel(curruntTurnString);
 		
 		Font customFont = fontData.nanumFont25();
@@ -105,7 +105,7 @@ public class MainPage extends JFrame {
 			lastWinningNums[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
-		lastTurnLabel.setBounds(115, 110, 200, 40);
+		lastTurnLabel.setBounds(15, 110, 400, 40);
 		curruntTurnLabel.setBounds(52, 411, 72, 31);
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
@@ -222,6 +222,7 @@ public class MainPage extends JFrame {
 		}
 		lastBonusNum.setIcon(iconData.LCIcons()[WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
 		lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 결과";
+		lastTurnLabel.setText(lastTurnString);
 		
 	}
 
