@@ -44,6 +44,7 @@ public class BuyPage extends JDialog {
 	private AtomicInteger selectedCount;
 	private Random random = new Random();
 	private int autoCount;
+	private int isAuto;
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData(); 	 
 
 	/**
@@ -84,10 +85,14 @@ public class BuyPage extends JDialog {
 				for (int i = 0; i < selectNum.length; i++) {
 					if (selectNum[i].isSelected()) {
 						selectList.add(i + 1);
-						System.out.println(selectList);
 					}
 				}
-				SELECT_NUM_DATA.addSelectNumHashMap(selectList, autoCount);
+				System.out.println(selectList);
+				if (autoCount==6) isAuto = 1;
+				if (0<autoCount&&autoCount<6) isAuto = 2;
+				if (autoCount==0) isAuto = 3;
+				
+				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
 			}
 		});
 		lbuyButton.addActionListener(new ActionListener() {
