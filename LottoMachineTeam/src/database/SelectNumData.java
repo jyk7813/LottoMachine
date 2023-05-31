@@ -3,12 +3,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SelectNumHashMap {
+public class SelectNumData {
 	private Map<Integer, SelectNum> selectNumHashMap;
 	private static Integer count = 0;
 	
 	
-	public SelectNumHashMap() {
+	public SelectNumData() {
 		this.selectNumHashMap = new HashMap();
 	}
 

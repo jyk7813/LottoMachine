@@ -3,7 +3,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 
 import database.SelectNum;
-import database.SelectNumHashMap;
+import database.SelectNumData;
 import utility.IconData;
 import utility.Utility;
 
@@ -23,9 +23,7 @@ import javax.swing.border.EmptyBorder;
 
 public class SelectNumPage extends JDialog {
 
-    private JPanel contentPane;
-    SelectNumHashMap selectNumHashMap = new SelectNumHashMap();
-    private IconData iconData = new IconData();
+    SelectNumData selectNumHashMap = new SelectNumData();
 	private JLabel[][] numLabels;
     private Utility utility = new Utility();
 	private JLabel[] keyLabels;
@@ -40,7 +38,7 @@ public class SelectNumPage extends JDialog {
      * Create the frame.
      */
     public SelectNumPage() {
-
+    	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
@@ -55,6 +53,8 @@ public class SelectNumPage extends JDialog {
         numLabels = new JLabel[6][10];
         keyLabels = new JLabel[10];
         JButton[] cancelButton = new JButton[10];
+        Map<Integer, SelectNum> map;
+        map = selectNumHashMap.getSelectNumHashMap();
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon); // 배경 Label
         
@@ -129,7 +129,18 @@ public class SelectNumPage extends JDialog {
 		}
         
         // 버튼 ActionListener
-                       
+        for (int i = 0; i < cancelButton.length; i++) {
+            final int index = i; // ActionListener 내에서 사용하기 위한 인덱스 변수
+
+            cancelButton[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("이벤트 발생" + index);
+                    map.clear();
+                }
+            });
+        }
+        
         backButton.addActionListener(new ActionListener() {
 			
 			@Override

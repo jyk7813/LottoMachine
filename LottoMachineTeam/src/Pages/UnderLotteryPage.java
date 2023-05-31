@@ -16,10 +16,11 @@ import database.WinningNumData;
 import utility.IconData;
 
 public class UnderLotteryPage extends JDialog implements ActionListener{
-	private WinningNumData winningNumData = new WinningNumData();
+	private static final WinningNumData WINNING_DATA = new WinningNumData();
 	private JLabel label;
 	private JLabel selectEmptyJLabels[];
 	private JLabel bonuseEmptyJLabels;
+	private JLabel lottoMachineJLabel;
 	private JLayeredPane layeredPane;
 	private Random random = new Random();
 	int count;
@@ -60,10 +61,10 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 		}
         
         generateBonusNumber();
-        winningNumData.addWinningNum(randomNums, bonusNum);
-        System.out.println(winningNumData.getLastTurn());
-        System.out.println(winningNumData);
-        System.out.println(winningNumData.getWinningNum());
+        WINNING_DATA.addWinningNum(randomNums, bonusNum);
+        System.out.println(WINNING_DATA.getLastTurn());
+        System.out.println(WINNING_DATA);
+        System.out.println(WINNING_DATA.getWinningNum());
         pack();
     }
     private void makeLabel() {
@@ -75,10 +76,12 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 			selectEmptyJLabels[i] = new JLabel(iconData.emptyBtn());
 		}
 		bonuseEmptyJLabels = new JLabel(iconData.emptyBtn());//empty보너스 라벨 1개
+		lottoMachineJLabel = new JLabel(iconData.lottoMachineIcon());
     }
     private void labelBounds() {
     	//기본 페이지화면 위치와 크기설정
 		label.setBounds(0, 0, iconData.underLotteryIcon().getIconWidth(), iconData.underLotteryIcon().getIconHeight());
+		lottoMachineJLabel.setBounds(20, 420, 400, 400);
 		//선택된 empty라벨 위치와 크기설정
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i].setBounds(34 + i * 50, 362, 40, 40);
@@ -94,7 +97,8 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
     	for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			layeredPane.add(selectEmptyJLabels[i], new Integer(2));
     	}
-    	layeredPane.add(bonuseEmptyJLabels, new Integer(4));
+    	layeredPane.add(bonuseEmptyJLabels, new Integer(2));
+    	layeredPane.add(lottoMachineJLabel, new Integer(3));
     	
 	}
     private void JLayeredPaneAdd() {

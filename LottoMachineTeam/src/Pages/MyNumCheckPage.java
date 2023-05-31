@@ -18,18 +18,23 @@ import javax.swing.JLayeredPane;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import database.SelectNum;
-import database.SelectNumHashMap;
+import database.SelectNumData;
 import database.SelectNumMap;
 import utility.IconData;
+import utility.Utility;
 
 public class MyNumCheckPage extends JDialog{
 	private IconData icon = new IconData();
 	private JLayeredPane layeredPane; 
 	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
 	private SelectNumMap selectNum = new SelectNumMap();
+<<<<<<< HEAD
 	private SelectNum nums;
 	private Collection<Integer> selecteNums;
 	java.util.List<Integer> number;
+=======
+	private Utility utility = new Utility();
+>>>>>>> branch 'master' of https://github.com/jyk7813/LottoMachine.git
 	
 	
     /**
@@ -138,10 +143,8 @@ public class MyNumCheckPage extends JDialog{
 				dispose();
 			}
 		});
+        utility.setButtonProperties(backBtn);
         
-        backBtn.setOpaque(false);
-        backBtn.setContentAreaFilled(false);
-        backBtn.setBorderPainted(false);
     }
    
 }

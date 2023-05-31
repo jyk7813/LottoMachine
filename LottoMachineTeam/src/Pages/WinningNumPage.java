@@ -24,6 +24,7 @@ public class WinningNumPage extends JDialog {
 	private int[] Num;
 	private int i;
 	private Utility utility = new Utility();
+	private MainPage mainPage;
 
 
   
@@ -31,6 +32,7 @@ public class WinningNumPage extends JDialog {
      * Create the frame.
      */
     public WinningNumPage() {
+    	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
@@ -95,11 +97,14 @@ public class WinningNumPage extends JDialog {
         
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
-        
+        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum());
+        System.out.println(mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()); 
 
         pack();
         
         utility.setButtonProperties(backBtn);
+        
+        
     }
    
 }
