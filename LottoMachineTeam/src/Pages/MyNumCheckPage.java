@@ -3,22 +3,15 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import database.SelectNum;
-import database.SelectNumData;
 import database.SelectNumMap;
 import utility.IconData;
 import utility.Utility;
@@ -28,13 +21,9 @@ public class MyNumCheckPage extends JDialog{
 	private JLayeredPane layeredPane; 
 	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
 	private SelectNumMap selectNum = new SelectNumMap();
-<<<<<<< HEAD
-	private SelectNum nums;
-	private Collection<Integer> selecteNums;
-	java.util.List<Integer> number;
-=======
 	private Utility utility = new Utility();
->>>>>>> branch 'master' of https://github.com/jyk7813/LottoMachine.git
+	private JLabel[][] lottoNum;
+
 	
 	
     /**
@@ -42,18 +31,14 @@ public class MyNumCheckPage extends JDialog{
      */
     public MyNumCheckPage() {
     	
-    	selecteNums = nums.getSelectNum();
-    	
-
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
         // 이미지 아이콘을 사용하는 레이블 생성
         JLabel label = new JLabel(icon.myNumCheckIcon());
-        
+        lottoNum = new JLabel[8][10];
         JLabel[][] lottoNum = new JLabel[8][10];
-        JLabel[][] lottoNum2 = new JLabel[8][10];
         JLabel[] lottoAuto = new JLabel[10];
         JLabel[] winnerNum = new JLabel[10];
         
@@ -64,8 +49,6 @@ public class MyNumCheckPage extends JDialog{
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
         
-        int[] arr = new int[6];
-        
         	for (int j = 0; j < 10; j++) {
         		for (int i = 0; i < 7; i++) {
         			if(i == 0) {
@@ -74,16 +57,15 @@ public class MyNumCheckPage extends JDialog{
         			} else {
         				lottoNum[i][j] = new JLabel(icon.emptySBtn());
         				if(j == 0) {
-        				//SelectNumMap 에 저장된 번호들만 이미지가 저장됩니다
+        				//SelectNumMap 에 저장된 번호들만 이미지가 변경되어 저장됩니다
         					map = selectNum.getSelectNumMap();
-                	    	for (int k = 0; i < map.size(); k++) {
-                	    		SelectNum value = map.get(k);
-                	    		for(Integer number : value.getSelectNum()) {
-                	    			if(number == (i - 1)) {
-                	    				lottoNum[i][j].setIcon(icon); //icon 은 변경할 이미지파일을 넣으면 됩니다.
-                	    				//이제 icon데이터베이스에 LC파일명들을 반복순환하며 파일명들을 변경하면 됩니다. 아마도?..ㅈㅅ
-                	    				break;
-                	    				
+        					for(SelectNum value : map.values()) {
+        						for(Integer integerNum : value.getSelectNum()){
+        							int selectedNumbers = integerNum.intValue();
+        							if(selectedNumbers >= 1 && selectedNumbers <= 45) {
+        								//for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
+        								lottoNum[i][j].setIcon(icon.LCIcons()[selectedNumbers - 1]); //icon 은 변경할 이미지파일을 넣으면 됩니다.
+        								break;
                 	    			}
                 	    			
                 	    		}
@@ -144,7 +126,25 @@ public class MyNumCheckPage extends JDialog{
 			}
 		});
         utility.setButtonProperties(backBtn);
-        
+    
     }
-   
+}
+private void setIconForSelectedNumbers(JLabel[][] lottoNum, SelectNumMap selectNumMap, ImageIcon[] icons) {
+    for (int j = 0; j < 10; j++) {
+        for (int i = 1; i < 7; i++) {
+            lottoNum[i][j].setIcon(icon.emptySBtn());
+            if (j == 0) {
+                SelectNum value = selectNumMap.get(i);
+                if (value != null) {
+                    for (Integer number : value.getSelectNum()) {
+                        int selectedNumber = number.intValue();
+                        if (selectedNumber >= 1 && selectedNumber <= 45) {
+                            lottoNum[i][j].setIcon(icons[selectedNumber - 1]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

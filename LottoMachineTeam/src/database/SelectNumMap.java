@@ -55,4 +55,9 @@ public class SelectNumMap {
 			selectNumMap.remove(j);
 		}
 	}
+
+	public SelectNum get(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
