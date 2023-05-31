@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.font.TextLayout;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,7 +34,9 @@ public class MainPage extends JFrame {
 	private JLabel[] lastWinningNums;
 	private JLabel lastBonusNum;
 	private JLayeredPane layeredPane;
-	private JLabel label;
+	private JLabel mainBackGround;
+	private JLabel turnLabel;
+	private String lastTurnString;
 	
 
 	/**
@@ -59,10 +62,14 @@ public class MainPage extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setResizable(false);
+		
+		lastTurnString = "이전 회 당첨 번호"+ WINNING_NUM_DATA.getLastTurn();
 
-		label = new JLabel(iconData.mainIcon());
+		mainBackGround = new JLabel(iconData.mainIcon());
 		lastWinningNums = new JLabel[6];
 		lastBonusNum = new JLabel();
+		turnLabel = new JLabel(lastTurnString);
+		
 
 		btnBounds();
 		btnUnVisuable();
@@ -72,12 +79,13 @@ public class MainPage extends JFrame {
 				new Dimension(iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight()));
 
 		// 레이블 및 버튼 위치 설정
-		label.setBounds(0, 0, iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight());
+		mainBackGround.setBounds(0, 0, iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight());
 		for (int i = 0; i < lastWinningNums.length; i++) {
 			lastWinningNums[i] = new JLabel();
 			lastWinningNums[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
+		turnLabel.setBounds(115, 110, 200, 20);
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		addLayeredPan();
@@ -102,12 +110,13 @@ public class MainPage extends JFrame {
 
 	}
 	private void addLayeredPan() {
-		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
+		layeredPane.add(mainBackGround, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
 		layeredPane.add(buyButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
 		layeredPane.add(myNumButton, new Integer(2));
 		layeredPane.add(makeLotteryButton, new Integer(2));
 		layeredPane.add(nextTurnButton, new Integer(2));
 		layeredPane.add(lastBonusNum, new Integer(2));
+		layeredPane.add(turnLabel, new Integer(2));
 		for (int i = 0; i < lastWinningNums.length; i++) {
 			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
