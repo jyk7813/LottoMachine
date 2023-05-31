@@ -32,10 +32,11 @@ public class MainPage extends JFrame {
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	private WinningNumData winningNumData;
+	public static final WinningNumData WINNING_NUM_DATA = new WinningNumData();
 	private static Integer currentRound = 1;
 	private JLabel[] lastWinningNums;
 	private JLabel lastBonusNum;
+	private JLayeredPane layeredPane;
 	
 
 	/**
@@ -58,7 +59,6 @@ public class MainPage extends JFrame {
 	 * Create the frame.
 	 */
 	public MainPage() {
-		winningNumData = new WinningNumData();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setResizable(false);
@@ -69,9 +69,9 @@ public class MainPage extends JFrame {
 		lastBonusNum = new JLabel(iconData.emptyIcon());
 
 		btnBounds();
+		btnUnVisuable();
 
-		// JLayeredPane 생성 및 설정
-		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(
 				new Dimension(iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight()));
 
@@ -94,11 +94,9 @@ public class MainPage extends JFrame {
 			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
 
-		btnUnVisuable();
-
+		
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
-
 		buyButton.addActionListener(e -> {
 			new BuyPage().setVisible(true); // pass this frame to the next one
 		});
@@ -115,17 +113,27 @@ public class MainPage extends JFrame {
 
 		makeLotteryButton.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (currentRound > winningNumData.getLastTurn()) {
-					UnderLotteryPage underLotteryPage = new UnderLotteryPage();
-					underLotteryPage.setVisible(true);
-				} else {
-					WinningNumPage winningNumPage = new WinningNumPage();
-					winningNumPage.setVisible(true);
-				}
-			}
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        if (currentRound > WINNING_NUM_DATA.getLastTurn()) {
+		            UnderLotteryPage underLotteryPage = new UnderLotteryPage();
+		            underLotteryPage.addWindowListener(new WindowAdapter() {
+		                @Override
+		                public void windowClosed(WindowEvent e) {
+		                    if (WINNING_NUM_DATA.getLastWinningNum() != null) {
+		                        showWinningNum();
+		                    }
+		                    System.out.println("UnderLotteryPage 창이 닫힘");
+		                }
+		            });
+		            underLotteryPage.setVisible(true);
+		        } else {
+		            WinningNumPage winningNumPage = new WinningNumPage();
+		            winningNumPage.setVisible(true);
+		        }
+		    }
 		});
+
 
 		nextTurnButton.addActionListener(new ActionListener() {
 
@@ -135,31 +143,32 @@ public class MainPage extends JFrame {
 				System.out.println(currentRound);
 
 			}
+			
 		});
-		System.out.println(winningNumData);
-		System.out.println(winningNumData.getLastTurn());
-		System.out.println(winningNumData.getLastWinningNum());
-//		if (winningNumData != null) {
-//			showWinningNum();
-//		}
-
+		System.out.println(WINNING_NUM_DATA);
+		System.out.println(WINNING_NUM_DATA.getLastTurn());
+		System.out.println(WINNING_NUM_DATA.getLastWinningNum());
+		
+		
+		
 		pack();
 
 	}
 	private void showWinningNum() {
 		System.out.println("진입");
-		Collection<Integer> set = winningNumData.getLastWinningNum().getWinningNum();
+		Collection<Integer> set = WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
-		
+		System.out.println(sortedList);
 		
 		for (int i = 0; i < sortedList.size(); i++) {
 		    int element = sortedList.get(i);
 		    // 원하는 작업 수행
 		    lastWinningNums[i].setIcon(iconData.LCIcons()[element]);
+		    
 		}
-		lastBonusNum.setIcon(iconData.LCIcons()[winningNumData.getLastWinningNum().getBonusNum()]);
-
+		lastBonusNum.setIcon(iconData.LCIcons()[WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
+		
 	}
 
 	/**

@@ -27,9 +27,7 @@ import javax.swing.border.EmptyBorder;
 
 public class SelectNumPage extends JDialog {
 
-    private JPanel contentPane;
     SelectNumData selectNumHashMap = new SelectNumData();
-    private IconData iconData = new IconData();
 	private JLabel[][] numLabels;
     private Utility utility = new Utility();
 	private JLabel[] keyLabels;
@@ -44,7 +42,7 @@ public class SelectNumPage extends JDialog {
      * Create the frame.
      */
     public SelectNumPage() {
-
+    	
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
