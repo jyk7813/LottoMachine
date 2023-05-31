@@ -1,11 +1,12 @@
 package database;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class SelectNum {
-	private int[] selectNum = new int[6];
+	private Collection<Integer> selectNum;
 	private int isAuto;
 	
-	public SelectNum(int[] selectNum, int isAuto) {
+	public SelectNum(Collection<Integer> selectNum, int isAuto) {
 		this.selectNum = selectNum;
 		this.isAuto = isAuto;	
 	}
@@ -15,7 +16,7 @@ public class SelectNum {
 	 * 작성자 : 장명근 버젼 : 1.0.0
 	 * @return 로또 번호 6개의 배열
 	 */
-	public int[] getSelectNum() {
+	public Collection<Integer> getSelectNum() {
 		return selectNum;
 	}
 	
