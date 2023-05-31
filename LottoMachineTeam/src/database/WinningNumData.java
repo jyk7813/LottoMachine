@@ -9,7 +9,7 @@ import java.util.TreeSet;
 public class WinningNumData {
 	
 	private static TreeMap<Integer,WinningNum> winningNumData = new TreeMap<>();
-	private static Integer turn = 1;
+	private static Integer turn = 0;
 	public WinningNumData() {
 		
 	}
@@ -21,9 +21,9 @@ public class WinningNumData {
      * @return 당첨 번호 맵의 복사본
      */
 	public void addWinningNum(Collection<Integer> winningNums, int bonusNum) {
+		turn++;
 		WinningNum winningNum = new WinningNum(winningNums, bonusNum);
 		winningNumData.put(turn, winningNum);
-		turn++;
 	}
     public Map<Integer, WinningNum> getWinningNum() {
         return new LinkedHashMap<>(winningNumData);

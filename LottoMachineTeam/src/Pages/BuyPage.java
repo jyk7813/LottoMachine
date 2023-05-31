@@ -124,7 +124,7 @@ public class BuyPage extends JDialog {
 		});
 	}
 
-	private void autoActionListener() {
+	public void autoActionListener() {
 		autoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
