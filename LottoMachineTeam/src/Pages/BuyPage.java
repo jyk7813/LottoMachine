@@ -87,7 +87,6 @@ public class BuyPage extends JDialog {
 				if (autoCount==0) isAuto = 3;
 				
 				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
-				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
 				System.out.println(SELECT_NUM_DATA);
 				
 				Collection<Integer> set = SELECT_NUM_DATA.getLastMap().getSelectNum();
@@ -98,24 +97,6 @@ public class BuyPage extends JDialog {
 					int element = sortedList.get(i);
 					selectEmptyJLabels[i].setIcon(icon.LCIcons()[element]);
 				}
-				
-//				System.out.println("진입");
-//				Collection<Integer> set = WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
-//				List<Integer> sortedList = new ArrayList<>(set);
-//				Collections.sort(sortedList);
-//				System.out.println(sortedList);
-//				
-//				for (int i = 0; i < sortedList.size(); i++) {
-//				    int element = sortedList.get(i);
-//				    // 원하는 작업 수행
-//				    lastWinningNums[i].setIcon(iconData.LCIcons()[element]);
-//				    
-//				}
-//				lastBonusNum.setIcon(iconData.LCIcons()[WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
-//				lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 결과";
-//				lastTurnLabel.setText(lastTurnString);
-//				
-//			}
 				
 			}
 		});
