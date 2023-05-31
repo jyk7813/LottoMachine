@@ -26,7 +26,7 @@ public class MainPage extends JFrame {
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	private WinningNumData winningNumData = new WinningNumData();
+	private WinningNumData winningNumData;
 	private static Integer currentRound = 1;
 
 	/**
@@ -129,6 +129,9 @@ public class MainPage extends JFrame {
 
 		pack();
 
+	}
+	private void showWinningNum() {
+		winningNumData.getLastWinningNum();
 	}
 
 	/**
