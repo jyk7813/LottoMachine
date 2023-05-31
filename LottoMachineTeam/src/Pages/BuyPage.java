@@ -245,7 +245,7 @@ public class BuyPage extends JDialog {
 		label = new JLabel(icon.buyPageIcon());
 		selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
-			selectEmptyJLabels[i] = new JLabel(icon.emptyIcon());
+			selectEmptyJLabels[i] = new JLabel();
 		}
 
 	}

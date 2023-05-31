@@ -63,7 +63,7 @@ public class SelectNumPage extends JDialog {
         
         for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장 Label
 			for (int j = 0; j < numLabels[i].length; j++) {
-				numLabels[i][j] = new JLabel(numIcon);
+				numLabels[i][j] = new JLabel();
 			}
 		}
         
