@@ -1,13 +1,21 @@
 package database;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SelectNumHashMap {
 	private Map<Integer, SelectNum> selectNumHashMap;
-
+	private static Integer count = 0;
+	
 	
 	public SelectNumHashMap() {
 		this.selectNumHashMap = new HashMap();
+	}
+
+	public void addSelectNumHashMap(Collection<Integer> selNum, int autoValue) {
+		count++;
+		SelectNum selectNum = new SelectNum(selNum, autoValue);
+		selectNumHashMap.put(count, selectNum);
 	}
 
 	public Map<Integer, SelectNum> getSelectNumHashMap() {

@@ -80,8 +80,9 @@ public class IconData {
 	public ImageIcon myNumCheckIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("myNumCheck(BG).png"));
 	}
-	public ImageIcon lciNum() {
-		return new ImageIcon(getClass().getClassLoader().getResource("SC1.png"));
+	public ImageIcon underLotteryIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("underLottery(BG).png"));
+
 	}
 
 	public ImageIcon[] LCIcons() {

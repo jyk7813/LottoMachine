@@ -1,4 +1,5 @@
 package Pages;
+
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -25,8 +26,9 @@ public class MainPage extends JFrame {
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	private WinningNumData winningNumData = new WinningNumData();
+	private WinningNumData winningNumData;
 	private static Integer currentRound = 1;
+
 	/**
 	 * Launch the application.
 	 */
@@ -48,28 +50,28 @@ public class MainPage extends JFrame {
 	 */
 	public MainPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		setResizable(false);
-		
+
 		// 이미지 아이콘을 사용하는 레이블 생성
 		JLabel label = new JLabel(iconData.mainIcon());
 		JLabel[] lastWinningNum = new JLabel[6];
 		JLabel lastBonusNum = new JLabel(iconData.emptyIcon());
-		
+
 		btnBounds();
-	
+
 		// JLayeredPane 생성 및 설정
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight()));
+		layeredPane.setPreferredSize(
+				new Dimension(iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight()));
 
 		// 레이블 및 버튼 위치 설정
 		label.setBounds(0, 0, iconData.mainIcon().getIconWidth(), iconData.mainIcon().getIconHeight());
 		for (int i = 0; i < lastWinningNum.length; i++) {
 			lastWinningNum[i] = new JLabel(iconData.emptyIcon());
-			lastWinningNum[i].setBounds(33+ i*50, 199, 40, 40);
+			lastWinningNum[i].setBounds(33 + i * 50, 199, 40, 40);
 		}
 		lastBonusNum.setBounds(357, 199, 40, 40);
-		
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
@@ -81,28 +83,28 @@ public class MainPage extends JFrame {
 		for (int i = 0; i < lastWinningNum.length; i++) {
 			layeredPane.add(lastWinningNum[i], new Integer(2));
 		}
-		
+
 		btnUnVisuable();
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
-		
+
 		buyButton.addActionListener(e -> {
-	            new BuyPage().setVisible(true); // pass this frame to the next one
-	        });
-		
+			new BuyPage().setVisible(true); // pass this frame to the next one
+		});
+
 		myNumButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MyNumCheckPage myNumCheckPage = new MyNumCheckPage();
-				
+
 				myNumCheckPage.setVisible(true);
 			}
 		});
-		
+
 		makeLotteryButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (currentRound > winningNumData.getLastTurn()) {
@@ -114,31 +116,35 @@ public class MainPage extends JFrame {
 				}
 			}
 		});
-		
+
 		nextTurnButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				currentRound++;
 				System.out.println(currentRound);
-				
+
 			}
 		});
-		
+
 		pack();
 
+	}
+	private void showWinningNum() {
+		winningNumData.getLastWinningNum();
 	}
 
 	/**
 	 * 버튼 안보이게 만듬
 	 */
 	private void btnUnVisuable() {
-		
+
 		utility.setButtonProperties(buyButton);
 		utility.setButtonProperties(myNumButton);
 		utility.setButtonProperties(makeLotteryButton);
 		utility.setButtonProperties(nextTurnButton);
 	}
+
 	/**
 	 * 버튼 크기 및 위치 조정
 	 */

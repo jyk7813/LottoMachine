@@ -1,15 +1,17 @@
 package database;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class WinningNumData {
 	
-	private static Map<Integer,WinningNum> winningNum;
-	private static Integer turn;
+	private static TreeMap<Integer,WinningNum> winningNumData = new TreeMap<>();
+	private static Integer turn = 1;
 	public WinningNumData() {
-		this.winningNum = new LinkedHashMap<>();
+		
 	}
 
 	/**
@@ -18,22 +20,14 @@ public class WinningNumData {
      * 작성자 : 주하태 버젼 : 1.0.0
      * @return 당첨 번호 맵의 복사본
      */
+	public void addWinningNum(Collection<Integer> winningNums, int bonusNum) {
+		WinningNum winningNum = new WinningNum(winningNums, bonusNum);
+		winningNumData.put(turn, winningNum);
+		turn++;
+	}
     public Map<Integer, WinningNum> getWinningNum() {
-        return new LinkedHashMap<>(winningNum);
+        return new LinkedHashMap<>(winningNumData);
     }
-    
-    /**
-     * 당첨 번호 맵을 설정하는 메서드.
-     * 방어적 복사를 사용하여 외부 변경으로부터 보호.
-     * 작성자 : 주하태 버젼 : 1.0.0
-     * @param winningNum 새로운 당첨 번호 맵
-     */
-    public void setWinningNum(WinningNum winningNum) {
-    	this.winningNum.put(turn, winningNum);
-    	turn++;
-    }
-    
-    
 
 	
 	/**
@@ -42,7 +36,7 @@ public class WinningNumData {
 	 * @return 턴 번호의 집합
 	 */
 	public Set<Integer> getTurn() {
-	    return winningNum.keySet();
+	    return winningNumData.keySet();
 	}
 	// 마지막 회차관련 메소드
 	/**
@@ -64,7 +58,15 @@ public class WinningNumData {
 	 * @return 마지막 턴의 당첨 번호. 마지막 턴이 없으면 null
 	 */
 	public WinningNum getLastWinningNum() {
-	    return winningNum.get(getLastTurn());
+	    return winningNumData.get(getLastTurn());
 	}
+
+	@Override
+	public String toString() {
+		return "WinningNumData [getLastTurn()=" + getLastTurn() + ", getLastWinningNum()=" + getLastWinningNum() + "]";
+	}
+
+
+	
 
 }
