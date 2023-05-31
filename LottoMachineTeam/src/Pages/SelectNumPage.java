@@ -3,6 +3,8 @@ import java.awt.Dimension;
 
 import database.SelectNum;
 import database.SelectNumHashMap;
+import utility.IconData;
+import utility.Utility;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -22,8 +24,11 @@ public class SelectNumPage extends JDialog {
 
     private JPanel contentPane;
     SelectNumHashMap selectNumHashMap = new SelectNumHashMap();
-    
-    
+    private IconData iconData = new IconData();
+	private JLabel[][] numLabels;
+    private Utility utility = new Utility();
+	private JLabel[] keyLabels;
+	
    
     /**
      * Create the frame.
@@ -41,9 +46,21 @@ public class SelectNumPage extends JDialog {
         ImageIcon numIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
         ImageIcon cancleBtn = new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
         
+        numLabels = new JLabel[6][10];
+        keyLabels = new JLabel[10];
         // 이미지 아이콘을 사용하는 레이블 생성
-        JLabel label = new JLabel(icon);
+        JLabel label = new JLabel(icon); // 배경 Label
         
+        for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장 Label
+			for (int j = 0; j < numLabels[i].length; j++) {
+				numLabels[i][j] = new JLabel(numIcon);
+			}
+		}
+        
+        for (int i = 0; i < keyLabels.length; i++) { // key 저장 Label
+			keyLabels[i] = new JLabel();
+			
+		}
 
         // 버튼 생성
         JButton backButton = new JButton(backIcon);
@@ -61,48 +78,27 @@ public class SelectNumPage extends JDialog {
         	cancel[i] = new JButton(cancleBtn);
         	cancel[i].setBounds(356, 119 + i * 70, 52, 36);
         	layeredPane.add(cancel[i], new Integer(2));
-        	cancel[i].setOpaque(false);
-            cancel[i].setContentAreaFilled(false);
-            cancel[i].setBorderPainted(false);
+        	utility.setButtonProperties(cancel[i]);
         }
         
         // 레이블 및 버튼 위치 설정
-        label.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
+        label.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight()); // 배경 위치
         
+        for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장소 위치
+			for (int j = 0; j < numLabels[i].length; j++) {
+				numLabels[i][j].setBounds(52 + i * 50, 117 + j * 70, 40, 40);
+			}
+		}
 
-        // 레이블 및 버튼을 JLayeredPane에 추가
-        JLabel[][] numLabel = new JLabel[7][10];
-        JLabel[][] numLabel2 = new JLabel[7][10];
-        Map<Integer, SelectNum> map;
-        SelectNum selectNum;
-        int[] arr = new int[6];
-            for (int j = 0; j < 10; j++) {
-            	map = selectNumHashMap.getSelectNumHashMap();
-            	for (int i = 0; i < 7; i++) {
-            	if (i == 0) {
-            		  numLabel[i][j] = new JLabel();
-				} else {
-					  numLabel[i][j] = new JLabel(numIcon);
-				}
-                
-                numLabel[i][j].setBounds(2 + i * 50, 117 + j * 70, 40, 40);
-                
-                numLabel2[i][j] = new JLabel();
-                numLabel2[i][j].setBounds(2 + i * 50, 117 + j * 70, 40, 40);
-                if (i == 0) {
-          		  	numLabel2[i][j].setText(Integer.toString(j + 1));
-				} else {
-					if (map.size() > 0 && j < map.size()) {
-						selectNum = map.get(j + 1);
-						
-						arr = selectNum.getSelectNum();
-						numLabel2[i][j].setText(Integer.toString(selectNum.getSelectNum()[i - 1]));						
-					}
-				}
-                layeredPane.add(numLabel2[i][j], new Integer(1));
-                layeredPane.add(numLabel[i][j], new Integer(1));
-            }
-        }
+        for (int i = 0; i < numLabels.length; i++) { 
+			for (int j = 0; j < numLabels[i].length; j++) {
+				layeredPane.add(numLabels[i][j], new Integer(2)); // 레이블은 앞쪽에 레이어에 추가 
+			}
+		}
+        
+        for (int i = 0; i < keyLabels.length; i++) {
+			layeredPane.add(keyLabels[i], new Integer(2));
+		}
         layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
         layeredPane.add(backButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
         layeredPane.add(buyButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
@@ -111,16 +107,10 @@ public class SelectNumPage extends JDialog {
         setContentPane(layeredPane);
         
         // 버튼숨기기
-        backButton.setOpaque(false);
-        backButton.setContentAreaFilled(false);
-        backButton.setBorderPainted(false);
+        utility.setButtonProperties(backButton);
+        utility.setButtonProperties(buyButton);
         
-        buyButton.setOpaque(false);
-        buyButton.setContentAreaFilled(false);
-        buyButton.setBorderPainted(false);
-        
-        
-        
+        // 버튼 ActionListener
         
         backButton.addActionListener(new ActionListener() {
 			
@@ -133,6 +123,7 @@ public class SelectNumPage extends JDialog {
 				
 			}
 		});
+        
         buyButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -146,6 +137,8 @@ public class SelectNumPage extends JDialog {
 			}
 		});
         pack();
+        
+        
        
     }
 }
