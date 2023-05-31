@@ -7,22 +7,17 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;
 
-import database.WinningNum;
 import database.WinningNumData;
 import utility.IconData;
 
 public class UnderLotteryPage extends JDialog implements ActionListener{
-	private WinningNumData winningNumData;
+	private WinningNumData winningNumData = new WinningNumData();
 	private JLabel label;
-	private ImageIcon underLotteryPage;
-	private ImageIcon bonuseIcon;
-	private ImageIcon emptyIcon;
 	private JLabel selectEmptyJLabels[];
 	private JLabel bonuseEmptyJLabels;
 	private JLayeredPane layeredPane;
@@ -33,11 +28,6 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 	private Set<Integer> randomNums;
 	private int bonusNum;
 	
-    
-    public void name() {
-		winningNumData.setWinningNum(new WinningNum(randomNums, 5));
-	}
-    
 	/**
      * Create the frame.
      */
@@ -70,7 +60,10 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 		}
         
         generateBonusNumber();
-        
+        winningNumData.addWinningNum(randomNums, bonusNum);
+        System.out.println(winningNumData.getLastTurn());
+        System.out.println(winningNumData);
+        System.out.println(winningNumData.getWinningNum());
         pack();
     }
     private void makeLabel() {
