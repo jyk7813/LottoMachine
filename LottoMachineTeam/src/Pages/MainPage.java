@@ -221,6 +221,7 @@ public class MainPage extends JFrame {
 		    
 		}
 		lastBonusNum.setIcon(iconData.LCIcons()[WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
+		lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 결과";
 		
 	}
 
