@@ -27,5 +27,11 @@ public class SelectNum {
 	 */
 	public int getIsAuto() {
 		return isAuto;
+	}
+
+	@Override
+	public String toString() {
+		return "SelectNum [selectNum=" + selectNum + ", isAuto=" + isAuto + "]";
 	}			
+	
 }
