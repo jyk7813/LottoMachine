@@ -35,7 +35,7 @@ public class SelectNumPage extends JDialog {
 	public static final int SEMIAUTO = 2;
 	public static final int MANUAL = 3;
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
-	
+	private List<Integer> selectList;
    
     /**
      * Create the frame.
@@ -52,10 +52,6 @@ public class SelectNumPage extends JDialog {
         ImageIcon buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBtn.png"));
         ImageIcon numIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
         ImageIcon cancleBtn = new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
-        
-        List<Integer> selectList = new ArrayList<Integer>();
-        
-        
         
         numLabels = new JLabel[6][10];
         keyLabels = new JLabel[10];
@@ -182,5 +178,6 @@ public class SelectNumPage extends JDialog {
     	if (isAuto == SEMIAUTO) return SEMIAUTO; 
     	if (isAuto == MANUAL) return MANUAL;
     	return -1;
-	}    
+	}
 }
+
