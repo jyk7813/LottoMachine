@@ -81,4 +81,7 @@ public class BuyCompletePage extends JDialog {
 		returnBtn.setContentAreaFilled(false);
 		returnBtn.setBorderPainted(false);
 	}
+	public void name() {
+		
+	}
 }

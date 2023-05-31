@@ -123,4 +123,7 @@ public class MyNumCheckPage extends JDialog {
 			j++;
 		}
 	}
+	public void name() {
+		
+	}
 }

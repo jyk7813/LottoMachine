@@ -2,6 +2,8 @@ package database;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SelectNumData {
 	private Map<Integer, SelectNum> selectNumHashMap;
@@ -45,7 +47,14 @@ public class SelectNumData {
 		Integer i = new Integer(idx);
 		selectNumHashMap.remove(i);
 	}
-	public void getAutoValue() {
-		
+
+	public Set<Integer> getKey() {
+		return selectNumHashMap.keySet();
+	}
+	
+	public int getLastKey() {
+	    TreeSet<Integer> SelectNumKeySet = new TreeSet<>(getKey());
+	    // TreeSet이 비어있지 않다면 가장 마지막 값을 반환하고, 그렇지 않다면 -1을 반환
+	    return !SelectNumKeySet.isEmpty() ? SelectNumKeySet.last() : -1;
 	}
 }

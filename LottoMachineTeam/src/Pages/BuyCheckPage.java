@@ -3,6 +3,9 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,6 +13,11 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
+
+import database.SelectNum;
+import database.SelectNumData;
 
 public class BuyCheckPage extends JDialog {
 	private JButton backBtn;
@@ -52,6 +60,7 @@ public class BuyCheckPage extends JDialog {
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);
 				buyCompletePage.setVisible(true);
+				
 				
 			}
 		});
@@ -130,5 +139,17 @@ public class BuyCheckPage extends JDialog {
 	private void addLayeredPane() {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(430, 890));
+	}
+	private void showSelectedNum() {
+		SelectNum selectNumber = new SelectNum();
+		MyNumCheckPage numCheck = new MyNumCheckPage();
+		System.out.println("시작");
+		Collection<Integer> set = selectNumber.getSelectNum();
+		List<Integer> sortedList = new ArrayList<>(set);
+		java.util.Collections.sort(sortedList);
+		for (int i = 0; i < sortedList.size(); i++) {
+			int elem = sortedList.get(i);
+			numCheck.
+		}
 	}
 }

@@ -27,5 +27,8 @@ public class SelectNum {
 	 */
 	public int getIsAuto() {
 		return isAuto;
-	}			
+	}
+	public SelectNum() {
+		
+	}
 }
