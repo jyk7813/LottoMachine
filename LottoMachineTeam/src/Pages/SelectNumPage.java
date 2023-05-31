@@ -1,15 +1,19 @@
 package Pages;
 import java.awt.Container;
+
 import java.awt.Dimension;
 
 import database.SelectNum;
 import database.SelectNumData;
+import jdk.nashorn.internal.ir.WhileNode;
 import utility.IconData;
 import utility.Utility;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
@@ -168,6 +172,13 @@ public class SelectNumPage extends JDialog {
 			}
 		});
         pack(); 
+        
+		// 저장되는 곳
+		List<Integer> selList = new ArrayList<>();
+		while (selList.size() < 6) {
+			
+			
+		}
     }
     
     // 자동 여부
@@ -176,5 +187,5 @@ public class SelectNumPage extends JDialog {
     	if (isAuto == SEMIAUTO) return SEMIAUTO; 
     	if (isAuto == MANUAL) return MANUAL;
     	return -1;
-	}  
+	}    
 }
