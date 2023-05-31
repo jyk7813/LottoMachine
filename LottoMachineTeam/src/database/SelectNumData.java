@@ -45,4 +45,7 @@ public class SelectNumData {
 		Integer i = new Integer(idx);
 		selectNumHashMap.remove(i);
 	}
+	public void getAutoValue() {
+		
+	}
 }

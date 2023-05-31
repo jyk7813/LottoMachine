@@ -3,7 +3,9 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.SelectNum;
+import database.SelectNumData;
 import database.SelectNumMap;
 import utility.IconData;
 import utility.Utility;
@@ -18,8 +21,8 @@ import utility.Utility;
 public class MyNumCheckPage extends JDialog {
 	private IconData icon = new IconData();
 	private JLayeredPane layeredPane;
-	private LinkedHashMap<Integer, SelectNum> map = new LinkedHashMap<>();
-	private SelectNumMap selectNum = new SelectNumMap();
+	private Map<Integer, SelectNum> map;
+	private SelectNumData selectNum = new SelectNumData();
 	java.util.List<Integer> number;
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum;
@@ -28,7 +31,7 @@ public class MyNumCheckPage extends JDialog {
 	 * Create the frame.
 	 */
 	public MyNumCheckPage() {
-
+		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false); // 창 크기 변경을 비활성화
@@ -105,7 +108,7 @@ public class MyNumCheckPage extends JDialog {
 //SelectNumMap에 저장된 번호들에 해당하는 lottoNum 배열의 원소에 이미지가 설정됩니다. 
 	public void getChangeNumsImage() {
 		int j = 0;
-		map = selectNum.getSelectNumMap();
+		map = selectNum.getSelectNumHashMap();
 		for (SelectNum value : map.values()) {
 			int i = 0;
 			for (Integer integerNum : value.getSelectNum()) {
