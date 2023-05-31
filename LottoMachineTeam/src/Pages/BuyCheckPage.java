@@ -114,14 +114,17 @@ public class BuyCheckPage extends JDialog {
 		backBtn.setOpaque(false);
 		backBtn.setContentAreaFilled(false);
 		backBtn.setBorderPainted(false);
+		backBtn.setFocusPainted(false);
 
 		yesBtn.setOpaque(false);
 		yesBtn.setContentAreaFilled(false);
 		yesBtn.setBorderPainted(false);
+		yesBtn.setFocusPainted(false);
 
 		noBtn.setOpaque(false);
 		noBtn.setContentAreaFilled(false);
 		noBtn.setBorderPainted(false);
+		noBtn.setFocusPainted(false);
 	}
 
 	private void addLayeredPane() {
