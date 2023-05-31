@@ -14,7 +14,6 @@ import javax.swing.JLayeredPane;
 
 import database.SelectNum;
 import database.SelectNumData;
-import database.SelectNumMap;
 import utility.IconData;
 import utility.Utility;
 
@@ -23,7 +22,6 @@ public class MyNumCheckPage extends JDialog {
 	private JLayeredPane layeredPane;
 	private Map<Integer, SelectNum> map;
 	private SelectNumData selectNum = new SelectNumData();
-	java.util.List<Integer> number;
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum;
 
