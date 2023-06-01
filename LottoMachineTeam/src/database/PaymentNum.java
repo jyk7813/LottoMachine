@@ -3,16 +3,16 @@ package database;
 import java.util.Arrays;
 
 public class PaymentNum {
-	Integer[] selectNum;
+	Integer[] paymentNum;
 	int autoStat;
 	SelectNumData numData;
 	
 	public PaymentNum(Integer[] array, int autoValue) {
-		this.selectNum = array;
+		this.paymentNum = array;
 		this.autoStat = autoValue;
 	}
-	public Integer[] getSelectNum() {
-		return selectNum;
+	public Integer[] getPaymentNum() {
+		return paymentNum;
 	}
 	public int getAutoStat() {
 		return autoStat;
@@ -24,7 +24,7 @@ public class PaymentNum {
 
 	@Override
 	public String toString() {
-		return "PaymentNum [selectNum=" + Arrays.toString(selectNum) + ", autoStat=" + autoStat + "]";
+		return "PaymentNum [selectNum=" + Arrays.toString(paymentNum) + ", autoStat=" + autoStat + "]";
 	}
 
 }

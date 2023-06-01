@@ -27,6 +27,7 @@ public class WinningNumPage extends JDialog {
 	private JLabel[] winnerNums;
 	private JLabel[] rankingLabels;
 	private JButton backBtn;
+	private BuyPage buyPage = new BuyPage();
 	
 
 
@@ -57,15 +58,11 @@ public class WinningNumPage extends JDialog {
         
         
         	for (int j = 0; j < 10; j++) {
-        		for (int i = 0; i < 7; i++) {
-        			if(i == 0) {
+        		for (int i = 0; i < 6; i++) {
         				lottoNums[i][j] = new JLabel();
-        				
-        			} else {
-        				lottoNums[i][j] = new JLabel();
-        			}
         			
-        			lottoNums[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
+        			
+        			lottoNums[i][j].setBounds(71 + i * 44, 340 + j * 50, 36, 36);
         			layeredPane.add(lottoNums[i][j], new Integer(2));	
         		}
         	}
@@ -113,6 +110,7 @@ public class WinningNumPage extends JDialog {
 				
 			}
 		});
+        showPaymentNum();
         pack();
         
         utility.setButtonProperties(backBtn);
@@ -124,7 +122,7 @@ public class WinningNumPage extends JDialog {
 		Collection<Integer> set = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
-		System.out.println(sortedList);
+		System.out.println("winningNum : "+sortedList);
 		
 		for (int i = 0; i < sortedList.size(); i++) {
 		    int element = sortedList.get(i);
@@ -134,7 +132,17 @@ public class WinningNumPage extends JDialog {
 		
 	}
     private void showPaymentNum() {
-		
-	}
+    	System.out.println("진입");
+        for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+            Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+           for (Integer integer : paymentNum) {
+			System.out.println(integer);
+		}
+  
+    		
+            
+        }
+    }
+
    
 }
