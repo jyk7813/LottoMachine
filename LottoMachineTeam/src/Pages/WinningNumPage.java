@@ -34,7 +34,6 @@ public class WinningNumPage extends JDialog {
 	private JLabel[] winnerNums;
 	private JLabel[] rankingLabels;
 	private JButton backBtn;
-	private BuyPage buyPage = new BuyPage();
 
 	/**
 	 * Create the frame.
@@ -134,8 +133,8 @@ public class WinningNumPage extends JDialog {
 
 	private void showPaymentNum() {
 	    System.out.println("진입 showPaymentNum ");
-	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-	        Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+	    for (Integer key : BuyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+	        Integer[] paymentNum = BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
 	        System.out.println(key);
 	        Integer i = 0;
 	        for (Integer integer : paymentNum) {
@@ -147,13 +146,13 @@ public class WinningNumPage extends JDialog {
 	            i++;
 	            System.out.println(integer);
 	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
+	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
 	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
 	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
+	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
 	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
 	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
+	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
 	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
 	        }
 
@@ -162,8 +161,8 @@ public class WinningNumPage extends JDialog {
 
 	private void checkRank() {
 		System.out.println("진입 checkRank ");
-		for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-			PaymentNum paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key);
+		for (Integer key : BuyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+			PaymentNum paymentNum = BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key);
 			if (isFirstPlace(paymentNum)) {
 				System.out.println("1등 확인?");
 				rankingLabels[key-1].setIcon(iconData.rankingIcon1());

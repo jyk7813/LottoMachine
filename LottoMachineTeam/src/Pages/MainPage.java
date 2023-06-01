@@ -28,6 +28,7 @@ import utility.Utility;
 public class MainPage extends JFrame {
 
 	public static final WinningNumData WINNING_NUM_DATA = new WinningNumData();
+	
 	private IconData iconData = new IconData();
 	private Utility utility = new Utility();
 	private JButton buyButton;
@@ -43,7 +44,6 @@ public class MainPage extends JFrame {
 	private JLabel curruntTurnLabel;
 	private String lastTurnString;
 	private String curruntTurnString;
-	private BuyPage buyPage = new BuyPage();
 	private FontData fontData = new FontData();
 	
 	
@@ -228,8 +228,8 @@ public class MainPage extends JFrame {
 					currentRound++;
 					curruntTurnString = currentRound+"회";
 					curruntTurnLabel.setText(curruntTurnString);
-					buyPage.PAYMENT_NUM_DATA.clearData();
-					buyPage.SELECT_NUM_DATA.resetCount();
+					BuyPage.PAYMENT_NUM_DATA.clearData();
+					BuyPage.SELECT_NUM_DATA.resetCount();
 					System.out.println(currentRound);
 					
 				}

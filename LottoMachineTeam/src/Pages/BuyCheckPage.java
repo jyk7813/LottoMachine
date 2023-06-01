@@ -33,7 +33,6 @@ public class BuyCheckPage extends JDialog {
 
 	private SelectNumData numData;
 
-	private BuyPage buyPage = new BuyPage();
 
 	/**
 	 * Create the frame.
@@ -62,7 +61,7 @@ public class BuyCheckPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				copySelectNumData();
-				buyPage.SELECT_NUM_DATA.clearMap();
+				BuyPage.SELECT_NUM_DATA.clearMap();
 				BuyCompletePage buyCompletePage = new BuyCompletePage();
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);
@@ -151,14 +150,14 @@ public class BuyCheckPage extends JDialog {
 
 	private void copySelectNumData() {
 		System.out.println("진입");
-		for (Integer key : buyPage.SELECT_NUM_DATA.getKey()) {
-			SelectNum selectNum = buyPage.SELECT_NUM_DATA.getSelectNum(key);
+		for (Integer key : BuyPage.SELECT_NUM_DATA.getKey()) {
+			SelectNum selectNum = BuyPage.SELECT_NUM_DATA.getSelectNum(key);
 			Collection<Integer> selNum = selectNum.getSelectNum();
 			int autoValue = selectNum.getAutoValue();
 			Integer[] array = selNum.toArray(new Integer[0]);
 			PaymentNum paymentNum = new PaymentNum(array, autoValue);
-			buyPage.PAYMENT_NUM_DATA.addMap(key, paymentNum);
-			System.out.println("payment로 저장 완료 " + buyPage.PAYMENT_NUM_DATA);
+			BuyPage.PAYMENT_NUM_DATA.addMap(key, paymentNum);
+			System.out.println("payment로 저장 완료 " + BuyPage.PAYMENT_NUM_DATA);
 		}
 	}
 

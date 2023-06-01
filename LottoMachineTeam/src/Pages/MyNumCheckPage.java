@@ -21,7 +21,6 @@ public class MyNumCheckPage extends JDialog {
 	private JLayeredPane layeredPane;
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum2;
-	private BuyPage buyPage = new BuyPage();
 	private PaymentNum[] payNumArr;
 	private JLabel[] lottoAutos;
 	private IconData iconData = new IconData();
@@ -106,8 +105,8 @@ public class MyNumCheckPage extends JDialog {
 	}
 	private void showPaymentNum() {
 	    System.out.println("진입 showPaymentNum ");
-	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-	        Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+	    for (Integer key : BuyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+	        Integer[] paymentNum = BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
 	        System.out.println(key);
 	        Integer i = 0;
 	        for (Integer integer : paymentNum) {
@@ -115,13 +114,13 @@ public class MyNumCheckPage extends JDialog {
 	            i++;
 	            System.out.println(integer);
 	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
+	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
 	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
 	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
+	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
 	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
 	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
+	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
 	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
 	        }
 
