@@ -79,7 +79,7 @@ public class SelectNumPage extends JDialog {
 
 		for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장 Label
 			for (int j = 0; j < numLabels[i].length; j++) {
-				numLabels[i][j] = new JLabel(numIcon);
+				numLabels[i][j] = new JLabel();
 			}
 		}
 
@@ -184,160 +184,160 @@ public class SelectNumPage extends JDialog {
 			}
 		});
 		pack();
+		for (int i = 0; i < cancelButton.length; i++) {
+			cancelButton[i].addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();
+				}
+			});
+		}
 		
-		cancelButton[0].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map =BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[1].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					SelectNumPage selectNumPage = new SelectNumPage();
-					selectNumPage.setVisible(true);
-					
-				}
-			}
-		});
-		cancelButton[2].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[3].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[4].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[5].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[6].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[7].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[8].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		cancelButton[9].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
-				
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				while (bringKey.hasNext()) {
-					Integer change = bringKey.next();
-					map.remove(change);
-					System.out.println(BuyPage.SELECT_NUM_DATA);
-					
-				}
-			}
-		});
-		
+//		cancelButton[0].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map =BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[1].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//					SelectNumPage selectNumPage = new SelectNumPage();
+//					selectNumPage.setVisible(true);
+//				}
+//				iconChange();
+//			}
+//		});
+//		cancelButton[2].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[3].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[4].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[5].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[6].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[7].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[8].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		cancelButton[9].addActionListener(new ActionListener() {			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+//				
+//				Set<Integer> set = map.keySet();
+//				Iterator<Integer> bringKey = set.iterator();
+//				while (bringKey.hasNext()) {
+//					Integer change = bringKey.next();
+//					map.remove(change);
+//					System.out.println(BuyPage.SELECT_NUM_DATA);
+//				}
+//			}
+//		});
+//		
 	}
 
 	// 자동 여부
