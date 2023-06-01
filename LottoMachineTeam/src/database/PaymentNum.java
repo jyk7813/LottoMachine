@@ -1,6 +1,8 @@
 package database;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class PaymentNum {
 	Integer[] paymentNum;
@@ -17,6 +19,9 @@ public class PaymentNum {
 	public int getAutoStat() {
 		return autoStat;
 	}
+	public Collection<Integer> getPaymentNumCollection() {
+        return Collections.unmodifiableCollection(Arrays.asList(paymentNum));
+    }
 
 	public SelectNumData getNumberData() {
 		return numData;

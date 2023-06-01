@@ -18,6 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import database.PaymentNum;
 import utility.IconData;
 import utility.Utility;
 
@@ -109,6 +110,7 @@ public class WinningNumPage extends JDialog {
 			}
 		});
 		showPaymentNum();
+		checkRank();
 		pack();
 
 		utility.setButtonProperties(backBtn);
@@ -153,5 +155,51 @@ public class WinningNumPage extends JDialog {
 
 		}
 	}
+	private void checkRank() {
+	    System.out.println("진입 checkRank ");
+	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+	        PaymentNum paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key);
+	        if (isFirstPlace(paymentNum)) {
+	            System.out.println("1등 확인?");
+	        } else {
+	            int rank = getRank(paymentNum);
+	            if (rank == 2) {
+	                System.out.println("2등 확인?");
+	            } else if (rank == 3) {
+	                System.out.println("3등 확인?");
+	            } else {
+	                System.out.println("기타 등수 확인?");
+	            }
+	        }
+	    }
+	}
+
+	private boolean isFirstPlace(PaymentNum paymentNum) {
+	    Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+	    return winningNum.containsAll(paymentNum.getPaymentNumCollection());
+	}
+
+	private int getRank(PaymentNum paymentNum) {
+	    Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+	    int matchCount = 0;
+	    for (Integer num : paymentNum.getPaymentNumCollection()) {
+	        if (winningNum.contains(num)) {
+	            matchCount++;
+	        }
+	    }
+	    if (matchCount == 6) {
+	        return 1; // 1등
+	    } else if (matchCount == 5) {
+	        int bonusNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum();
+	        if (paymentNum.getPaymentNumCollection().contains(bonusNum)) {
+	            return 2; // 2등
+	        } else {
+	            return 3; // 3등
+	        }
+	    } else {
+	        return 0; // 기타 등수
+	    }
+	}
+
 
 }
