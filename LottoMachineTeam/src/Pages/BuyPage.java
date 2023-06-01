@@ -41,7 +41,7 @@ public class BuyPage extends JDialog {
 	private Random random = new Random();
 	private int autoCount;
 	private int isAuto;
-	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData(); 	 
+	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 
 	/**
 	 * Create the frame.
@@ -55,7 +55,8 @@ public class BuyPage extends JDialog {
 		// 버튼만들기
 		makeButten();
 		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
+		layeredPane
+				.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
 		// 레이블 및 버튼 위치 설정
 		labelBounds();
 		// 레이블 및 버튼을 JLayeredPane에 추가
@@ -71,8 +72,11 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
+		if (SELECT_NUM_DATA.getLastKey() != -1) {
+			showSelectNum();
+		}
 		addButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				List<Integer> selectList = new ArrayList<Integer>();
@@ -82,48 +86,57 @@ public class BuyPage extends JDialog {
 					}
 				}
 				System.out.println(selectList);
-				if (autoCount==6) isAuto = 1;
-				if (0<autoCount&&autoCount<6) isAuto = 2;
-				if (autoCount==0) isAuto = 3;
-				
+				if (autoCount == 6)
+					isAuto = 1;
+				if (0 < autoCount && autoCount < 6)
+					isAuto = 2;
+				if (autoCount == 0)
+					isAuto = 3;
+
 				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
 				System.out.println(SELECT_NUM_DATA);
-				
-				Collection<Integer> set = SELECT_NUM_DATA.getLastMap().getSelectNum();
-				List<Integer> sortedList = new ArrayList<>(set);
-				Collections.sort(sortedList);
-				System.out.println(sortedList);
-				for (int i = 0; i < sortedList.size(); i++) {
-					int element = sortedList.get(i);
-					selectEmptyJLabels[i].setIcon(icon.LCIcons()[element]);
-				}
-				
+
+				showSelectNum();
+
 			}
+
 		});
 		lbuyButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BuyCheckPage buyCheckPage = new BuyCheckPage();
 				dispose();
 				buyCheckPage.setAlwaysOnTop(true);
 				buyCheckPage.setVisible(true);
-				
+
 			}
 		});
-		
+
 		pack();
+	}
+
+	private void showSelectNum() {
+		Collection<Integer> set = SELECT_NUM_DATA.getLastMap().getSelectNum();
+		List<Integer> sortedList = new ArrayList<>(set);
+		Collections.sort(sortedList);
+		System.out.println(sortedList);
+		for (int i = 0; i < sortedList.size(); i++) {
+			int element = sortedList.get(i);
+			selectEmptyJLabels[i].setIcon(icon.LCIcons()[element]);
+		}
+
 	}
 
 	private void backActionListener() {
 		backButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
+
 			}
-		});		
+		});
 	}
 
 	private void moreActionListener() {
@@ -267,7 +280,6 @@ public class BuyPage extends JDialog {
 		}
 
 	}
-
 
 	private void removeButtonVisualEffects() {
 		utility.setButtonProperties(resetButton);
