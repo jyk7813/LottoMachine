@@ -106,6 +106,15 @@ public class IconData {
 	public ImageIcon rankingIconFail() {
 		return new ImageIcon(getClass().getClassLoader().getResource("ranking_fail.png"));
 	}
+	public ImageIcon autoIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("autoBtn-1.png"));
+	}
+	public ImageIcon semiAutoIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("semiAutoBtn.png"));
+	}
+	public ImageIcon manualIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("manualBtn.png"));
+	}
 	public ImageIcon[] LCIcons() {
 		ImageIcon[] colorNumIcon = new ImageIcon[45];
 		for (int i = 0; i < colorNumIcon.length; i++) {
