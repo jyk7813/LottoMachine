@@ -32,6 +32,10 @@ public class IconData {
 	public ImageIcon nextTurnIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("nextBtn.png"));
 	}
+	
+	public ImageIcon nextGrayTurnIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("nextGrayBtn.png"));
+	}
 
 	public ImageIcon buyPageIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buy(BG).png"));
