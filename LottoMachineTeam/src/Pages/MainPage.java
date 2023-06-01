@@ -147,7 +147,12 @@ public class MainPage extends JFrame {
 
 	private void buyBtn() {
 		buyButton.addActionListener(e -> {
-			new BuyPage().setVisible(true); // pass this frame to the next one
+			if (currentRound == WINNING_NUM_DATA.getLastTurn()) {
+				new BuyErrorPage().setVisible(true);
+			    System.out.println("바이에러 페이로 넘어가기");
+			} else {
+				new BuyPage().setVisible(true); // pass this frame to the next one				
+			}
 		});
 		
 		
@@ -190,7 +195,7 @@ public class MainPage extends JFrame {
 		            });
 		            underLotteryPage.setVisible(true);
 		        	
-		        } else {
+		        } else {		        
 		        WinningNumPage winningNumPage = new WinningNumPage();
 		        winningNumPage.setVisible(true);
 		        }
