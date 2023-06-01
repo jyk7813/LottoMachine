@@ -60,9 +60,19 @@ public class SelectNumData {
 	public SelectNum getLastMap() {
 		return selectNumHashMap.get(getLastKey());
 	}
+	public SelectNum getSelectNum(int key) {
+		return selectNumHashMap.get(key);
+	}
 
 	@Override
 	public String toString() {
 		return "SelectNumData [selectNumHashMap=" + selectNumHashMap + "]";
+	}
+	/**
+	 * 계산시 count 수 만큼 연산하기
+	 * @return
+	 */
+	public int getCount() {
+		return count;
 	}
 }

@@ -21,16 +21,18 @@ import utility.IconData;
 import utility.Utility;
 
 public class WinningNumPage extends JDialog {
-	private IconData icon = new IconData();
+	private IconData iconData = new IconData();
 	private JLayeredPane layeredPane;
 	private Utility utility = new Utility();
 	private MainPage mainPage;
 	private JLabel label;
+	private JLabel bonusNum;
 	private JLabel[][] lottoNums;
 	private JLabel[] lottoAutos;
 	private JLabel[] winnerNums;
-	private JLabel bonusNum;
+	private JLabel[] rankingLabels;
 	private JButton backBtn;
+	private BuyPage buyPage = new BuyPage();
 	
 
 
@@ -44,53 +46,56 @@ public class WinningNumPage extends JDialog {
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
-		label = new JLabel(icon.winningNumIcon());
+		label = new JLabel(iconData.winningNumIcon());
         
         lottoNums = new JLabel[8][10];
         lottoAutos = new JLabel[10];
         winnerNums = new JLabel[10];
+        rankingLabels = new JLabel[10];
         
-        bonusNum = new JLabel(icon.emptyBtn());
+        bonusNum = new JLabel();
         bonusNum.setBounds(357, 225, 40, 40);
         
         
         
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
+        layeredPane.setPreferredSize(new Dimension(iconData.winningNumIcon().getIconWidth(), iconData.winningNumIcon().getIconHeight()));
         
         
         	for (int j = 0; j < 10; j++) {
-        		for (int i = 0; i < 7; i++) {
-        			if(i == 0) {
+        		for (int i = 0; i < 6; i++) {
         				lottoNums[i][j] = new JLabel();
-        				
-        			} else {
-        				lottoNums[i][j] = new JLabel();
-        			}
         			
-        			lottoNums[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
+        			
+        			lottoNums[i][j].setBounds(71 + i * 44, 340 + j * 50, 36, 36);
         			layeredPane.add(lottoNums[i][j], new Integer(2));	
         		}
         	}
         	
-        	for (int i = 0; i < 10; i++) {
-        		lottoAutos[i]= new JLabel(icon.emptyLBtn());
+        	for (int i = 0; i < lottoAutos.length; i++) {
+        		lottoAutos[i]= new JLabel();
         		lottoAutos[i].setBounds(337, 340 + i * 50, 52, 36);
         		layeredPane.add(lottoAutos[i], new Integer(2));
         	}
         	
-        	for (int i = 0; i < 6; i++) {
+        	for (int i = 0; i < winnerNums.length; i++) {
+        		winnerNums[i]= new JLabel();
+        		winnerNums[i].setBounds(33 + (i * 50), 225, 40, 40);
+        		layeredPane.add(winnerNums[i], new Integer(2));
+        	}
+        	
+        	for (int i = 0; i < rankingLabels.length; i++) {
         		winnerNums[i]= new JLabel();
         		winnerNums[i].setBounds(33 + (i * 50), 225, 40, 40);
         		layeredPane.add(winnerNums[i], new Integer(2));
         	}
         
-        backBtn = new JButton(icon.backIcon());
+        backBtn = new JButton(iconData.backIcon());
         backBtn.setBounds(18, 45, 38, 33); // 위치와 크기 설정
 
 
         // 레이블 및 버튼 위치 설정
-        label.setBounds(0, 0, icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight());
+        label.setBounds(0, 0, iconData.winningNumIcon().getIconWidth(), iconData.winningNumIcon().getIconHeight());
 
         // 레이블 및 버튼을 JLayeredPane에 추가
         layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
@@ -110,6 +115,7 @@ public class WinningNumPage extends JDialog {
 				
 			}
 		});
+        showPaymentNum();
         pack();
         
         utility.setButtonProperties(backBtn);
@@ -121,14 +127,27 @@ public class WinningNumPage extends JDialog {
 		Collection<Integer> set = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
-		System.out.println(sortedList);
+		System.out.println("winningNum : "+sortedList);
 		
 		for (int i = 0; i < sortedList.size(); i++) {
 		    int element = sortedList.get(i);
-		    winnerNums[i].setIcon(icon.LCIcons()[element]);
+		    winnerNums[i].setIcon(iconData.LCIcons()[element]);
 		}
-		bonusNum.setIcon(icon.LCIcons()[mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
+		bonusNum.setIcon(iconData.LCIcons()[mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
 		
 	}
+    private void showPaymentNum() {
+    	System.out.println("진입");
+        for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+            Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+           for (Integer integer : paymentNum) {
+			System.out.println(integer);
+		}
+  
+    		
+            
+        }
+    }
+
    
 }

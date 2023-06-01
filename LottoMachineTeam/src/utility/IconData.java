@@ -88,6 +88,24 @@ public class IconData {
 		return new ImageIcon(getClass().getClassLoader().getResource("lottoMachine.gif"));
 	}
 
+	public ImageIcon rankingIcon1() {
+		return new ImageIcon(getClass().getClassLoader().getResource("ranking_1.png"));
+	}
+	public ImageIcon rankingIcon2() {
+		return new ImageIcon(getClass().getClassLoader().getResource("ranking_2.png"));
+	}
+	public ImageIcon rankingIcon3() {
+		return new ImageIcon(getClass().getClassLoader().getResource("ranking_3.png"));
+	}
+	public ImageIcon rankingIcon4() {
+		return new ImageIcon(getClass().getClassLoader().getResource("ranking_4.png"));
+	}
+	public ImageIcon rankingIcon5() {
+		return new ImageIcon(getClass().getClassLoader().getResource("ranking_5.png"));
+	}
+	public ImageIcon rankingIconFail() {
+		return new ImageIcon(getClass().getClassLoader().getResource("ranking_fail.png"));
+	}
 	public ImageIcon[] LCIcons() {
 		ImageIcon[] colorNumIcon = new ImageIcon[45];
 		for (int i = 0; i < colorNumIcon.length; i++) {
@@ -95,6 +113,15 @@ public class IconData {
 			colorNumIcon[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
 		}
 		return colorNumIcon;
+
+	}
+	public ImageIcon[] SCIcons() {
+		ImageIcon[] SCIcons = new ImageIcon[45];
+		for (int i = 0; i < SCIcons.length; i++) {
+			String filename = "SC" + (i + 1) + ".png";
+			SCIcons[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
+		}
+		return SCIcons;
 
 	}
 }

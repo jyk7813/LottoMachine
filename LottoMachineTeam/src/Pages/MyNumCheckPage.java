@@ -3,8 +3,10 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashMap;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import database.PaymentNumData;
 import database.SelectNum;
 import database.SelectNumData;
 import utility.IconData;
@@ -23,21 +26,22 @@ public class MyNumCheckPage extends JDialog {
 	private Map<Integer, SelectNum> map;
 	private SelectNumData selectNum = new SelectNumData();
 	private Utility utility = new Utility();
-	private JLabel[][] lottoNum;
+	private JLabel[][] lottoNum2;
+	public static final SelectNum SELECT_NUM_DATA = new SelectNum();
 
 	/**
 	 * Create the frame.
 	 */
 	public MyNumCheckPage() {
-		
+
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false); // 창 크기 변경을 비활성화
 
 		// 이미지 아이콘을 사용하는 레이블 생성
 		JLabel label = new JLabel(icon.myNumCheckIcon());
-		lottoNum = new JLabel[8][10];
-		JLabel[][] lottoNum = new JLabel[8][10];
+		lottoNum2 = new JLabel[8][10];
+		// JLabel[][] lottoNum = new JLabel[8][10];
 		JLabel[] lottoAuto = new JLabel[10];
 		JLabel[] winnerNum = new JLabel[10];
 
@@ -45,23 +49,25 @@ public class MyNumCheckPage extends JDialog {
 		bonusNum.setBounds(357, 225, 40, 40);
 
 		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
+		layeredPane.setPreferredSize(
+				new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
 
 		for (int j = 0; j < 10; j++) {
 			for (int i = 0; i < 7; i++) {
 				if (i == 0) {
-					lottoNum[i][j] = new JLabel();
+					lottoNum2[i][j] = new JLabel();
 
 				} else {
-					lottoNum[i][j] = new JLabel(icon.emptySBtn());
-					
-					}
-					lottoNum[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
-					layeredPane.add(lottoNum[i][j], new Integer(2));
+					lottoNum2[i][j] = new JLabel(icon.emptySBtn());
 
+				}
+				lottoNum2[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
+				layeredPane.add(lottoNum2[i][j], new Integer(2));
+
+			}
 		}
-		}
-		//반복문을 종료한 후 선택된 숫자의 이미지를 변경함
+		// 반복문을 종료한 후 선택된 숫자의 이미지를 변경함
+		showSelectedNum();
 		getChangeNumsImage();
 
 		// 자동 반자동 수동 //할 일 자동 반자동 이미지 수정하기ㅁ
@@ -72,9 +78,9 @@ public class MyNumCheckPage extends JDialog {
 		}
 		// 당첨된 번호
 		for (int i = 0; i < 6; i++) {
-			winnerNum[i] = new JLabel(icon.emptyBtn());//각 배열원소는 라벨이미지
-			winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);//위치
-			layeredPane.add(winnerNum[i], new Integer(2));//레이어드패널에 추가 각 배열원소
+			winnerNum[i] = new JLabel(icon.emptyBtn());// 각 배열원소는 라벨이미지
+			winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);// 위치
+			layeredPane.add(winnerNum[i], new Integer(2));// 레이어드패널에 추가 각 배열원소
 		}
 
 		// 버튼 생성
@@ -92,6 +98,7 @@ public class MyNumCheckPage extends JDialog {
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 		pack();
+		// showSelectedNum();
 
 		backBtn.addActionListener(new ActionListener() {
 
@@ -113,7 +120,7 @@ public class MyNumCheckPage extends JDialog {
 				int selectedNumbers = integerNum.intValue();
 				if (selectedNumbers >= 1 && selectedNumbers <= 45) {
 					// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
-					lottoNum[i][j].setIcon(icon.LCIcons()[selectedNumbers - 1]); 
+					lottoNum2[i + 1][j].setIcon(icon.SCIcons()[selectedNumbers]);
 					// icon 은 변경할 이미지파일 넣으면 됩니다.
 					break;
 
@@ -123,7 +130,32 @@ public class MyNumCheckPage extends JDialog {
 			j++;
 		}
 	}
-	public void name() {
-		
+
+	private void showSelectedNum() {
+		int isAuto = 0;
+		List<Integer> selectList = new ArrayList<Integer>();
+		for (int i = 0; i < lottoNum2.length - 1; i++) {
+			selectList.add(i);
+		}
+		selectNum.addSelectNumHashMap(selectList, isAuto);
+		System.out.println(selectNum);
+		Collection<Integer> set = SELECT_NUM_DATA.getSelectNum();
+		List<Integer> sortedList;
+		if (set != null) {
+			sortedList = new ArrayList<>(set);
+		} else {
+			sortedList = new ArrayList<>();
+		}
+
+		Collections.sort(sortedList);
+		System.out.println(sortedList);
+		for (int i = 0; i < sortedList.size(); i++) {
+			for (int j = 0; j <= i; j++) {
+				int element = sortedList.get(i);
+				lottoNum2[i][j].setIcon(icon.SCIcons()[element]);
+
+			}
+		}
 	}
+
 }
