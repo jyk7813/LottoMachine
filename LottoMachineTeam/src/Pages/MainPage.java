@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -213,6 +214,7 @@ public class MainPage extends JFrame {
 		        WinningNumPage winningNumPage = new WinningNumPage();
 		        winningNumPage.setVisible(true);
 		        }
+		        nextBtnActivate();
 		    }
 		});
 	}
@@ -235,6 +237,7 @@ public class MainPage extends JFrame {
 				}
 				buyButton.setIcon(iconData.buyIcon());
 				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
+				nextBtnActivate();
 			}
 			
 		});
@@ -280,7 +283,16 @@ public class MainPage extends JFrame {
 		myNumButton.setBounds(30, 780, 111, 36);
 		makeLotteryButton = new JButton(iconData.makeLotteryIcon());
 		makeLotteryButton.setBounds(160, 780, 111, 36);
-		nextTurnButton = new JButton(iconData.nextTurnIcon());
+		nextTurnButton = new JButton(iconData.nextGrayTurnIcon());
 		nextTurnButton.setBounds(290, 780, 111, 36);
+	}
+	private void nextBtnActivate() {
+		if (WINNING_NUM_DATA.getLastTurn()!= currentRound) {
+			System.out.println("추첨 해야함 ");
+			nextTurnButton.setIcon(iconData.nextGrayTurnIcon());
+		} else {
+			System.out.println("추첨 안해도 됨");
+			nextTurnButton.setIcon(iconData.nextTurnIcon());
+		}
 	}
 }
