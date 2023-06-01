@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+
 public class WinningNumData {
 	
 	private static TreeMap<Integer,WinningNum> winningNumData = new TreeMap<>();
