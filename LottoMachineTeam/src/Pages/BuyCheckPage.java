@@ -66,6 +66,7 @@ public class BuyCheckPage extends JDialog {
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);
 				buyCompletePage.setVisible(true);
+				
 
 			}
 		});

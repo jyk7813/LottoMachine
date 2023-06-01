@@ -26,5 +26,8 @@ public class PaymentNum {
 	public String toString() {
 		return "PaymentNum [selectNum=" + Arrays.toString(paymentNum) + ", autoStat=" + autoStat + "]";
 	}
+	public void name() {
+		
+	}
 
 }

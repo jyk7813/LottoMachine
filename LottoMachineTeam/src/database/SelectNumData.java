@@ -8,8 +8,11 @@ import java.util.TreeSet;
 public class SelectNumData {
 	private Map<Integer, SelectNum> selectNumHashMap;
 	private static Integer count = 0;
+	private PaymentNum[] paymentNums;
 	
-	
+	public PaymentNum[] getPaymentNum() {
+		return paymentNums;
+	}
 	public SelectNumData() {
 		this.selectNumHashMap = new HashMap();
 	}

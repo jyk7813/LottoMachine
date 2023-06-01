@@ -3,18 +3,13 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-import database.PaymentNumData;
+import database.PaymentNum;
 import database.SelectNum;
 import database.SelectNumData;
 import utility.IconData;
@@ -23,11 +18,11 @@ import utility.Utility;
 public class MyNumCheckPage extends JDialog {
 	private IconData icon = new IconData();
 	private JLayeredPane layeredPane;
-	private Map<Integer, SelectNum> map;
 	private SelectNumData selectNum = new SelectNumData();
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum2;
 	public static final SelectNum SELECT_NUM_DATA = new SelectNum();
+	private PaymentNum[] payNumArr;
 
 	/**
 	 * Create the frame.
@@ -66,9 +61,6 @@ public class MyNumCheckPage extends JDialog {
 
 			}
 		}
-		// 반복문을 종료한 후 선택된 숫자의 이미지를 변경함
-		showSelectedNum();
-		getChangeNumsImage();
 
 		// 자동 반자동 수동 //할 일 자동 반자동 이미지 수정하기ㅁ
 		for (int i = 0; i < 10; i++) {
@@ -108,54 +100,47 @@ public class MyNumCheckPage extends JDialog {
 			}
 		});
 		utility.setButtonProperties(backBtn);
+		// 구입한 번호의 이미지 변경
+		getChangeNumsImage();
+		showPaymentNum();
 	}
 
-//SelectNumMap에 저장된 번호들에 해당하는 lottoNum 배열의 원소에 이미지가 설정됩니다. 
+//SelectNumData 에 구입한 paymentNum배열값을 전달받아 아래메소드는 전달받은 배열값을 부름
 	public void getChangeNumsImage() {
-		int j = 0;
-		map = selectNum.getSelectNumHashMap();
-		for (SelectNum value : map.values()) {
-			int i = 0;
-			for (Integer integerNum : value.getSelectNum()) {
-				int selectedNumbers = integerNum.intValue();
-				if (selectedNumbers >= 1 && selectedNumbers <= 45) {
-					// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
-					lottoNum2[i + 1][j].setIcon(icon.SCIcons()[selectedNumbers]);
-					// icon 은 변경할 이미지파일 넣으면 됩니다.
-					break;
+		PaymentNum[] paymentNums = selectNum.getPaymentNum();
+		if (paymentNums != null) {
+			payNumArr = paymentNums;
+			for (int j = 0; j < payNumArr.length; j++) {
+				Integer[] nums = payNumArr[j].getPaymentNum();
 
+				for (int i = 0; i < nums.length; i++) {
+					int selectedNumber = nums[i];
+					if (selectedNumber >= 1 && selectedNumber <= 45) {
+						// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
+						lottoNum2[i + 1][j].setIcon(icon.SCIcons()[selectedNumber]);
+						// icon 은 변경할 이미지파일 넣으면 됩니다.
+					}
 				}
-				i++;
-			}
-			j++;
-		}
-	}
-
-	private void showSelectedNum() {
-		int isAuto = 0;
-		List<Integer> selectList = new ArrayList<Integer>();
-		for (int i = 0; i < lottoNum2.length - 1; i++) {
-			selectList.add(i);
-		}
-		selectNum.addSelectNumHashMap(selectList, isAuto);
-		System.out.println(selectNum);
-		Collection<Integer> set = SELECT_NUM_DATA.getSelectNum();
-		List<Integer> sortedList;
-		if (set != null) {
-			sortedList = new ArrayList<>(set);
-		} else {
-			sortedList = new ArrayList<>();
-		}
-
-		Collections.sort(sortedList);
-		System.out.println(sortedList);
-		for (int i = 0; i < sortedList.size(); i++) {
-			for (int j = 0; j <= i; j++) {
-				int element = sortedList.get(i);
-				lottoNum2[i][j].setIcon(icon.SCIcons()[element]);
-
 			}
 		}
 	}
 
+	private void showPaymentNum() {
+		if(payNumArr != null) {
+			for (int i = 0; i < payNumArr.length; i++) {
+				PaymentNum paymentNum = payNumArr[i];
+				Integer[] nums = paymentNum.getPaymentNum();
+				if(nums != null) {
+					for (int j = 0; j < nums.length; j++) {
+						int selectedNumber = nums[j];
+						if(selectedNumber >= 1 && selectedNumber <= 45) {	
+						lottoNum2[j + 1][i].setIcon(icon.SCIcons()[selectedNumber]);
+						System.out.println(lottoNum2[j][i]);
+						}
+					}
+				}
+			}
+		}
+		
+	}
 }

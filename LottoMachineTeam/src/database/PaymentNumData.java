@@ -29,10 +29,6 @@ public class PaymentNumData {
 		
 	}
 
-	//로또개수만큼 계산
-	
-
-
 	public void addMap(Integer key, PaymentNum paymentNum) {
 		paymentMap.put(key, paymentNum);
 		
