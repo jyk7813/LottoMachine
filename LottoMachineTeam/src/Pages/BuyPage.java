@@ -2,6 +2,7 @@ package Pages;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,8 +19,11 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
 
+import java.awt.Color;
+
 import database.PaymentNumData;
 import database.SelectNumData;
+import utility.FontData;
 import utility.IconData;
 import utility.Utility;
 
@@ -45,7 +49,7 @@ public class BuyPage extends JDialog {
 	private int isAuto;
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
-
+	private FontData fontData = new FontData();
 	/**
 	 * Create the frame.
 	 */
@@ -75,6 +79,7 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
+		
 		if (SELECT_NUM_DATA.getLastKey() != -1) {
 			showSelectNum();
 		}
@@ -83,6 +88,7 @@ public class BuyPage extends JDialog {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					
 					List<Integer> selectList = new ArrayList<Integer>();
 					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10 && SELECT_NUM_DATA.getCount()<10) {
 						if (selectedCount.get() == 6) {
@@ -113,7 +119,7 @@ public class BuyPage extends JDialog {
 					System.out.println(SELECT_NUM_DATA);
 					
 					showSelectNum();
-					
+					showCurrentCountPrice();
 				}
 				
 			});
@@ -175,15 +181,6 @@ public class BuyPage extends JDialog {
 		autoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (selectedCount.get() == 6) {
-					for (JToggleButton toggleButton : selectNum) {
-						toggleButton.setSelected(false);
-						toggleButton.setIcon(null); // 선택이 해제되었으므로 아이콘도 초기화합니다.
-					}
-					// 선택한 버튼 수도 초기화해야 합니다.
-					selectedCount.set(0);
-					autoCount = 0;
-				}
 				int[] num = new int[6 - selectedCount.get()];
 				int i = 0;
 				autoCount = 0;
@@ -320,6 +317,18 @@ public class BuyPage extends JDialog {
 	public void resetCount() {
 		count = 0;
 	}
-	
+	private void showCurrentCountPrice() {
+		int addCount = SELECT_NUM_DATA.getSelectNumHashMap().size();
+		String currentCount = "현재 : " + addCount + "개";
+		System.out.println(currentCount);
+		
+		Font customFont = fontData.nanumFont25();
+		Color customColor = Color.WHITE;
+		
+		JLabel currentCountLabel = new JLabel("0개");
+		currentCountLabel.setText(currentCount);
+		currentCountLabel.setFont(customFont);
+		currentCountLabel.setForeground(customColor);
+	}
 
 }
