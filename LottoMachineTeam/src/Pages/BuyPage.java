@@ -83,11 +83,14 @@ public class BuyPage extends JDialog {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					List<Integer> selectList = new ArrayList<Integer>();
-					if (selectedCount.get() == 6) {
-						for (int i = 0; i < selectNum.length; i++) {
-							if (selectNum[i].isSelected()) {
-								System.out.println("값저장 ");
-								selectList.add(i);
+					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+						if (selectedCount.get() == 6) {
+							for (int i = 0; i < selectNum.length; i++) {
+								if (selectNum[i].isSelected()) {
+									System.out.println("값저장 ");
+									selectList.add(i);
+								}
+								
 							}
 							
 						}
@@ -100,9 +103,11 @@ public class BuyPage extends JDialog {
 						isAuto = 2;
 					if (autoCount == 0)
 						isAuto = 3;
-					if (selectedCount.get() == 6) {
-						SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
-						
+					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+						if (selectedCount.get() == 6) {
+							SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+							
+						}						
 					}
 					System.out.println(SELECT_NUM_DATA);
 					
