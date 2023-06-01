@@ -43,6 +43,7 @@ public class MainPage extends JFrame {
 	private JLabel curruntTurnLabel;
 	private String lastTurnString;
 	private String curruntTurnString;
+	private BuyPage buyPage = new BuyPage();
 	private FontData fontData = new FontData();
 	
 	
@@ -227,7 +228,7 @@ public class MainPage extends JFrame {
 					currentRound++;
 					curruntTurnString = currentRound+"회";
 					curruntTurnLabel.setText(curruntTurnString);
-					
+					buyPage.PAYMENT_NUM_DATA.clearData();
 					System.out.println(currentRound);	
 				}
 				buyButton.setIcon(iconData.buyIcon());

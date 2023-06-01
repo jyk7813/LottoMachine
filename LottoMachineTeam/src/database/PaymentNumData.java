@@ -28,6 +28,10 @@ public class PaymentNumData {
 		//각 위치해 있는 취소버튼으로 값을 넣으면 됨
 		
 	}
+	
+	public void clearData() {
+		paymentMap.clear();
+	}
 
 	//로또개수만큼 계산
 	
