@@ -61,7 +61,7 @@ public class SelectNumPage extends JDialog {
 
 		for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장 Label
 			for (int j = 0; j < numLabels[i].length; j++) {
-				numLabels[i][j] = new JLabel();
+				numLabels[i][j] = new JLabel(numIcon);
 			}
 		}
 
@@ -107,6 +107,16 @@ public class SelectNumPage extends JDialog {
 		for (int i = 0; i < keyLabels.length; i++) {
 			keyLabels[i].setBounds(10, 117 + i * 70, 40, 40);
 		}
+		keyLabels[0].setText("1");
+		keyLabels[1].setText("2");
+		keyLabels[2].setText("3");
+		keyLabels[3].setText("4");
+		keyLabels[4].setText("5");
+		keyLabels[5].setText("6");
+		keyLabels[6].setText("7");
+		keyLabels[7].setText("8");
+		keyLabels[8].setText("9");
+		keyLabels[9].setText("10");
 
 		for (int i = 0; i < keyLabels.length; i++) {
 			layeredPane.add(keyLabels[i], new Integer(2));
@@ -131,16 +141,21 @@ public class SelectNumPage extends JDialog {
 
 		// 버튼 ActionListener
 		for (int i = 0; i < cancelButton.length; i++) {
-			final int index = i; // ActionListener 내에서 사용하기 위한 인덱스 변수
-
-			cancelButton[i].addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("이벤트 발생" + index);
-					map.remove(index);
-
-				}
-			});
+		    final int index = i; // ActionListener 내부에서 사용하기 위해 index 변수를 final로 선언
+		    Map<Integer, SelectNum> map2 = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
+		    cancelButton[i].addActionListener(new ActionListener() {
+		        @Override
+		        public void actionPerformed(ActionEvent e) {
+		            int keyToRemove = index; // 제거하려는 key 값을 버튼의 인덱스로 설정
+		            map2.remove(index);
+		            System.out.println(buyPage.SELECT_NUM_DATA);
+		            
+		            for (int j = 0; j < numLabels.length; j++) {
+//		                numLabels[j][keyToRemove].setIcon();
+		            }
+		            		 
+		        }
+		    });
 		}
 
 		backButton.addActionListener(new ActionListener() {
@@ -151,7 +166,7 @@ public class SelectNumPage extends JDialog {
 				BuyPage buyPage = new BuyPage();
 				buyPage.setVisible(true);
 				buyPage.setAlwaysOnTop(true);
-
+				
 			}
 		});
 		iconChange();
@@ -199,7 +214,6 @@ public class SelectNumPage extends JDialog {
 	            num++;
 	         }
 	         num2++;
-	      }
-		
+	      }		
 	}
 }
