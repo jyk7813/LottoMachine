@@ -77,32 +77,42 @@ public class BuyPage extends JDialog {
 		if (SELECT_NUM_DATA.getLastKey() != -1) {
 			showSelectNum();
 		}
-		addButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				List<Integer> selectList = new ArrayList<Integer>();
-				for (int i = 0; i < selectNum.length; i++) {
-					if (selectNum[i].isSelected()) {
-						selectList.add(i);
+		
+			addButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					List<Integer> selectList = new ArrayList<Integer>();
+					if (selectedCount.get() == 6) {
+						for (int i = 0; i < selectNum.length; i++) {
+							if (selectNum[i].isSelected()) {
+								System.out.println("값저장 ");
+								selectList.add(i);
+							}
+							
+						}
+						
 					}
+					System.out.println(selectList);
+					if (autoCount == 6)
+						isAuto = 1;
+					if (0 < autoCount && autoCount < 6)
+						isAuto = 2;
+					if (autoCount == 0)
+						isAuto = 3;
+					if (selectedCount.get() == 6) {
+						SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+						
+					}
+					System.out.println(SELECT_NUM_DATA);
+					
+					showSelectNum();
+					
 				}
-				System.out.println(selectList);
-				if (autoCount == 6)
-					isAuto = 1;
-				if (0 < autoCount && autoCount < 6)
-					isAuto = 2;
-				if (autoCount == 0)
-					isAuto = 3;
-
-				SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
-				System.out.println(SELECT_NUM_DATA);
-
-				showSelectNum();
-
-			}
-
-		});
+				
+			});
+			
+		
 		lbuyButton.addActionListener(new ActionListener() {
 
 			@Override
