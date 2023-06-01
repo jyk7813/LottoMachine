@@ -102,7 +102,6 @@ public class MyNumCheckPage extends JDialog {
 		});
 		utility.setButtonProperties(backBtn);
 		// 구입한 번호의 이미지 변경
-//		getChangeNumsImage();
 		showPaymentNum();
 	}
 	private void showPaymentNum() {
