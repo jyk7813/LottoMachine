@@ -120,7 +120,7 @@ public class MyNumCheckPage extends JDialog {
 				int selectedNumbers = integerNum.intValue();
 				if (selectedNumbers >= 1 && selectedNumbers <= 45) {
 					// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
-					lottoNum2[i + 1][j].setIcon(icon.LCIcons()[selectedNumbers]);
+					lottoNum2[i + 1][j].setIcon(icon.SCIcons()[selectedNumbers]);
 					// icon 은 변경할 이미지파일 넣으면 됩니다.
 					break;
 
@@ -152,7 +152,7 @@ public class MyNumCheckPage extends JDialog {
 		for (int i = 0; i < sortedList.size(); i++) {
 			for (int j = 0; j <= i; j++) {
 				int element = sortedList.get(i);
-				lottoNum2[i][j].setIcon(icon.LCIcons()[element]);
+				lottoNum2[i][j].setIcon(icon.SCIcons()[element]);
 
 			}
 		}

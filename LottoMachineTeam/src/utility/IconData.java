@@ -115,4 +115,13 @@ public class IconData {
 		return colorNumIcon;
 
 	}
+	public ImageIcon[] SCIcons() {
+		ImageIcon[] SCIcons = new ImageIcon[45];
+		for (int i = 0; i < SCIcons.length; i++) {
+			String filename = "SC" + (i + 1) + ".png";
+			SCIcons[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
+		}
+		return SCIcons;
+
+	}
 }
