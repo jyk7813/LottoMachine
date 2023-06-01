@@ -133,28 +133,31 @@ public class WinningNumPage extends JDialog {
 	}
 
 	private void showPaymentNum() {
-		System.out.println("진입 showPaymentNum ");
-		for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-			Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
-			System.out.println(key);
-			Integer i = 0;
-			for (Integer integer : paymentNum) {
-				lottoNums[i][key - 1].setIcon(iconData.SIcons()[integer]);
-				;
-				i++;
-				System.out.println(integer);
-			}
-			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
-				lottoAutos[key - 1].setIcon(iconData.autoIcon());
-			}
-			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
-				lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
-			}
-			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
-				lottoAutos[key - 1].setIcon(iconData.manualIcon());
-			}
+	    System.out.println("진입 showPaymentNum ");
+	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+	        Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+	        System.out.println(key);
+	        Integer i = 0;
+	        for (Integer integer : paymentNum) {
+	            if (mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum().contains(integer)) {
+	                lottoNums[i][key - 1].setIcon(iconData.SCIcons()[integer]);
+	            } else {
+	                lottoNums[i][key - 1].setIcon(iconData.SIcons()[integer]);
+	            }
+	            i++;
+	            System.out.println(integer);
+	        }
+	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
+	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
+	        }
+	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
+	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
+	        }
+	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
+	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
+	        }
 
-		}
+	    }
 	}
 
 	private void checkRank() {
