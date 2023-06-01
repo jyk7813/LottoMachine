@@ -63,7 +63,6 @@ public class BuyCheckPage extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				copySelectNumData();
 				buyPage.SELECT_NUM_DATA.clearMap();
-				buyPage.SELECT_NUM_DATA.resetCount();
 				BuyCompletePage buyCompletePage = new BuyCompletePage();
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);

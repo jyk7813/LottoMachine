@@ -229,7 +229,9 @@ public class MainPage extends JFrame {
 					curruntTurnString = currentRound+"회";
 					curruntTurnLabel.setText(curruntTurnString);
 					buyPage.PAYMENT_NUM_DATA.clearData();
-					System.out.println(currentRound);	
+					buyPage.SELECT_NUM_DATA.resetCount();
+					System.out.println(currentRound);
+					
 				}
 				buyButton.setIcon(iconData.buyIcon());
 				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
