@@ -140,23 +140,15 @@ public class SelectNumPage extends JDialog {
 		}
 
 		// 버튼 ActionListener
-		for (int i = 0; i < cancelButton.length; i++) {
-		    final int index = i; // ActionListener 내부에서 사용하기 위해 index 변수를 final로 선언
-		    Map<Integer, SelectNum> map2 = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-		    cancelButton[i].addActionListener(new ActionListener() {
-		        @Override
-		        public void actionPerformed(ActionEvent e) {
-		            int keyToRemove = index; // 제거하려는 key 값을 버튼의 인덱스로 설정
-		            map2.remove(index);
-		            System.out.println(buyPage.SELECT_NUM_DATA);
-		            
-		            for (int j = 0; j < numLabels.length; j++) {
-//		                numLabels[j][keyToRemove].setIcon();
-		            }
-		            		 
-		        }
-		    });
-		}
+		cancelButton[0].addActionListener(new ActionListener() {
+			Map<Integer, SelectNum> map2 = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 
 		backButton.addActionListener(new ActionListener() {
 
