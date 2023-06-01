@@ -58,4 +58,7 @@ public class SelectNumData {
 	public int getCount() {
 		return count;
 	}
+	public void resetCount() {
+		count = 0;
+	}
 }
