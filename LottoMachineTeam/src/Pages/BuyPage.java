@@ -21,7 +21,7 @@ import database.PaymentNumData;
 import database.SelectNumData;
 import utility.IconData;
 import utility.Utility;
-
+//aa
 public class BuyPage extends JDialog {
 	private IconData icon = new IconData();
 	private Utility utility = new Utility();
@@ -174,15 +174,6 @@ public class BuyPage extends JDialog {
 		autoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (selectedCount.get() == 6) {
-					for (JToggleButton toggleButton : selectNum) {
-						toggleButton.setSelected(false);
-						toggleButton.setIcon(null); // 선택이 해제되었으므로 아이콘도 초기화합니다.
-					}
-					// 선택한 버튼 수도 초기화해야 합니다.
-					selectedCount.set(0);
-					autoCount = 0;
-				}
 				int[] num = new int[6 - selectedCount.get()];
 				int i = 0;
 				autoCount = 0;
