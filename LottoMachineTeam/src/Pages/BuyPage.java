@@ -41,7 +41,8 @@ public class BuyPage extends JDialog {
 	private Random random = new Random();
 	private int autoCount;
 	private int isAuto;
-	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData(); 	 
+	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
+	private Collection<Integer> set;
 
 	/**
 	 * Create the frame.
@@ -278,5 +279,6 @@ public class BuyPage extends JDialog {
 		utility.setButtonProperties(backButton);
 		utility.setButtonProperties(cancleButton);
 	}
+	
 
 }

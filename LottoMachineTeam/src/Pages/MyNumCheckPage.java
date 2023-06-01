@@ -3,8 +3,8 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -24,6 +24,7 @@ public class MyNumCheckPage extends JDialog {
 	private SelectNumData selectNum = new SelectNumData();
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum;
+	public static final SelectNum SELECT_NUM_DATA = new SelectNum();
 
 	/**
 	 * Create the frame.
@@ -92,6 +93,7 @@ public class MyNumCheckPage extends JDialog {
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 		pack();
+		showSelectedNum();
 
 		backBtn.addActionListener(new ActionListener() {
 
@@ -113,8 +115,8 @@ public class MyNumCheckPage extends JDialog {
 				int selectedNumbers = integerNum.intValue();
 				if (selectedNumbers >= 1 && selectedNumbers <= 45) {
 					// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
-					lottoNum[i][j].setIcon(icon.LCIcons()[selectedNumbers - 1]); 
-					// icon 은 변경할 이미지파일 넣으면 됩니다.ㅁ
+					lottoNum[i][j].setIcon(icon.LCIcons()[selectedNumbers]); 
+					// icon 은 변경할 이미지파일 넣으면 됩니다.
 					break;
 
 				}
@@ -123,7 +125,13 @@ public class MyNumCheckPage extends JDialog {
 			j++;
 		}
 	}
-	public void name() {
-		
+	private void showSelectedNum() {
+		int isAuto = 0;
+		List<Integer> selectList = new ArrayList<Integer>();
+		for(int i = 0; i < lottoNum.length-1; i++) {
+			selectList.add(i);
+		}
+		selectNum.addSelectNumHashMap(selectList, isAuto);
+		System.out.println(selectNum);
 	}
 }
