@@ -34,7 +34,26 @@ public class SelectNumPage extends JDialog {
 	private List<Integer> selectList;
 	private IconData iconData = new IconData();
 	BuyPage buyPage = new BuyPage();
-
+	
+	private void iconChange() {
+		Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
+	      Set<Integer> set = map.keySet();
+	      Iterator<Integer> hh = set.iterator();
+	      int num2 = 0;
+	      while (hh.hasNext()) {
+	         Collection<Integer> selNum = map.get(hh.next()).getSelectNum();
+	         Iterator<Integer> hhh = selNum.iterator();
+	         int num = 0;
+	         while (hhh.hasNext()) {
+	            Integer putNum = hhh.next();
+	            
+	            numLabels[num][num2].setIcon(iconData.LCIcons()[putNum]);
+	            num++;
+	         }
+	         num2++;
+	      }		
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -140,16 +159,6 @@ public class SelectNumPage extends JDialog {
 		}
 
 		// 버튼 ActionListener
-		cancelButton[0].addActionListener(new ActionListener() {
-			Map<Integer, SelectNum> map2 = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-
 		backButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -176,7 +185,160 @@ public class SelectNumPage extends JDialog {
 			}
 		});
 		pack();
-
+		
+		cancelButton[0].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[1].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					SelectNumPage selectNumPage = new SelectNumPage();
+					selectNumPage.setVisible(true);
+					
+				}
+			}
+		});
+		cancelButton[2].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[3].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[4].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[5].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[6].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[7].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[8].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		cancelButton[9].addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();								
+				
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				while (bringKey.hasNext()) {
+					Integer change = bringKey.next();
+					map.remove(change);
+					System.out.println(buyPage.SELECT_NUM_DATA);
+					
+				}
+			}
+		});
+		
 	}
 
 	// 자동 여부
@@ -189,23 +351,5 @@ public class SelectNumPage extends JDialog {
 			return MANUAL;
 		return -1;
 	}
-
-	private void iconChange() {
-		Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-	      Set<Integer> set = map.keySet();
-	      Iterator<Integer> hh = set.iterator();
-	      int num2 = 0;
-	      while (hh.hasNext()) {
-	         Collection<Integer> selNum = map.get(hh.next()).getSelectNum();
-	         Iterator<Integer> hhh = selNum.iterator();
-	         int num = 0;
-	         while (hhh.hasNext()) {
-	            Integer putNum = hhh.next();
-	            
-	            numLabels[num][num2].setIcon(iconData.LCIcons()[putNum]);
-	            num++;
-	         }
-	         num2++;
-	      }		
-	}
+	
 }
