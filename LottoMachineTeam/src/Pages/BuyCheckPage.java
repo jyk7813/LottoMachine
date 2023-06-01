@@ -62,6 +62,7 @@ public class BuyCheckPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				copySelectNumData();
+				buyPage.SELECT_NUM_DATA.clearMap();
 				BuyCompletePage buyCompletePage = new BuyCompletePage();
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);

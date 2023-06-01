@@ -3,6 +3,8 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,13 +18,13 @@ import utility.IconData;
 import utility.Utility;
 
 public class MyNumCheckPage extends JDialog {
-	private IconData icon = new IconData();
 	private JLayeredPane layeredPane;
-	private SelectNumData selectNum = new SelectNumData();
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum2;
-	public static final SelectNum SELECT_NUM_DATA = new SelectNum();
+	private BuyPage buyPage = new BuyPage();
 	private PaymentNum[] payNumArr;
+	private JLabel[] lottoAutos;
+	private IconData iconData = new IconData();
 
 	/**
 	 * Create the frame.
@@ -34,29 +36,28 @@ public class MyNumCheckPage extends JDialog {
 		setResizable(false); // 창 크기 변경을 비활성화
 
 		// 이미지 아이콘을 사용하는 레이블 생성
-		JLabel label = new JLabel(icon.myNumCheckIcon());
+		JLabel label = new JLabel(iconData.myNumCheckIcon());
 		lottoNum2 = new JLabel[8][10];
-		// JLabel[][] lottoNum = new JLabel[8][10];
-		JLabel[] lottoAuto = new JLabel[10];
+		lottoAutos = new JLabel[10];
 		JLabel[] winnerNum = new JLabel[10];
 
-		JLabel bonusNum = new JLabel(icon.emptyBtn());
+		JLabel bonusNum = new JLabel();
 		bonusNum.setBounds(357, 225, 40, 40);
 
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(
-				new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
+				new Dimension(iconData.winningNumIcon().getIconWidth(), iconData.winningNumIcon().getIconHeight()));
 
 		for (int j = 0; j < 10; j++) {
-			for (int i = 0; i < 7; i++) {
+			for (int i = 0; i < 6; i++) {
 				if (i == 0) {
 					lottoNum2[i][j] = new JLabel();
 
 				} else {
-					lottoNum2[i][j] = new JLabel(icon.emptySBtn());
+					lottoNum2[i][j] = new JLabel();
 
 				}
-				lottoNum2[i][j].setBounds(28 + i * 44, 340 + j * 50, 36, 36);
+				lottoNum2[i][j].setBounds(72 + i * 44, 340 + j * 50, 36, 36);
 				layeredPane.add(lottoNum2[i][j], new Integer(2));
 
 			}
@@ -64,23 +65,23 @@ public class MyNumCheckPage extends JDialog {
 
 		// 자동 반자동 수동 //할 일 자동 반자동 이미지 수정하기ㅁ
 		for (int i = 0; i < 10; i++) {
-			lottoAuto[i] = new JLabel(icon.emptyLBtn());
-			lottoAuto[i].setBounds(337, 340 + i * 50, 52, 36);
-			layeredPane.add(lottoAuto[i], new Integer(2));
+			lottoAutos[i] = new JLabel();
+			lottoAutos[i].setBounds(337, 340 + i * 50, 52, 36);
+			layeredPane.add(lottoAutos[i], new Integer(2));
 		}
 		// 당첨된 번호
 		for (int i = 0; i < 6; i++) {
-			winnerNum[i] = new JLabel(icon.emptyBtn());// 각 배열원소는 라벨이미지
+			winnerNum[i] = new JLabel();// 각 배열원소는 라벨이미지
 			winnerNum[i].setBounds(33 + (i * 50), 225, 40, 40);// 위치
 			layeredPane.add(winnerNum[i], new Integer(2));// 레이어드패널에 추가 각 배열원소
 		}
 
 		// 버튼 생성
-		JButton backBtn = new JButton(icon.backIcon());
+		JButton backBtn = new JButton(iconData.backIcon());
 		backBtn.setBounds(18, 45, 38, 33); // 위치와 크기 설정
 
 		// 레이블 및 버튼 위치 설정
-		label.setBounds(0, 0, icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight());
+		label.setBounds(0, 0, iconData.winningNumIcon().getIconWidth(), iconData.winningNumIcon().getIconHeight());
 
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
@@ -101,46 +102,32 @@ public class MyNumCheckPage extends JDialog {
 		});
 		utility.setButtonProperties(backBtn);
 		// 구입한 번호의 이미지 변경
-		getChangeNumsImage();
+//		getChangeNumsImage();
 		showPaymentNum();
 	}
-
-//SelectNumData 에 구입한 paymentNum배열값을 전달받아 아래메소드는 전달받은 배열값을 부름
-	public void getChangeNumsImage() {
-		PaymentNum[] paymentNums = selectNum.getPaymentNum();
-		if (paymentNums != null) {
-			payNumArr = paymentNums;
-			for (int j = 0; j < payNumArr.length; j++) {
-				Integer[] nums = payNumArr[j].getPaymentNum();
-
-				for (int i = 0; i < nums.length; i++) {
-					int selectedNumber = nums[i];
-					if (selectedNumber >= 1 && selectedNumber <= 45) {
-						// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
-						lottoNum2[i + 1][j].setIcon(icon.SCIcons()[selectedNumber]);
-						// icon 은 변경할 이미지파일 넣으면 됩니다.
-					}
-				}
-			}
-		}
-	}
-
 	private void showPaymentNum() {
-		if(payNumArr != null) {
-			for (int i = 0; i < payNumArr.length; i++) {
-				PaymentNum paymentNum = payNumArr[i];
-				Integer[] nums = paymentNum.getPaymentNum();
-				if(nums != null) {
-					for (int j = 0; j < nums.length; j++) {
-						int selectedNumber = nums[j];
-						if(selectedNumber >= 1 && selectedNumber <= 45) {	
-						lottoNum2[j + 1][i].setIcon(icon.SCIcons()[selectedNumber]);
-						System.out.println(lottoNum2[j][i]);
-						}
-					}
-				}
-			}
-		}
-		
+	    System.out.println("진입 showPaymentNum ");
+	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+	        Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+	        System.out.println(key);
+	        Integer i = 0;
+	        for (Integer integer : paymentNum) {
+	                lottoNum2[i][key - 1].setIcon(iconData.SIcons()[integer]);
+	            i++;
+	            System.out.println(integer);
+	        }
+	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
+	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
+	        }
+	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
+	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
+	        }
+	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
+	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
+	        }
+
+	    }
 	}
+
+
 }

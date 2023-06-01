@@ -12,6 +12,14 @@ public class IconData {
 	public ImageIcon buyIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buyBigBtn.png"));
 	}
+	
+	public ImageIcon buyErrorIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("buyErrorBtn.png"));
+	}
+	
+	public ImageIcon winnerCheckIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("winnerCheckBtn.png"));
+	}
 
 	public ImageIcon myNumIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("myNumBtn.png"));
@@ -132,5 +140,14 @@ public class IconData {
 		}
 		return SCIcons;
 
+	}
+	public ImageIcon[] SIcons() {
+		ImageIcon[] SIcons = new ImageIcon[45];
+		for (int i = 0; i < SIcons.length; i++) {
+			String filename = "S" + (i + 1) + ".png";
+			SIcons[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
+		}
+		return SIcons;
+		
 	}
 }

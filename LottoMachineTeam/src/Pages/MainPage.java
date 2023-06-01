@@ -43,6 +43,7 @@ public class MainPage extends JFrame {
 	private JLabel curruntTurnLabel;
 	private String lastTurnString;
 	private String curruntTurnString;
+	private BuyPage buyPage = new BuyPage();
 	private FontData fontData = new FontData();
 	
 	
@@ -145,9 +146,22 @@ public class MainPage extends JFrame {
 		
 	}
 
+	
 	private void buyBtn() {
 		buyButton.addActionListener(e -> {
-			new BuyPage().setVisible(true); // pass this frame to the next one
+			if (currentRound == WINNING_NUM_DATA.getLastTurn()) {
+				
+//				buyErrorBtn();
+//				layeredPane.add(buyErrorButton, new Integer(2));
+//				buyErrorButton = new JButton(iconData.buyErrorIcon());
+//				buyErrorButton.setBounds(76, 610, 280, 81);
+//				utility.setButtonProperties(buyErrorButton);
+				
+				new BuyErrorPage().setVisible(true);
+			    System.out.println("바이에러 페이로 넘어가기");
+			} else {
+				new BuyPage().setVisible(true); // pass this frame to the next one				
+			}
 		});
 		
 		
@@ -186,11 +200,16 @@ public class MainPage extends JFrame {
 		                        showWinningNum();
 		                    }
 		                    System.out.println("UnderLotteryPage 창이 닫힘");
+		                   
+		                   // buyButton.setEnabled(false);
+		                    buyButton.setIcon(iconData.buyErrorIcon());
+		                    makeLotteryButton.setIcon(iconData.winnerCheckIcon());
+		                    
 		                }
 		            });
 		            underLotteryPage.setVisible(true);
 		        	
-		        } else {
+		        } else {		        
 		        WinningNumPage winningNumPage = new WinningNumPage();
 		        winningNumPage.setVisible(true);
 		        }
@@ -209,11 +228,11 @@ public class MainPage extends JFrame {
 					currentRound++;
 					curruntTurnString = currentRound+"회";
 					curruntTurnLabel.setText(curruntTurnString);
-					
-					System.out.println(currentRound);
-					
+					buyPage.PAYMENT_NUM_DATA.clearData();
+					System.out.println(currentRound);	
 				}
-
+				buyButton.setIcon(iconData.buyIcon());
+				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
 			}
 			
 		});
@@ -246,6 +265,7 @@ public class MainPage extends JFrame {
 		utility.setButtonProperties(myNumButton);
 		utility.setButtonProperties(makeLotteryButton);
 		utility.setButtonProperties(nextTurnButton);
+		
 	}
 
 	/**
