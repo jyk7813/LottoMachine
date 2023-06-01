@@ -189,8 +189,6 @@ public class MainPage extends JFrame {
 		                }
 		            });
 		            underLotteryPage.setVisible(true);
-		        } else if (currentRound == WINNING_NUM_DATA.getLastTurn()) {
-		        	System.out.println("지난 회차이므로 구입할 수 없음."); // 여기에 경고버튼 뜨도록 변 ***
 		        	
 		        } else {
 		        WinningNumPage winningNumPage = new WinningNumPage();
