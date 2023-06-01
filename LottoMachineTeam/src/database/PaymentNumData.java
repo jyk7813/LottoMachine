@@ -4,7 +4,7 @@ import java.util.Map;
 
 
 
-public class PayNum {
+public class PaymentNumData {
 	
 //나의결제 개수의 Key값,선택번호와 자동인지확인하는 번호인 [] value값
 	private Map<Integer, PaymentNum> paymentMap = new LinkedHashMap<>();
