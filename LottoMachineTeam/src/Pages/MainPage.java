@@ -202,6 +202,7 @@ public class MainPage extends JFrame {
 		                   
 		                   // buyButton.setEnabled(false);
 		                    buyButton.setIcon(iconData.buyErrorIcon());
+		                    makeLotteryButton.setIcon(iconData.winnerCheckIcon());
 		                    
 		                }
 		            });
@@ -230,6 +231,7 @@ public class MainPage extends JFrame {
 					System.out.println(currentRound);	
 				}
 				buyButton.setIcon(iconData.buyIcon());
+				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
 			}
 			
 		});
