@@ -149,6 +149,8 @@ public class MainPage extends JFrame {
 		buyButton.addActionListener(e -> {
 			new BuyPage().setVisible(true); // pass this frame to the next one
 		});
+		
+		
 	}
 	private void myNumBtn() {
 
@@ -156,11 +158,19 @@ public class MainPage extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MyNumCheckPage myNumCheckPage = new MyNumCheckPage();
-
-				myNumCheckPage.setVisible(true);
+				
+				if(currentRound != WINNING_NUM_DATA.getLastTurn()) {
+					MyNumCheckPage myNumCheckPage = new MyNumCheckPage();
+					myNumCheckPage.setVisible(true);
+					System.out.println("나의번호로 넘어가기");
+				} else {
+					new WinningNumPage().setVisible(true);
+					System.out.println("위닝넘으로 넘어가기");
+				}
+				
 			}
 		});
+		
 	}
 	private void makeLotteryBtn() {
 		makeLotteryButton.addActionListener(new ActionListener() {
@@ -179,9 +189,12 @@ public class MainPage extends JFrame {
 		                }
 		            });
 		            underLotteryPage.setVisible(true);
+		        } else if (currentRound == WINNING_NUM_DATA.getLastTurn()) {
+		        	System.out.println("지난 회차이므로 구입할 수 없음."); // 여기에 경고버튼 뜨도록 변 ***
+		        	
 		        } else {
-		            WinningNumPage winningNumPage = new WinningNumPage();
-		            winningNumPage.setVisible(true);
+		        WinningNumPage winningNumPage = new WinningNumPage();
+		        winningNumPage.setVisible(true);
 		        }
 		    }
 		});
