@@ -27,8 +27,7 @@ public class MyNumCheckPage extends JDialog {
 	private SelectNumData selectNum = new SelectNumData();
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum2;
-	BuyPage buyPage = new BuyPage();
-	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
+	public static final SelectNum SELECT_NUM_DATA = new SelectNum();
 
 	/**
 	 * Create the frame.
@@ -42,7 +41,7 @@ public class MyNumCheckPage extends JDialog {
 		// 이미지 아이콘을 사용하는 레이블 생성
 		JLabel label = new JLabel(icon.myNumCheckIcon());
 		lottoNum2 = new JLabel[8][10];
-		//JLabel[][] lottoNum = new JLabel[8][10];
+		// JLabel[][] lottoNum = new JLabel[8][10];
 		JLabel[] lottoAuto = new JLabel[10];
 		JLabel[] winnerNum = new JLabel[10];
 
@@ -99,7 +98,7 @@ public class MyNumCheckPage extends JDialog {
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 		pack();
-		//showSelectedNum();
+		// showSelectedNum();
 
 		backBtn.addActionListener(new ActionListener() {
 
@@ -121,7 +120,7 @@ public class MyNumCheckPage extends JDialog {
 				int selectedNumbers = integerNum.intValue();
 				if (selectedNumbers >= 1 && selectedNumbers <= 45) {
 					// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
-					lottoNum2[i][j].setIcon(icon.LCIcons()[selectedNumbers ]);
+					lottoNum2[i + 1][j].setIcon(icon.LCIcons()[selectedNumbers]);
 					// icon 은 변경할 이미지파일 넣으면 됩니다.
 					break;
 
@@ -140,8 +139,14 @@ public class MyNumCheckPage extends JDialog {
 		}
 		selectNum.addSelectNumHashMap(selectList, isAuto);
 		System.out.println(selectNum);
-		Collection<Integer> set = buyPage.SELECT_NUM_DATA.getLastMap().getSelectNum();
-		List<Integer> sortedList = new ArrayList<>(set);
+		Collection<Integer> set = SELECT_NUM_DATA.getSelectNum();
+		List<Integer> sortedList;
+		if (set != null) {
+			sortedList = new ArrayList<>(set);
+		} else {
+			sortedList = new ArrayList<>();
+		}
+
 		Collections.sort(sortedList);
 		System.out.println(sortedList);
 		for (int i = 0; i < sortedList.size(); i++) {
@@ -152,8 +157,5 @@ public class MyNumCheckPage extends JDialog {
 			}
 		}
 	}
-	private void handOverSelectNumData() {
-		
-	
-	}
+
 }

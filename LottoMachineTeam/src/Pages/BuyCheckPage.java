@@ -3,6 +3,10 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,9 +14,11 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import database.PaymentNum;
+import database.PaymentNumData;
+import database.SelectNum;
+
 import database.SelectNumData;
-
-
 
 public class BuyCheckPage extends JDialog {
 	private JButton backBtn;
@@ -24,7 +30,10 @@ public class BuyCheckPage extends JDialog {
 	private ImageIcon noIcon;
 	private JLabel buyCheckPageLabel;
 	private JLayeredPane layeredPane;
+
 	private SelectNumData numData;
+
+	private BuyPage buyPage = new BuyPage();
 
 	/**
 	 * Create the frame.
@@ -49,38 +58,39 @@ public class BuyCheckPage extends JDialog {
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 		yesBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				copySelectNumData();
 				BuyCompletePage buyCompletePage = new BuyCompletePage();
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);
 				buyCompletePage.setVisible(true);
-				
+
 			}
 		});
 		noBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				  dispose();
-				  BuyPage buyPage = new BuyPage();
-				  buyPage.setVisible(true);
-				  buyPage.setAlwaysOnTop(true);
-				
+				dispose();
+				BuyPage buyPage = new BuyPage();
+				buyPage.setVisible(true);
+				buyPage.setAlwaysOnTop(true);
+
 			}
 		});
 		backBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 dispose();
-				  BuyPage buyPage = new BuyPage();
-				  buyPage.setVisible(true);
-				  buyPage.setAlwaysOnTop(true);				
+				dispose();
+				BuyPage buyPage = new BuyPage();
+				buyPage.setVisible(true);
+				buyPage.setAlwaysOnTop(true);
 			}
 		});
-		
+
 		pack();
 	}
 
@@ -136,6 +146,18 @@ public class BuyCheckPage extends JDialog {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(430, 890));
 	}
-	
-	
+
+	private void copySelectNumData() {
+		System.out.println("진입");
+		for (Integer key : buyPage.SELECT_NUM_DATA.getKey()) {
+			SelectNum selectNum = buyPage.SELECT_NUM_DATA.getSelectNum(key);
+			Collection<Integer> selNum = selectNum.getSelectNum();
+			int autoValue = selectNum.getAutoValue();
+			Integer[] array = selNum.toArray(new Integer[0]);
+			PaymentNum paymentNum = new PaymentNum(array, autoValue);
+			buyPage.PAYMENT_NUM_DATA.addMap(key, paymentNum);
+			System.out.println("payment로 저장 완료 " + buyPage.PAYMENT_NUM_DATA);
+		}
+	}
+
 }

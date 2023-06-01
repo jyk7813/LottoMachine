@@ -5,7 +5,6 @@ import java.util.Map;
 
 
 public class PaymentNumData {
-	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	//나의결제 개수의 Key값,선택번호와 자동인지확인하는 번호인 [] value값
 	 Map<Integer, PaymentNum> paymentMap = new LinkedHashMap<>();
 	 
@@ -20,14 +19,7 @@ public class PaymentNumData {
 		
 	}
 	//선택번호value값 [i] return
-	public Integer[] getSelectNum() {
-		PaymentNum selectNum = new PaymentNum();
-		Integer[] allElements = new Integer[selectNum.getSelectNum().length];
-		for(int i = 0; i < selectNum.getSelectNum().length; i++) {
-			allElements[i] = selectNum.getSelectNum()[i];
-		}
-		return allElements;
-	}
+	
 	
 	//각 위치에 있는 취소버튼으로 remove 적용하기
 	//  수정 인트값 받기
@@ -36,9 +28,22 @@ public class PaymentNumData {
 		//각 위치해 있는 취소버튼으로 값을 넣으면 됨
 		
 	}
+
 	//로또개수만큼 계산
-	public  int getTotalPrice() {
 	
-		return SELECT_NUM_DATA.getCount() * 1000;
+
+
+	public void addMap(Integer key, PaymentNum paymentNum) {
+		paymentMap.put(key, paymentNum);
+		
 	}
+
+
+	@Override
+	public String toString() {
+		return "PaymentNumData [paymentMap=" + paymentMap + "]";
+	}
+	
+	
 }
+

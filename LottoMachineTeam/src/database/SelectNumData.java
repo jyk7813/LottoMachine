@@ -60,6 +60,9 @@ public class SelectNumData {
 	public SelectNum getLastMap() {
 		return selectNumHashMap.get(getLastKey());
 	}
+	public SelectNum getSelectNum(int key) {
+		return selectNumHashMap.get(key);
+	}
 
 	@Override
 	public String toString() {
