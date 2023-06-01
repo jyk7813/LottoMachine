@@ -227,11 +227,9 @@ public class MainPage extends JFrame {
 					curruntTurnString = currentRound+"회";
 					curruntTurnLabel.setText(curruntTurnString);
 					
-					System.out.println(currentRound);
-					
+					System.out.println(currentRound);	
 				}
 				buyButton.setIcon(iconData.buyIcon());
-
 			}
 			
 		});
