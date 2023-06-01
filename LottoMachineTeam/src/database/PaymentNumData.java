@@ -20,14 +20,7 @@ public class PaymentNumData {
 		
 	}
 	//선택번호value값 [i] return
-	public Integer[] getSelectNum() {
-		PaymentNum selectNum = new PaymentNum();
-		Integer[] allElements = new Integer[selectNum.getSelectNum().length];
-		for(int i = 0; i < selectNum.getSelectNum().length; i++) {
-			allElements[i] = selectNum.getSelectNum()[i];
-		}
-		return allElements;
-	}
+	
 	
 	//각 위치에 있는 취소버튼으로 remove 적용하기
 	//  수정 인트값 받기
@@ -36,4 +29,16 @@ public class PaymentNumData {
 		//각 위치해 있는 취소버튼으로 값을 넣으면 됨
 		
 	}
+	public void addMap(Integer key, PaymentNum paymentNum) {
+		paymentMap.put(key, paymentNum);
+		
+	}
+
+
+	@Override
+	public String toString() {
+		return "PaymentNumData [paymentMap=" + paymentMap + "]";
+	}
+	
+	
 }

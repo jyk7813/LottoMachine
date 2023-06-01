@@ -3,12 +3,21 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+
+import database.PaymentNum;
+import database.PaymentNumData;
+import database.SelectNum;
+import database.SelectNumData;
 
 
 
@@ -22,6 +31,7 @@ public class BuyCheckPage extends JDialog {
 	private ImageIcon noIcon;
 	private JLabel buyCheckPageLabel;
 	private JLayeredPane layeredPane;
+	private BuyPage buyPage = new BuyPage();
 
 	/**
 	 * Create the frame.
@@ -134,6 +144,29 @@ public class BuyCheckPage extends JDialog {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(430, 890));
 	}
+	
+	private void copySelectNumData() {
+	    SelectNumData selectNumData = new SelectNumData();
+	    PaymentNumData paymentNumData = new PaymentNumData();
+
+	    for (Integer key : selectNumData.getKey()) {
+	        SelectNum selectNum = selectNumData.getSelectNum(key);
+	        Collection<Integer> selNum = selectNum.getSelectNum();
+	        int autoValue = selectNum.getAutoValue();
+	        Integer[] array = selNum.toArray(new Integer[0]);
+	        PaymentNum paymentNum = new PaymentNum(array, autoValue);
+	        buyPage.PAYMENT_NUM_DATA.addMap(key, paymentNum);
+	        System.out.println(buyPage.PAYMENT_NUM_DATA);
+	    }
+	}
+
+
+	private Integer[] convert(Collection<Integer> collection) {
+	    Integer[] array = new Integer[collection.size()];
+	    collection.toArray(array);
+	    return array;
+	}
+
 	
 	
 }

@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
 
+import database.PaymentNumData;
 import database.SelectNumData;
 import utility.IconData;
 import utility.Utility;
@@ -42,6 +43,7 @@ public class BuyPage extends JDialog {
 	private int autoCount;
 	private int isAuto;
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
+	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
 
 	/**
 	 * Create the frame.

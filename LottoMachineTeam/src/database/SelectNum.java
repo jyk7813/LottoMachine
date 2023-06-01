@@ -34,6 +34,25 @@ public class SelectNum {
 	@Override
 	public String toString() {
 		return "SelectNum [selectNum=" + selectNum + ", isAuto=" + isAuto + "]";
-	}			
+	}
+
+	public int getAutoValue() {
+		// TODO Auto-generated method stub
+		return isAuto;
+	}	
+	public Integer[] convertToArray(Collection<Integer> collection) {
+	    Integer[] array = new Integer[collection.size()];
+	    int index = 0;
+	    for (Integer num : collection) {
+	        array[index] = num;
+	        index++;
+	    }
+	    return array;
+	}
+
+	public Integer[] getSelectNumArray() {
+	    return convertToArray(selectNum);
+	}
+
 	
 }
