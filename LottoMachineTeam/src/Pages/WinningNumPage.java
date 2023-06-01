@@ -81,9 +81,9 @@ public class WinningNumPage extends JDialog {
 		}
 
 		for (int i = 0; i < rankingLabels.length; i++) {
-			winnerNums[i] = new JLabel();
-			winnerNums[i].setBounds(33 + (i * 50), 225, 40, 40);
-			layeredPane.add(winnerNums[i], new Integer(2));
+			rankingLabels[i] = new JLabel();
+			rankingLabels[i].setBounds(25 , 338+ (i * 50), 375, 50);
+			layeredPane.add(rankingLabels[i], new Integer(2));
 		}
 
 		backBtn = new JButton(iconData.backIcon());
@@ -139,67 +139,82 @@ public class WinningNumPage extends JDialog {
 			System.out.println(key);
 			Integer i = 0;
 			for (Integer integer : paymentNum) {
-				lottoNums[i][key-1].setIcon(iconData.SCIcons()[integer]);;
+				lottoNums[i][key - 1].setIcon(iconData.SCIcons()[integer]);
+				;
 				i++;
 				System.out.println(integer);
 			}
-			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat()==1) {
-				lottoAutos[key-1].setIcon(iconData.autoIcon());
+			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
+				lottoAutos[key - 1].setIcon(iconData.autoIcon());
 			}
-			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat()==2) {
-				lottoAutos[key-1].setIcon(iconData.semiAutoIcon());
+			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
+				lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
 			}
-			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat()==3) {
-				lottoAutos[key-1].setIcon(iconData.manualIcon());
+			if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
+				lottoAutos[key - 1].setIcon(iconData.manualIcon());
 			}
 
 		}
 	}
+
 	private void checkRank() {
-	    System.out.println("진입 checkRank ");
-	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-	        PaymentNum paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key);
-	        if (isFirstPlace(paymentNum)) {
-	            System.out.println("1등 확인?");
-	        } else {
-	            int rank = getRank(paymentNum);
-	            if (rank == 2) {
-	                System.out.println("2등 확인?");
-	            } else if (rank == 3) {
-	                System.out.println("3등 확인?");
-	            } else {
-	                System.out.println("기타 등수 확인?");
-	            }
-	        }
-	    }
+		System.out.println("진입 checkRank ");
+		for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+			PaymentNum paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key);
+			if (isFirstPlace(paymentNum)) {
+				System.out.println("1등 확인?");
+				rankingLabels[key-1].setIcon(iconData.rankingIcon1());
+			} else {
+				int rank = getRank(paymentNum);
+				if (rank == 2) {
+					System.out.println("2등 확인?");
+					rankingLabels[key-1].setIcon(iconData.rankingIcon2());
+				} else if (rank == 3) {
+					System.out.println("3등 확인?");
+					rankingLabels[key-1].setIcon(iconData.rankingIcon3());
+				} else if (rank == 4) {
+					System.out.println("4등 확인?");
+					rankingLabels[key-1].setIcon(iconData.rankingIcon4());
+				} else if (rank == 5) {
+					System.out.println("5등 확인?");
+					rankingLabels[key-1].setIcon(iconData.rankingIcon5());
+				} else {
+					System.out.println("낙첨");
+					rankingLabels[key-1].setIcon(iconData.rankingIconFail());
+				}
+			}
+		}
 	}
 
 	private boolean isFirstPlace(PaymentNum paymentNum) {
-	    Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
-	    return winningNum.containsAll(paymentNum.getPaymentNumCollection());
+		Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+		return winningNum.containsAll(paymentNum.getPaymentNumCollection());
 	}
 
 	private int getRank(PaymentNum paymentNum) {
-	    Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
-	    int matchCount = 0;
-	    for (Integer num : paymentNum.getPaymentNumCollection()) {
-	        if (winningNum.contains(num)) {
-	            matchCount++;
-	        }
-	    }
-	    if (matchCount == 6) {
-	        return 1; // 1등
-	    } else if (matchCount == 5) {
-	        int bonusNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum();
-	        if (paymentNum.getPaymentNumCollection().contains(bonusNum)) {
-	            return 2; // 2등
-	        } else {
-	            return 3; // 3등
-	        }
-	    } else {
-	        return 0; // 기타 등수
-	    }
+		Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+		int matchCount = 0;
+		for (Integer num : paymentNum.getPaymentNumCollection()) {
+			if (winningNum.contains(num)) {
+				matchCount++;
+			}
+		}
+		if (matchCount == 6) {
+			return 1; // 1등
+		} else if (matchCount == 5) {
+			int bonusNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum();
+			if (paymentNum.getPaymentNumCollection().contains(bonusNum)) {
+				return 2; // 2등
+			} else {
+				return 3; // 3등
+			}
+		} else if (matchCount == 4) {
+			return 4; // 기타 등수
+		} else if (matchCount == 3) {
+			return 5;
+		} else {
+			return 6;
+		}
 	}
-
 
 }
