@@ -29,7 +29,6 @@ import utility.IconData;
 import utility.Utility;
 
 public class BuyPage extends JDialog {
-	private JFrame parentFrame;
 	private IconData icon = new IconData();
 	private Utility utility = new Utility();
 	private int count = 0;
@@ -59,7 +58,6 @@ public class BuyPage extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
-		setLocationRelativeTo(parentFrame);
 		// label만들기
 		makeLabel();
 		// 버튼만들기
