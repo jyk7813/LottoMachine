@@ -302,6 +302,9 @@ public class BuyPage extends JDialog {
 		utility.setButtonProperties(backButton);
 		utility.setButtonProperties(cancleButton);
 	}
+	public void resetCount() {
+		count = 0;
+	}
 	
 
 }
