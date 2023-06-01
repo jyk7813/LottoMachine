@@ -14,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import database.PaymentNumData;
 import database.SelectNum;
 import database.SelectNumData;
 import utility.IconData;
@@ -26,7 +27,8 @@ public class MyNumCheckPage extends JDialog {
 	private SelectNumData selectNum = new SelectNumData();
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum2;
-	public static final SelectNum SELECT_NUM_DATA = new SelectNum();
+	BuyPage buyPage = new BuyPage();
+	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
 
 	/**
 	 * Create the frame.
@@ -119,7 +121,7 @@ public class MyNumCheckPage extends JDialog {
 				int selectedNumbers = integerNum.intValue();
 				if (selectedNumbers >= 1 && selectedNumbers <= 45) {
 					// for문의 i,j는 0 부터 시작하기 때문에 배열인덱스값 : [선택된 번호 - 1]
-					lottoNum2[i + 1][j].setIcon(icon.LCIcons()[selectedNumbers]);
+					lottoNum2[i][j].setIcon(icon.LCIcons()[selectedNumbers ]);
 					// icon 은 변경할 이미지파일 넣으면 됩니다.
 					break;
 
@@ -138,7 +140,7 @@ public class MyNumCheckPage extends JDialog {
 		}
 		selectNum.addSelectNumHashMap(selectList, isAuto);
 		System.out.println(selectNum);
-		Collection<Integer> set = SELECT_NUM_DATA.getSelectNum();
+		Collection<Integer> set = buyPage.SELECT_NUM_DATA.getLastMap().getSelectNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
 		System.out.println(sortedList);
@@ -149,5 +151,9 @@ public class MyNumCheckPage extends JDialog {
 
 			}
 		}
+	}
+	private void handOverSelectNumData() {
+		
+	
 	}
 }

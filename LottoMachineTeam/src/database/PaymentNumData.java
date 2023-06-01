@@ -1,13 +1,15 @@
 package database;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 
 public class PaymentNumData {
+	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	
 //나의결제 개수의 Key값,선택번호와 자동인지확인하는 번호인 [] value값
-	private Map<Integer, PaymentNum> paymentMap = new LinkedHashMap<>();
+	 Map<Integer, PaymentNum> paymentMap = new LinkedHashMap<>();
 	
 	/**
 	 * 외부로부터 보호하면서 읽기전용으로 접근만 가능함
@@ -15,7 +17,6 @@ public class PaymentNumData {
 	 * @return
 	 */
 	public Map<Integer, PaymentNum> getPaymentMap(){
-		
 		return new LinkedHashMap<>(paymentMap);
 		
 	}
@@ -35,5 +36,10 @@ public class PaymentNumData {
 		paymentMap.remove(key);
 		//각 위치해 있는 취소버튼으로 값을 넣으면 됨
 		
+	}
+	//선택됐던 선택된 로또개수 
+	public  int getTotalPrice() {
+	
+		return SELECT_NUM_DATA.getCount() * 1000;
 	}
 }
