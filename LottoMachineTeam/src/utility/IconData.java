@@ -12,6 +12,14 @@ public class IconData {
 	public ImageIcon buyIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buyBigBtn.png"));
 	}
+	
+	public ImageIcon buyErrorIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("buyErrorBtn.png"));
+	}
+	
+	public ImageIcon winnerCheckIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("winnerCheckBtn.png"));
+	}
 
 	public ImageIcon myNumIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("myNumBtn.png"));

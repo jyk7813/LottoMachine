@@ -145,9 +145,17 @@ public class MainPage extends JFrame {
 		
 	}
 
+	
 	private void buyBtn() {
 		buyButton.addActionListener(e -> {
 			if (currentRound == WINNING_NUM_DATA.getLastTurn()) {
+				
+//				buyErrorBtn();
+//				layeredPane.add(buyErrorButton, new Integer(2));
+//				buyErrorButton = new JButton(iconData.buyErrorIcon());
+//				buyErrorButton.setBounds(76, 610, 280, 81);
+//				utility.setButtonProperties(buyErrorButton);
+				
 				new BuyErrorPage().setVisible(true);
 			    System.out.println("바이에러 페이로 넘어가기");
 			} else {
@@ -191,6 +199,10 @@ public class MainPage extends JFrame {
 		                        showWinningNum();
 		                    }
 		                    System.out.println("UnderLotteryPage 창이 닫힘");
+		                   
+		                   // buyButton.setEnabled(false);
+		                    buyButton.setIcon(iconData.buyErrorIcon());
+		                    
 		                }
 		            });
 		            underLotteryPage.setVisible(true);
@@ -218,6 +230,7 @@ public class MainPage extends JFrame {
 					System.out.println(currentRound);
 					
 				}
+				buyButton.setIcon(iconData.buyIcon());
 
 			}
 			
@@ -251,6 +264,7 @@ public class MainPage extends JFrame {
 		utility.setButtonProperties(myNumButton);
 		utility.setButtonProperties(makeLotteryButton);
 		utility.setButtonProperties(nextTurnButton);
+		
 	}
 
 	/**
