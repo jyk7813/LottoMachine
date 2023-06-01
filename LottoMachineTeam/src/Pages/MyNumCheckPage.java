@@ -139,7 +139,12 @@ public class MyNumCheckPage extends JDialog {
 		selectNum.addSelectNumHashMap(selectList, isAuto);
 		System.out.println(selectNum);
 		Collection<Integer> set = SELECT_NUM_DATA.getSelectNum();
-		List<Integer> sortedList = new ArrayList<>(set);
+		List<Integer> sortedList;
+		if (set != null) {
+		    sortedList = new ArrayList<>(set);
+		} else {
+		    sortedList = new ArrayList<>();
+		}
 		Collections.sort(sortedList);
 		System.out.println(sortedList);
 		for (int i = 0; i < sortedList.size(); i++) {
