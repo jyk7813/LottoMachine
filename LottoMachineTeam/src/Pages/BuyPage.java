@@ -83,7 +83,7 @@ public class BuyPage extends JDialog {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					List<Integer> selectList = new ArrayList<Integer>();
-					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10 && SELECT_NUM_DATA.getCount()<10) {
 						if (selectedCount.get() == 6) {
 							for (int i = 0; i < selectNum.length; i++) {
 								if (selectNum[i].isSelected()) {
@@ -103,7 +103,7 @@ public class BuyPage extends JDialog {
 						isAuto = 2;
 					if (autoCount == 0)
 						isAuto = 3;
-					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10&& SELECT_NUM_DATA.getCount()<10) {
 						if (selectedCount.get() == 6) {
 							SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
 							
