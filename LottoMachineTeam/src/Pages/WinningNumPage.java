@@ -21,10 +21,11 @@ public class WinningNumPage extends JDialog {
 	private Utility utility = new Utility();
 	private MainPage mainPage;
 	private JLabel label;
+	private JLabel bonusNum;
 	private JLabel[][] lottoNums;
 	private JLabel[] lottoAutos;
 	private JLabel[] winnerNums;
-	private JLabel bonusNum;
+	private JLabel[] rankingLabels;
 	private JButton backBtn;
 	
 
@@ -44,8 +45,9 @@ public class WinningNumPage extends JDialog {
         lottoNums = new JLabel[8][10];
         lottoAutos = new JLabel[10];
         winnerNums = new JLabel[10];
+        rankingLabels = new JLabel[10];
         
-        bonusNum = new JLabel(iconData.emptyBtn());
+        bonusNum = new JLabel();
         bonusNum.setBounds(357, 225, 40, 40);
         
         
@@ -68,13 +70,19 @@ public class WinningNumPage extends JDialog {
         		}
         	}
         	
-        	for (int i = 0; i < 10; i++) {
-        		lottoAutos[i]= new JLabel(iconData.emptyLBtn());
+        	for (int i = 0; i < lottoAutos.length; i++) {
+        		lottoAutos[i]= new JLabel();
         		lottoAutos[i].setBounds(337, 340 + i * 50, 52, 36);
         		layeredPane.add(lottoAutos[i], new Integer(2));
         	}
         	
-        	for (int i = 0; i < 6; i++) {
+        	for (int i = 0; i < winnerNums.length; i++) {
+        		winnerNums[i]= new JLabel();
+        		winnerNums[i].setBounds(33 + (i * 50), 225, 40, 40);
+        		layeredPane.add(winnerNums[i], new Integer(2));
+        	}
+        	
+        	for (int i = 0; i < rankingLabels.length; i++) {
         		winnerNums[i]= new JLabel();
         		winnerNums[i].setBounds(33 + (i * 50), 225, 40, 40);
         		layeredPane.add(winnerNums[i], new Integer(2));
@@ -123,6 +131,9 @@ public class WinningNumPage extends JDialog {
 		    winnerNums[i].setIcon(iconData.LCIcons()[element]);
 		}
 		bonusNum.setIcon(iconData.LCIcons()[mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
+		
+	}
+    private void showPaymentNum() {
 		
 	}
    
