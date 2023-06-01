@@ -1,10 +1,13 @@
 package database;
 
-public class Payment {
+public class PaymentNum {
 	Integer[] selectNum;
-	int isAuto;
+	int autoStat;
 	
 	public Integer[] getSelectNum() {
 		return selectNum;
+	}
+	public int getAutoStat() {
+		return autoStat;
 	}
 }
