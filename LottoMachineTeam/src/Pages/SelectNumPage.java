@@ -211,9 +211,7 @@ public class SelectNumPage extends JDialog {
 				while (bringKey.hasNext()) {
 					Integer change = bringKey.next();
 					map.remove(change);
-					System.out.println(buyPage.SELECT_NUM_DATA);
-					SelectNumPage selectNumPage = new SelectNumPage();
-					selectNumPage.setVisible(true);
+					System.out.println(buyPage.SELECT_NUM_DATA);					
 					
 				}
 			}
