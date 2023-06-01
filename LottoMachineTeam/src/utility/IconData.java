@@ -141,4 +141,13 @@ public class IconData {
 		return SCIcons;
 
 	}
+	public ImageIcon[] SIcons() {
+		ImageIcon[] SIcons = new ImageIcon[45];
+		for (int i = 0; i < SIcons.length; i++) {
+			String filename = "S" + (i + 1) + ".png";
+			SIcons[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
+		}
+		return SIcons;
+		
+	}
 }

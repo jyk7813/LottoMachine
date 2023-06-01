@@ -139,7 +139,7 @@ public class WinningNumPage extends JDialog {
 			System.out.println(key);
 			Integer i = 0;
 			for (Integer integer : paymentNum) {
-				lottoNums[i][key - 1].setIcon(iconData.SCIcons()[integer]);
+				lottoNums[i][key - 1].setIcon(iconData.SIcons()[integer]);
 				;
 				i++;
 				System.out.println(integer);
