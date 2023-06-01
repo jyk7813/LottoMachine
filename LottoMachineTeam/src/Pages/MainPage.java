@@ -204,7 +204,6 @@ public class MainPage extends JFrame {
 		                   // buyButton.setEnabled(false);
 		                    buyButton.setIcon(iconData.buyErrorIcon());
 		                    makeLotteryButton.setIcon(iconData.winnerCheckIcon());
-		                    nextTurnButton.setIcon(iconData.nextTurnIcon());
 		                    
 		                }
 		            });
@@ -234,7 +233,6 @@ public class MainPage extends JFrame {
 				}
 				buyButton.setIcon(iconData.buyIcon());
 				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
-				nextTurnButton.setIcon(iconData.nextGrayTurnIcon());
 			}
 			
 		});
