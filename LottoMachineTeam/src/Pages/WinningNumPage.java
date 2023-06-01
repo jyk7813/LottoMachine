@@ -16,7 +16,7 @@ import utility.IconData;
 import utility.Utility;
 
 public class WinningNumPage extends JDialog {
-	private IconData icon = new IconData();
+	private IconData iconData = new IconData();
 	private JLayeredPane layeredPane;
 	private Utility utility = new Utility();
 	private MainPage mainPage;
@@ -39,19 +39,19 @@ public class WinningNumPage extends JDialog {
         setModal(true);
         setResizable(false); // 창 크기 변경을 비활성화
 
-		label = new JLabel(icon.winningNumIcon());
+		label = new JLabel(iconData.winningNumIcon());
         
         lottoNums = new JLabel[8][10];
         lottoAutos = new JLabel[10];
         winnerNums = new JLabel[10];
         
-        bonusNum = new JLabel(icon.emptyBtn());
+        bonusNum = new JLabel(iconData.emptyBtn());
         bonusNum.setBounds(357, 225, 40, 40);
         
         
         
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight()));
+        layeredPane.setPreferredSize(new Dimension(iconData.winningNumIcon().getIconWidth(), iconData.winningNumIcon().getIconHeight()));
         
         
         	for (int j = 0; j < 10; j++) {
@@ -69,7 +69,7 @@ public class WinningNumPage extends JDialog {
         	}
         	
         	for (int i = 0; i < 10; i++) {
-        		lottoAutos[i]= new JLabel(icon.emptyLBtn());
+        		lottoAutos[i]= new JLabel(iconData.emptyLBtn());
         		lottoAutos[i].setBounds(337, 340 + i * 50, 52, 36);
         		layeredPane.add(lottoAutos[i], new Integer(2));
         	}
@@ -80,12 +80,12 @@ public class WinningNumPage extends JDialog {
         		layeredPane.add(winnerNums[i], new Integer(2));
         	}
         
-        backBtn = new JButton(icon.backIcon());
+        backBtn = new JButton(iconData.backIcon());
         backBtn.setBounds(18, 45, 38, 33); // 위치와 크기 설정
 
 
         // 레이블 및 버튼 위치 설정
-        label.setBounds(0, 0, icon.winningNumIcon().getIconWidth(), icon.winningNumIcon().getIconHeight());
+        label.setBounds(0, 0, iconData.winningNumIcon().getIconWidth(), iconData.winningNumIcon().getIconHeight());
 
         // 레이블 및 버튼을 JLayeredPane에 추가
         layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
@@ -120,9 +120,9 @@ public class WinningNumPage extends JDialog {
 		
 		for (int i = 0; i < sortedList.size(); i++) {
 		    int element = sortedList.get(i);
-		    winnerNums[i].setIcon(icon.LCIcons()[element]);
+		    winnerNums[i].setIcon(iconData.LCIcons()[element]);
 		}
-		bonusNum.setIcon(icon.LCIcons()[mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
+		bonusNum.setIcon(iconData.LCIcons()[mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
 		
 	}
    
