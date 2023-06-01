@@ -156,7 +156,7 @@ public class BuyCheckPage extends JDialog {
 			int autoValue = selectNum.getAutoValue();
 			Integer[] array = selNum.toArray(new Integer[0]);
 			PaymentNum paymentNum = new PaymentNum(array, autoValue);
-			BuyPage.PAYMENT_NUM_DATA.addMap(key, paymentNum);
+			BuyPage.PAYMENT_NUM_DATA.addSet(paymentNum);
 			System.out.println("payment로 저장 완료 " + BuyPage.PAYMENT_NUM_DATA);
 		}
 	}

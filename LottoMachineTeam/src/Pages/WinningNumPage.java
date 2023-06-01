@@ -11,7 +11,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -81,7 +84,7 @@ public class WinningNumPage extends JDialog {
 
 		for (int i = 0; i < rankingLabels.length; i++) {
 			rankingLabels[i] = new JLabel();
-			rankingLabels[i].setBounds(25 , 338+ (i * 50), 375, 50);
+			rankingLabels[i].setBounds(25, 338 + (i * 50), 375, 50);
 			layeredPane.add(rankingLabels[i], new Integer(2));
 		}
 
@@ -132,60 +135,93 @@ public class WinningNumPage extends JDialog {
 	}
 
 	private void showPaymentNum() {
-	    System.out.println("진입 showPaymentNum ");
-	    for (Integer key : BuyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-	        Integer[] paymentNum = BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
-	        System.out.println(key);
-	        Integer i = 0;
-	        for (Integer integer : paymentNum) {
-	            if (mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum().contains(integer)) {
-	                lottoNums[i][key - 1].setIcon(iconData.SCIcons()[integer]);
+		System.out.println("진입 showPaymentNum ");
+		Set<PaymentNum> set = new HashSet(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
+		Iterator<PaymentNum> iterator = set.iterator();
+		int count = 0;
+		while (iterator.hasNext()) {
+			PaymentNum paymentNum = (PaymentNum) iterator.next();
+			System.out.println(paymentNum);
+			int numCount = 0;
+			for (Integer integer : paymentNum.getNum()) {
+				if (mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum().contains(integer)) {
+	                lottoNums[numCount][count].setIcon(iconData.SCIcons()[integer]);
 	            } else {
-	                lottoNums[i][key - 1].setIcon(iconData.SIcons()[integer]);
+	                lottoNums[numCount][count].setIcon(iconData.SIcons()[integer]);
 	            }
-	            i++;
-	            System.out.println(integer);
-	        }
-	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
-	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
-	        }
-	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
-	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
-	        }
-	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
-	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
-	        }
+				numCount++;
+			}
+			if (paymentNum.getAutoStat() == 1) {
+				lottoAutos[count].setIcon(iconData.autoIcon());
+			}
+			if (paymentNum.getAutoStat() == 2) {
+				lottoAutos[count].setIcon(iconData.semiAutoIcon());
+			}
+			if (paymentNum.getAutoStat() == 3) {
+				lottoAutos[count].setIcon(iconData.manualIcon());
+			}
+			count++;
+		}
 
-	    }
+//	    for (Integer key : BuyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+//	        Integer[] paymentNum = BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+//	        System.out.println(key);
+//	        Integer i = 0;
+//	        for (Integer integer : paymentNum) {
+//	            if (mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum().contains(integer)) {
+//	                lottoNums[i][key - 1].setIcon(iconData.SCIcons()[integer]);
+//	            } else {
+//	                lottoNums[i][key - 1].setIcon(iconData.SIcons()[integer]);
+//	            }
+//	            i++;
+//	            System.out.println(integer);
+//	        }
+//	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
+//	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
+//	        }
+//	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
+//	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
+//	        }
+//	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
+//	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
+//	        }
+//
+//	    }
 	}
 
 	private void checkRank() {
 		System.out.println("진입 checkRank ");
-		for (Integer key : BuyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-			PaymentNum paymentNum = BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key);
+		Set<PaymentNum> set = new HashSet(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
+		Iterator<PaymentNum> iterator = set.iterator();
+		int count = 0;
+		
+		while (iterator.hasNext()) {
+			PaymentNum paymentNum = (PaymentNum) iterator.next();
 			if (isFirstPlace(paymentNum)) {
 				System.out.println("1등 확인?");
-				rankingLabels[key-1].setIcon(iconData.rankingIcon1());
+				rankingLabels[count].setIcon(iconData.rankingIcon1());
 			} else {
 				int rank = getRank(paymentNum);
 				if (rank == 2) {
 					System.out.println("2등 확인?");
-					rankingLabels[key-1].setIcon(iconData.rankingIcon2());
+					rankingLabels[count].setIcon(iconData.rankingIcon2());
 				} else if (rank == 3) {
 					System.out.println("3등 확인?");
-					rankingLabels[key-1].setIcon(iconData.rankingIcon3());
+					rankingLabels[count].setIcon(iconData.rankingIcon3());
 				} else if (rank == 4) {
 					System.out.println("4등 확인?");
-					rankingLabels[key-1].setIcon(iconData.rankingIcon4());
+					rankingLabels[count].setIcon(iconData.rankingIcon4());
 				} else if (rank == 5) {
 					System.out.println("5등 확인?");
-					rankingLabels[key-1].setIcon(iconData.rankingIcon5());
+					rankingLabels[count].setIcon(iconData.rankingIcon5());
 				} else {
 					System.out.println("낙첨");
-					rankingLabels[key-1].setIcon(iconData.rankingIconFail());
+					rankingLabels[count].setIcon(iconData.rankingIconFail());
 				}
 			}
+			count++;
 		}
+		
 	}
 
 	private boolean isFirstPlace(PaymentNum paymentNum) {

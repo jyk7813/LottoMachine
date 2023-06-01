@@ -237,7 +237,7 @@ public class MainPage extends JFrame {
 				}
 				buyButton.setIcon(iconData.buyIcon());
 				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
-				nextBtnActivate();
+				
 			}
 			
 		});
