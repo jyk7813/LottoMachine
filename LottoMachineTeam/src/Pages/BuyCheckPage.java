@@ -61,7 +61,7 @@ public class BuyCheckPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				copySelectNumData();
-				BuyPage.SELECT_NUM_DATA.clearMap();
+				BuyPage.SELECT_NUM_DATA.clearList();
 				BuyCompletePage buyCompletePage = new BuyCompletePage();
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);
@@ -150,8 +150,7 @@ public class BuyCheckPage extends JDialog {
 
 	private void copySelectNumData() {
 		System.out.println("진입");
-		for (Integer key : BuyPage.SELECT_NUM_DATA.getKey()) {
-			SelectNum selectNum = BuyPage.SELECT_NUM_DATA.getSelectNum(key);
+		for (SelectNum selectNum : BuyPage.SELECT_NUM_DATA.getSelectNumData()) {
 			Collection<Integer> selNum = selectNum.getSelectNum();
 			int autoValue = selectNum.getAutoValue();
 			Integer[] array = selNum.toArray(new Integer[0]);

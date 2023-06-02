@@ -38,6 +38,10 @@ public class PaymentNumData {
 		}
 		
 	}
+	
+	public int getSize() {
+		return paymentset.size();
+	}
 
 
 	@Override
