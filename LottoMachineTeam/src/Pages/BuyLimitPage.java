@@ -9,19 +9,19 @@ import javax.swing.*;
 
 import utility.Utility;
 
-public class BuyErrorPage extends JDialog {
+public class BuyLimitPage extends JDialog {
 	private JButton returnBtn;
-	private ImageIcon buyErrorPage;
+	private ImageIcon buyLimitPage;
 	private ImageIcon returnIcon;
 	private JLayeredPane layeredPane;
-	private JLabel buyErrorPageLabel;
+	private JLabel buyLimitPageLabel;
 	private MainPage mainPage;
 	private Utility utility = new Utility();
 	/**
 	 * Create the frame.
 	 */
 
-	public BuyErrorPage() {
+	public BuyLimitPage() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
@@ -62,23 +62,24 @@ public class BuyErrorPage extends JDialog {
 	private void addLayeredPane2() {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(430, 890));
-		layeredPane.add(buyErrorPageLabel, new Integer(1));
+		layeredPane.add(buyLimitPageLabel, new Integer(1));
 		layeredPane.add(returnBtn, new Integer(2));
 
 	}
 
 	private void iconSetting() {
-		buyErrorPage = new ImageIcon(getClass().getClassLoader().getResource("buyError(BG).png"));
+		buyLimitPage = new ImageIcon(getClass().getClassLoader().getResource("buyLimit(BG).png"));
 		returnIcon = new ImageIcon(getClass().getClassLoader().getResource("returnBtn.png"));
 	}
 
 	private void btnBounds() {
-		buyErrorPageLabel = new JLabel(buyErrorPage);
-		buyErrorPageLabel.setBounds(0, 0, buyErrorPage.getIconWidth(), buyErrorPage.getIconHeight());
+		buyLimitPageLabel = new JLabel(buyLimitPage);
+		buyLimitPageLabel.setBounds(0, 0, buyLimitPage.getIconWidth(), buyLimitPage.getIconHeight());
 
 		returnBtn = new JButton(returnIcon);
 		returnBtn.setBounds(161, 458, 107, 41);
 
 	}
 }
+
 

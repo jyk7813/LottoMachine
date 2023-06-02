@@ -8,6 +8,9 @@ public class IconData {
 	public ImageIcon mainIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("main(BG).png"));
 	}
+	public ImageIcon buyLimitIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("buyLimit(BG).png"));
+	}
 
 	public ImageIcon buyIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buyBigBtn.png"));

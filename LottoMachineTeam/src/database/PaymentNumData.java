@@ -38,15 +38,16 @@ public class PaymentNumData {
 		}
 		
 	}
+	
+	public int getSize() {
+		return paymentset.size();
+	}
 
 
 	@Override
 	public String toString() {
 		return "PaymentNumData [paymentset=" + paymentset + "]";
 	}
-
-
-	
 	
 }
 

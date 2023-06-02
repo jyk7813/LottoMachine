@@ -1,68 +1,74 @@
 package database;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import Pages.BuyErrorPage;
+import Pages.BuyLimitPage;
+import Pages.BuyPage;
+
 public class SelectNumData {
-	private Map<Integer, SelectNum> selectNumHashMap;
-	private static Integer count = 0;
-	
+	private List<SelectNum> selectNumList;
+	private static final int MAX_SELECT_NUM_SIZE = 10;
+	PaymentNumData paymentNumData = new PaymentNumData();
 	
 	public SelectNumData() {
-		this.selectNumHashMap = new HashMap();
+		this.selectNumList = new ArrayList<SelectNum>();
 	}
 
-	public void addSelectNumHashMap(Collection<Integer> selNum, int autoValue) {
-		count++;
-		SelectNum selectNum = new SelectNum(selNum, autoValue);
-		selectNumHashMap.put(count, selectNum);
+	public void addSelectNum(Collection<Integer> selNum, int autoValue) {
+		if (selectNumList.size()+BuyPage.PAYMENT_NUM_DATA.getSize()<MAX_SELECT_NUM_SIZE) {
+			SelectNum selectNum = new SelectNum(selNum, autoValue);
+			selectNumList.add(selectNum);
+		}else {
+			System.out.println("데이터를 더이상 저장할 수 없습니다.");
+			
+			BuyLimitPage buyLimitPage = new BuyLimitPage();
+			buyLimitPage.setAlwaysOnTop(true);
+			buyLimitPage.setVisible(true);
+		}
 	}
 
-	public Map<Integer, SelectNum> getSelectNumHashMap() {
-		return selectNumHashMap;
+	public List<SelectNum> getSelectNumData() {
+		return selectNumList;
 	}
 	
-	public void removeSelectNumHashMAp(int key) {
-		selectNumHashMap.remove(key);
-		count--;
+	public void removeSelectNumData(int key) {
+		selectNumList.remove(key);
 	}
 
-	public Set<Integer> getKey() {
-		return selectNumHashMap.keySet();
-	}
-	public void clearMap() {
-		selectNumHashMap.clear();
+	
+	public void clearList() {
+		selectNumList.clear();
 	}
 	
-	public int getLastKey() {
-	    TreeSet<Integer> SelectNumKeySet = new TreeSet<>(getKey());
-	    // TreeSet이 비어있지 않다면 가장 마지막 값을 반환하고, 그렇지 않다면 -1을 반환
-	    return !SelectNumKeySet.isEmpty() ? SelectNumKeySet.last() : -1;
+	public int getLastIndex() {
+	    return !selectNumList.isEmpty() ? selectNumList.size()-1 : -1;
 	}
-	public SelectNum getLastMap() {
-		return selectNumHashMap.get(getLastKey());
+	public SelectNum getLastSelectNum() {
+		if (getLastIndex()==-1) {
+			return null;
+		}
+		return selectNumList.get(getLastIndex());
 	}
-	public SelectNum getSelectNum(int key) {
-		return selectNumHashMap.get(key);
+	public SelectNum getSelectNum(int index) {
+		if (selectNumList.size()-1<index) {
+			return null;
+		}
+		return selectNumList.get(index);
 	}
 
 	@Override
 	public String toString() {
-		return "SelectNumData [selectNumHashMap=" + selectNumHashMap + "]";
+		return "SelectNumData [selectNumHashMap=" + selectNumList + "]";
 	}
 	/**
 	 * 계산시 count 수 만큼 연산하기
 	 * @return
 	 */
-	public int getCount() {
-		return count;
-	}
-	public void resetCount() {
-		count = 0;
-	}
-	public void minusCount() {
-		count--;
-	}
+	
 }

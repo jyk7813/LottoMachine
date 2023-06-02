@@ -31,8 +31,6 @@ public class PaymentNum {
 	public String toString() {
 		return "PaymentNum [paymentNum=" + Arrays.toString(Num) + ", autoStat=" + autoStat + "]";
 	}
-	public void name() {
-		
-	}
+	
 
 }
