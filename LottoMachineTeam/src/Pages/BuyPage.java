@@ -53,10 +53,10 @@ public class BuyPage extends JDialog {
 	private int addCount = 0;
 	private String currentCount;
 	private JLabel currentCountLabel;
+
 	private JLabel currentPriceLabel;
 	private int price;
 	private String currentPrice;
-	
 
 	/**
 	 * Create the frame.
@@ -65,7 +65,7 @@ public class BuyPage extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
-		
+
 		// label만들기
 		makeLabel();
 		// 버튼만들기
@@ -88,7 +88,9 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
+
 		addCount = SELECT_NUM_DATA.getSelectNumData().size();
+
 		//추가하기 버튼 클릭시 addCount(로또개수) 0이 아니면 해당연산을 수행한다.
 		if(addCount != 0) {
 			price = addCount * 10000;
@@ -98,14 +100,12 @@ public class BuyPage extends JDialog {
 		//추가하기버튼 액션메소드
 		addBtnAction();
 		
+
 		
 		if (SELECT_NUM_DATA.getLastIndex() != -1) {
 			showSelectNum();
 		}
-		
-			
-			
-		
+
 		lbuyButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -117,12 +117,9 @@ public class BuyPage extends JDialog {
 
 			}
 		});
-		
-		
-		
+
 		pack();
 	}
-
 	private void showSelectNum() {
 		List<Integer> sortedList = (List<Integer>) SELECT_NUM_DATA.getLastSelectNum().getSelectNum();
 		Collections.sort(sortedList);
@@ -311,7 +308,11 @@ public class BuyPage extends JDialog {
 	public void resetCount() {
 		count = 0;
 	}
+
 	private void showCurrentCountPrice() {
+		String currentCount = addCount + "개";
+		System.out.println(currentCount);
+
 		Font customFont = fontData.nanumFont25();
 		Color customColor = Color.BLACK;
 		
@@ -321,6 +322,10 @@ public class BuyPage extends JDialog {
 		currentCountLabel = new JLabel(addCount + " 개");
 		currentPriceLabel = new JLabel(price + " 원");
 		
+
+		currentCountLabel = new JLabel("0개");
+		currentCountLabel.setText(currentCount);
+
 		currentCountLabel.setFont(customFont);
 		currentPriceLabel.setFont(customFontForPrice);
 		
@@ -356,6 +361,7 @@ public class BuyPage extends JDialog {
 						if (selectNum[i].isSelected()) {
 							selectList.add(i);
 
+
 						}
 					}
 					autoCountCheck();
@@ -376,5 +382,5 @@ public class BuyPage extends JDialog {
 
 	});
 	}
-	
+
 }

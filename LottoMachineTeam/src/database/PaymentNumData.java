@@ -48,15 +48,6 @@ public class PaymentNumData {
 	public String toString() {
 		return "PaymentNumData [paymentset=" + paymentset + "]";
 	}
-	public int getPrice() {
-		return price;
-	}
-	public int getZeroPrice() {
-		return zeroPrice;
-	}
-
-
-	
 	
 }
 
