@@ -124,6 +124,7 @@ public class BuyPage extends JDialog {
 				int index = SELECT_NUM_DATA.getLastIndex();
 				SELECT_NUM_DATA.removeSelectNumData(index);
 				showSelectNum();
+			
 			}
 		});
 
