@@ -3,6 +3,7 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
+import database.PaymentNum;
 import database.SelectNum;
 import database.SelectNumData;
 import utility.IconData;
@@ -36,22 +38,21 @@ public class SelectNumPage extends JDialog {
 	public BuyPage buyPage = new BuyPage();
 	
 	private void iconChange() {
-		Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-	      Set<Integer> set = map.keySet();
-	      Iterator<Integer> hh = set.iterator();
-	      int num2 = 0;
-	      while (hh.hasNext()) {
-	         Collection<Integer> selNum = map.get(hh.next()).getSelectNum();
-	         Iterator<Integer> hhh = selNum.iterator();
-	         int num = 0;
-	         while (hhh.hasNext()) {
-	            Integer putNum = hhh.next();
-	            
-	            numLabels[num][num2].setIcon(iconData.LCIcons()[putNum]);
-	            num++;
-	         }
-	         num2++;
-	      }		
+		for (int i = 0; i < 10; i++) {
+		    List<Integer> list = null;
+		    if (BuyPage.SELECT_NUM_DATA.getSelectNum(i) != null) {
+		        list = new ArrayList<>(BuyPage.SELECT_NUM_DATA.getSelectNum(i).getSelectNum());
+		    }
+		    for (int j = 0; j < 6; j++) {
+		        if (list != null && j < list.size() && list.get(j) < iconData.LCIcons().length && i < numLabels.length && j < numLabels[i].length) {
+		            numLabels[j][i].setIcon(iconData.LCIcons()[list.get(j)]);
+		        } else if (i < numLabels.length && j < numLabels[i].length) {
+		            numLabels[j][i].setIcon(null);
+		        }
+		    }
+		}
+
+
 	}
 	
 	/**
@@ -73,8 +74,7 @@ public class SelectNumPage extends JDialog {
 		numLabels = new JLabel[6][10];
 		keyLabels = new JLabel[10];
 		JButton[] cancelButton = new JButton[10];
-		Map<Integer, SelectNum> map;
-		map = selectNumHashMap.getSelectNumHashMap();
+		
 		// 이미지 아이콘을 사용하는 레이블 생성
 		JLabel label = new JLabel(icon); // 배경 Label
 
@@ -179,19 +179,15 @@ public class SelectNumPage extends JDialog {
 		pack();
 		
 		for (int i = 0; i < cancelButton.length; i++) {
-			cancelButton[i].addActionListener(new ActionListener() {
-				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-				Set<Integer> set = map.keySet();
-				Iterator<Integer> bringKey = set.iterator();
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					while (bringKey.hasNext()) {
-						Integer change = bringKey.next();
-						map.remove(change);
-						break;
-					}
-				}
-			});
+		    final int index = i;  
+		    
+		    cancelButton[i].addActionListener(new ActionListener() {
+		        @Override
+		        public void actionPerformed(ActionEvent e) {
+		            BuyPage.SELECT_NUM_DATA.removeSelectNumData(index);
+		            iconChange();
+		        }
+		    });
 		}
 	}
 

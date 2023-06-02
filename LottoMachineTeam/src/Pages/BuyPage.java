@@ -86,7 +86,8 @@ public class BuyPage extends JDialog {
 		moreActionListener();
 		backActionListener();
 		
-		addCount = SELECT_NUM_DATA.getSelectNumHashMap().size();
+		
+		addCount = SELECT_NUM_DATA.getSelectNumData().size();
 		currentCount = addCount + " 개";
 		System.out.println(currentCount);
 		
@@ -104,53 +105,36 @@ public class BuyPage extends JDialog {
 		
 		
 		
-		if (SELECT_NUM_DATA.getLastKey() != -1) {
+		if (SELECT_NUM_DATA.getLastIndex() != -1) {
 			showSelectNum();
 		}
 		
-		addButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addCount++;
-				List<Integer> selectList = new ArrayList<Integer>();
-				if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
-					System.out.println("size문제");
-					System.out.println(SELECT_NUM_DATA.getSelectNumHashMap().size());
-					System.out.println("getcount" + SELECT_NUM_DATA.getCount());
-					if (SELECT_NUM_DATA.getCount() < 10) {
-						if (selectedCount.get() == 6) {
-							for (int i = 0; i < selectNum.length; i++) {
-								if (selectNum[i].isSelected()) {
-									System.out.println("값저장 ");
-									selectList.add(i);
-								}
+			addButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (selectedCount.get()==6) {
+						List<Integer> selectList = new ArrayList<>();
+						for (int i = 0; i < selectNum.length; i++) {
+							if (selectNum[i].isSelected()) {
+								selectList.add(i);
 
 							}
-
 						}
-
-					}
-
-				}
-				System.out.println(selectList);
-				if (autoCount == 6)
-					isAuto = 1;
-				if (0 < autoCount && autoCount < 6)
-					isAuto = 2;
-				if (autoCount == 0)
-					isAuto = 3;
-				if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
-					if (SELECT_NUM_DATA.getCount() < 10) {
-
-						if (selectedCount.get() == 6) {
-							SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
-
-						}
+						autoCountCheck();
+						
+						BuyPage.SELECT_NUM_DATA.addSelectNum(selectList, isAuto);
+						showSelectNum();
+						showCurrentCountPrice();
 					}
 				}
-				System.out.println(SELECT_NUM_DATA);
-				
+				private void autoCountCheck() {
+					if (autoCount == 6)
+						isAuto = 1;
+					if (0 < autoCount && autoCount < 6)
+						isAuto = 2;
+					if (autoCount == 0)
+						isAuto = 3;
 				
 			}
 
@@ -178,8 +162,7 @@ public class BuyPage extends JDialog {
 	}
 
 	private void showSelectNum() {
-		Collection<Integer> set = SELECT_NUM_DATA.getLastMap().getSelectNum();
-		List<Integer> sortedList = new ArrayList<>(set);
+		List<Integer> sortedList = (List<Integer>) SELECT_NUM_DATA.getLastSelectNum().getSelectNum();
 		Collections.sort(sortedList);
 		System.out.println(sortedList);
 		for (int i = 0; i < sortedList.size(); i++) {
@@ -363,6 +346,19 @@ public class BuyPage extends JDialog {
 
 	public void resetCount() {
 		count = 0;
+	}
+	private void showCurrentCountPrice() {
+		int addCount = SELECT_NUM_DATA.getSelectNumData().size();
+		String currentCount = "현재 : " + addCount + "개";
+		System.out.println(currentCount);
+		
+		Font customFont = fontData.nanumFont25();
+		Color customColor = Color.WHITE;
+		
+		JLabel currentCountLabel = new JLabel("0개");
+		currentCountLabel.setText(currentCount);
+		currentCountLabel.setFont(customFont);
+		currentCountLabel.setForeground(customColor);
 	}
 
 	

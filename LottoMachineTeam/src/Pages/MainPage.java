@@ -231,7 +231,6 @@ public class MainPage extends JFrame {
 					curruntTurnString = currentRound+"회";
 					curruntTurnLabel.setText(curruntTurnString);
 					BuyPage.PAYMENT_NUM_DATA.clearData();
-					BuyPage.SELECT_NUM_DATA.resetCount();
 					System.out.println(currentRound);
 					
 				}
