@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import utility.Utility;
+
 public class BuyErrorPage extends JDialog {
 	private JButton returnBtn;
 	private ImageIcon buyErrorPage;
@@ -14,6 +16,7 @@ public class BuyErrorPage extends JDialog {
 	private JLayeredPane layeredPane;
 	private JLabel buyErrorPageLabel;
 	private MainPage mainPage;
+	private Utility utility = new Utility();
 	/**
 	 * Create the frame.
 	 */
@@ -33,7 +36,7 @@ public class BuyErrorPage extends JDialog {
 		addLayeredPane2();
 
 		// 버튼 숨기기
-		btnUnVisuable();
+		utility.setButtonProperties(returnBtn);
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
@@ -76,15 +79,6 @@ public class BuyErrorPage extends JDialog {
 		returnBtn = new JButton(returnIcon);
 		returnBtn.setBounds(161, 458, 107, 41);
 
-	}
-
-	private void btnUnVisuable() {
-		returnBtn.setOpaque(false);
-		returnBtn.setContentAreaFilled(false);
-		returnBtn.setBorderPainted(false);
-	}
-	public void name() {
-		
 	}
 }
 

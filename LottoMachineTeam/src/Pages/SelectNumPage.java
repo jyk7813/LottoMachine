@@ -1,6 +1,8 @@
 package Pages;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,10 +17,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.SwingConstants;
 
 import database.PaymentNum;
 import database.SelectNum;
 import database.SelectNumData;
+import utility.FontData;
 import utility.IconData;
 import utility.Utility;
 
@@ -36,6 +40,7 @@ public class SelectNumPage extends JDialog {
 	private List<Integer> selectList;
 	private IconData iconData = new IconData();
 	public BuyPage buyPage = new BuyPage();
+	private FontData fontData = new FontData();
 	
 	private void iconChange() {
 	    for (int i = 0; i < numLabels.length; i++) {
@@ -71,7 +76,7 @@ public class SelectNumPage extends JDialog {
 		ImageIcon buyIcon = new ImageIcon(getClass().getClassLoader().getResource("buyBtn.png"));
 		ImageIcon numIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
 		ImageIcon cancleBtn = new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
-
+		
 		numLabels = new JLabel[10][6];
 		keyLabels = new JLabel[10];
 		JButton[] cancelButton = new JButton[10];
@@ -127,7 +132,7 @@ public class SelectNumPage extends JDialog {
 		for (int i = 0; i < keyLabels.length; i++) {
 		    int y = 117 + i * 70;
 		    keyLabels[i].setBounds(10, y, 40, 40);
-		    keyLabels[i].setText(String.valueOf(i + 1));
+		    keyLabels[i].setText(String.valueOf(i + 1 +"."));
 		}
 
 		for (int i = 0; i < keyLabels.length; i++) {
@@ -143,7 +148,17 @@ public class SelectNumPage extends JDialog {
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
-
+		
+		// 폰트 변경
+		Font customFont = fontData.nanumFont18();
+		Color customColor = Color.WHITE;
+		for (int i = 0; i < keyLabels.length; i++) {
+			keyLabels[i].setFont(customFont);
+			keyLabels[i].setForeground(customColor);
+			keyLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
+			
+		}
+		
 		// 버튼숨기기
 		utility.setButtonProperties(backButton);
 		utility.setButtonProperties(buyButton);
