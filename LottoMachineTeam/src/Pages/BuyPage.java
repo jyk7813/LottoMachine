@@ -49,6 +49,8 @@ public class BuyPage extends JDialog {
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
 	private FontData fontData = new FontData();
+	private int addCount;
+	private String currentCount;
 	/**
 	 * Create the frame.
 	 */
@@ -78,11 +80,12 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
+		addCount = SELECT_NUM_DATA.getSelectNumHashMap().size();
 		
 		if (SELECT_NUM_DATA.getLastKey() != -1) {
 			showSelectNum();
 		}
-		
+		countLabel();
 			addButton.addActionListener(new ActionListener() {
 				
 				@Override
@@ -317,8 +320,8 @@ public class BuyPage extends JDialog {
 		count = 0;
 	}
 	private void showCurrentCountPrice() {
-		int addCount = SELECT_NUM_DATA.getSelectNumHashMap().size();
-		String currentCount = "현재 : " + addCount + "개";
+		addCount = SELECT_NUM_DATA.getSelectNumHashMap().size();
+		currentCount = addCount + "개";
 		System.out.println(currentCount);
 		
 		Font customFont = fontData.nanumFont25();
@@ -328,6 +331,17 @@ public class BuyPage extends JDialog {
 		currentCountLabel.setText(currentCount);
 		currentCountLabel.setFont(customFont);
 		currentCountLabel.setForeground(customColor);
+		currentCountLabel.setBounds(357, 199, 40, 40);
+	}
+	private void countLabel() {
+		Font customFont = fontData.nanumFont25();
+		Color customColor = Color.WHITE;
+		
+		JLabel currentCountLabel = new JLabel("0개");
+		currentCountLabel.setText(currentCount);
+		currentCountLabel.setFont(customFont);
+		currentCountLabel.setForeground(customColor);
+		currentCountLabel.setBounds(357, 199, 40, 40);
 	}
 
 }
