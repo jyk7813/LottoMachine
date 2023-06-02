@@ -13,7 +13,7 @@ public class FontData {
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
 
             // 폰트 크기 및 스타일 설정
-            Font customFont = font.deriveFont(Font.BOLD, 27);
+            Font customFont = font.deriveFont(Font.BOLD, 25);
             return customFont;
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
@@ -29,7 +29,7 @@ public class FontData {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, is);
 			
 			// 폰트 크기 및 스타일 설정
-			Font customFont = font.deriveFont(Font.BOLD, 27);
+			Font customFont = font.deriveFont(Font.BOLD, 18);
 			return customFont;
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();

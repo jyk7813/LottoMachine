@@ -1,7 +1,6 @@
 package Pages;
 
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,10 +14,10 @@ import java.util.stream.IntStream;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
 
 import java.awt.Color;
 
@@ -51,8 +50,11 @@ public class BuyPage extends JDialog {
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
 	private FontData fontData = new FontData();
-	private int addCount;
+	private int addCount = 0;
 	private String currentCount;
+	private JLabel currentCountLabel;
+	
+
 	/**
 	 * Create the frame.
 	 */
@@ -60,12 +62,14 @@ public class BuyPage extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
+		
 		// label만들기
 		makeLabel();
 		// 버튼만들기
 		makeButten();
 		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
+		layeredPane
+				.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
 		// 레이블 및 버튼 위치 설정
 		labelBounds();
 		// 레이블 및 버튼을 JLayeredPane에 추가
@@ -81,62 +85,81 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
+		
 		addCount = SELECT_NUM_DATA.getSelectNumHashMap().size();
+		currentCount = addCount + " 개";
+		System.out.println(currentCount);
+		
+		Font customFont = fontData.nanumFont25();
+		Color customColor = Color.BLACK;
+		
+		currentCountLabel = new JLabel(" 0개");
+		
+		currentCountLabel.setText(currentCount);
+		currentCountLabel.setFont(customFont);
+		currentCountLabel.setForeground(customColor);
+		
+		currentCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		currentCountLabel.setBounds(144, 13, 100, 100);
+		layeredPane.add(currentCountLabel, new Integer(3));
+		
+		
 		
 		if (SELECT_NUM_DATA.getLastKey() != -1) {
 			showSelectNum();
 		}
-		countLabel();
-			addButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					List<Integer> selectList = new ArrayList<Integer>();
-					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
-						System.out.println("size문제");
-						System.out.println(SELECT_NUM_DATA.getSelectNumHashMap().size());
-						System.out.println("getcount"+SELECT_NUM_DATA.getCount());
-						if (SELECT_NUM_DATA.getCount()<10) {
-							if (selectedCount.get() == 6) {
-								for (int i = 0; i < selectNum.length; i++) {
-									if (selectNum[i].isSelected()) {
-										System.out.println("값저장 ");
-										selectList.add(i);
-									}
-									
-								}
-								
-							}
-							
-						}
-						
-					}
-					System.out.println(selectList);
-					if (autoCount == 6)
-						isAuto = 1;
-					if (0 < autoCount && autoCount < 6)
-						isAuto = 2;
-					if (autoCount == 0)
-						isAuto = 3;
-					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
-						if (SELECT_NUM_DATA.getCount()<10) {
-							
-							if (selectedCount.get() == 6) {
-								SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
-								
-							}						
-						}
-					}
-					System.out.println(SELECT_NUM_DATA);
-					
-					showSelectNum();
-					showCurrentCountPrice();
-				}
-				
-			});
-			
 		
+		addButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addCount++;
+				List<Integer> selectList = new ArrayList<Integer>();
+				if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+					System.out.println("size문제");
+					System.out.println(SELECT_NUM_DATA.getSelectNumHashMap().size());
+					System.out.println("getcount" + SELECT_NUM_DATA.getCount());
+					if (SELECT_NUM_DATA.getCount() < 10) {
+						if (selectedCount.get() == 6) {
+							for (int i = 0; i < selectNum.length; i++) {
+								if (selectNum[i].isSelected()) {
+									System.out.println("값저장 ");
+									selectList.add(i);
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+				System.out.println(selectList);
+				if (autoCount == 6)
+					isAuto = 1;
+				if (0 < autoCount && autoCount < 6)
+					isAuto = 2;
+				if (autoCount == 0)
+					isAuto = 3;
+				if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+					if (SELECT_NUM_DATA.getCount() < 10) {
+
+						if (selectedCount.get() == 6) {
+							SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+
+						}
+					}
+				}
+				System.out.println(SELECT_NUM_DATA);
+				
+				
+			}
+
+		});
+		
+		
+
+
 		lbuyButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -148,7 +171,9 @@ public class BuyPage extends JDialog {
 
 			}
 		});
-
+		
+		
+		
 		pack();
 	}
 
@@ -193,7 +218,7 @@ public class BuyPage extends JDialog {
 		autoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (selectedCount.get()==6) {
+				if (selectedCount.get() == 6) {
 					for (JToggleButton toggleButton : selectNum) {
 						toggleButton.setSelected(false);
 						toggleButton.setIcon(null); // 선택이 해제되었으므로 아이콘도 초기화합니다.
@@ -335,32 +360,10 @@ public class BuyPage extends JDialog {
 		utility.setButtonProperties(backButton);
 		utility.setButtonProperties(cancleButton);
 	}
+
 	public void resetCount() {
 		count = 0;
 	}
-	private void showCurrentCountPrice() {
-		addCount = SELECT_NUM_DATA.getSelectNumHashMap().size();
-		currentCount = addCount + "개";
-		System.out.println(currentCount);
-		
-		Font customFont = fontData.nanumFont25();
-		Color customColor = Color.WHITE;
-		
-		JLabel currentCountLabel = new JLabel("0개");
-		currentCountLabel.setText(currentCount);
-		currentCountLabel.setFont(customFont);
-		currentCountLabel.setForeground(customColor);
-		currentCountLabel.setBounds(357, 199, 40, 40);
-	}
-	private void countLabel() {
-		Font customFont = fontData.nanumFont25();
-		Color customColor = Color.WHITE;
-		
-		JLabel currentCountLabel = new JLabel("0개");
-		currentCountLabel.setText(currentCount);
-		currentCountLabel.setFont(customFont);
-		currentCountLabel.setForeground(customColor);
-		currentCountLabel.setBounds(357, 199, 40, 40);
-	}
 
+	
 }
