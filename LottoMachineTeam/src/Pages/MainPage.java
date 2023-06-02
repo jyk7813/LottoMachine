@@ -114,7 +114,7 @@ public class MainPage extends JFrame {
 		addLayeredPan();
 	
 		
-		// JLayeredPane을 프레임의 contentPane에 추가
+		// JLayeredPane을 프레임의 contentPane에 추가a
 		setContentPane(layeredPane);
 	
 
