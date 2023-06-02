@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import utility.Utility;
+
 public class BuyCompletePage extends JDialog {
 	private JButton returnBtn;
 	private ImageIcon buyCompletePage;
@@ -13,6 +15,7 @@ public class BuyCompletePage extends JDialog {
 	private JLayeredPane layeredPane;
 	private JLabel buyCompletePageLabel;
 	private MainPage mainPage;
+	private Utility utility = new Utility();
 	/**
 	 * Create the frame.
 	 */
@@ -31,7 +34,7 @@ public class BuyCompletePage extends JDialog {
 		addLayeredPane2();
 
 		// 버튼 숨기기
-		btnUnVisuable();
+		utility.setButtonProperties(returnBtn);
 
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
@@ -74,14 +77,5 @@ public class BuyCompletePage extends JDialog {
 		returnBtn = new JButton(returnIcon);
 		returnBtn.setBounds(161, 458, 107, 41);
 
-	}
-
-	private void btnUnVisuable() {
-		returnBtn.setOpaque(false);
-		returnBtn.setContentAreaFilled(false);
-		returnBtn.setBorderPainted(false);
-	}
-	public void name() {
-		
 	}
 }
