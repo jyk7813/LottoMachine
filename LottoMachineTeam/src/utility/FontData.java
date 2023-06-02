@@ -37,5 +37,6 @@ public class FontData {
 			// 여기서는 null을 반환합니다.
 			return null;
 		}
+		
 	}
 }

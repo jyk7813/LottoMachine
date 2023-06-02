@@ -54,7 +54,7 @@ public class BuyPage extends JDialog {
 	private String currentCount;
 	private JLabel currentCountLabel;
 	private JLabel currentPriceLabel;
-	private int price = 0;
+	private int price;
 	private String currentPrice;
 	
 
@@ -89,12 +89,13 @@ public class BuyPage extends JDialog {
 		moreActionListener();
 		backActionListener();
 		addCount = SELECT_NUM_DATA.getSelectNumData().size();
-		price = PAYMENT_NUM_DATA.getPrice();
-
-		System.out.println(currentCount);
-		System.out.println(currentPrice);
-
+		//추가하기 버튼 클릭시 addCount(로또개수) 0이 아니면 해당연산을 수행한다.
+		if(addCount != 0) {
+			price = addCount * 10000;
+		}
+		//로또개수와 가격표시
 		showCurrentCountPrice();
+		//추가하기버튼 액션메소드
 		addBtnAction();
 		
 		
@@ -314,7 +315,7 @@ public class BuyPage extends JDialog {
 		Font customFont = fontData.nanumFont25();
 		Color customColor = Color.BLACK;
 		
-		Font customFontForPrice = fontData.nanumFont25();
+		Font customFontForPrice = fontData.nanumFont18();
 		Color customColorForPrice = Color.WHITE;
 		
 		currentCountLabel = new JLabel(addCount + " 개");
@@ -326,10 +327,10 @@ public class BuyPage extends JDialog {
 		currentCountLabel.setForeground(customColor);
 		currentPriceLabel.setForeground(customColorForPrice);
 		
-		currentCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		currentCountLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		currentPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		currentCountLabel.setBounds(144, 13, 100, 100);
+		currentCountLabel.setBounds(125, 13, 100, 100);
 		currentPriceLabel.setBounds(250, 13, 125, 100);
 		
 		layeredPane.add(currentCountLabel, new Integer(3));
@@ -341,8 +342,7 @@ public class BuyPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addCount++;
-				price = PAYMENT_NUM_DATA.getPrice();
-				price = addCount * 
+				price = addCount * 10000;
 				
 				currentCount = addCount + " 개";
 				currentPrice = price + " 원";
