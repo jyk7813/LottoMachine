@@ -38,22 +38,23 @@ public class SelectNumPage extends JDialog {
 	public BuyPage buyPage = new BuyPage();
 	
 	private void iconChange() {
-		for (int i = 0; i < 10; i++) {
-		    List<Integer> list = null;
-		    if (BuyPage.SELECT_NUM_DATA.getSelectNum(i) != null) {
-		        list = new ArrayList<>(BuyPage.SELECT_NUM_DATA.getSelectNum(i).getSelectNum());
-		    }
-		    for (int j = 0; j < 6; j++) {
-		        if (list != null && j < list.size() && list.get(j) < iconData.LCIcons().length && i < numLabels.length && j < numLabels[i].length) {
-		            numLabels[j][i].setIcon(iconData.LCIcons()[list.get(j)]);
-		        } else if (i < numLabels.length && j < numLabels[i].length) {
-		            numLabels[j][i].setIcon(null);
-		        }
-		    }
-		}
-
-
+	    for (int i = 0; i < numLabels.length; i++) {
+	        List<Integer> list = null;
+	        if (BuyPage.SELECT_NUM_DATA.getSelectNum(i) != null) {
+	            list = new ArrayList<>(BuyPage.SELECT_NUM_DATA.getSelectNum(i).getSelectNum());
+	        }
+	        for (int j = 0; j < numLabels[i].length; j++) {
+	            if (list != null && j < list.size() && list.get(j) < iconData.LCIcons().length) {
+	                numLabels[i][j].setIcon(iconData.LCIcons()[list.get(j)]);
+	            } else {
+	                numLabels[i][j].setIcon(null);
+	            }
+	        }
+	    }
 	}
+
+
+
 	
 	/**
 	 * Create the frame.
@@ -71,7 +72,7 @@ public class SelectNumPage extends JDialog {
 		ImageIcon numIcon = new ImageIcon(getClass().getClassLoader().getResource("emptyBtn.png"));
 		ImageIcon cancleBtn = new ImageIcon(getClass().getClassLoader().getResource("cancleBtn.png"));
 
-		numLabels = new JLabel[6][10];
+		numLabels = new JLabel[10][6];
 		keyLabels = new JLabel[10];
 		JButton[] cancelButton = new JButton[10];
 		
@@ -80,7 +81,7 @@ public class SelectNumPage extends JDialog {
 
 		for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장 Label
 			for (int j = 0; j < numLabels[i].length; j++) {
-				numLabels[i][j] = new JLabel();
+				numLabels[i][j] = new JLabel(iconData.emptyBtn());
 			}
 		}
 
@@ -113,7 +114,7 @@ public class SelectNumPage extends JDialog {
 
 		for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장소 위치
 			for (int j = 0; j < numLabels[i].length; j++) {
-				numLabels[i][j].setBounds(52 + i * 50, 117 + j * 70, 40, 40);
+				numLabels[i][j].setBounds(52 + j * 50, 117 + i * 70, 40, 40);
 			}
 		}
 
