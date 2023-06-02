@@ -51,18 +51,17 @@ public class BuyPage extends JDialog {
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
 	private FontData fontData = new FontData();
-	private int addCount = 0;
-	private String currentCount;
+	private int currentCount;
 	private JLabel currentCountLabel;
-
 	private JLabel currentPriceLabel;
-	private int price;
+	private final static int PRICE = 10000;
 	private String currentPrice;
 
 	/**
 	 * Create the frame.
 	 */
 	public BuyPage() {
+		currentCount = SELECT_NUM_DATA.getSelectNumData().size();
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
@@ -72,8 +71,22 @@ public class BuyPage extends JDialog {
 		// 버튼만들기
 		makeButten();
 		layeredPane = new JLayeredPane();
-		layeredPane
-				.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
+		layeredPane.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
+		
+		Font customFont = fontData.nanumFont18();
+		Font customFontForPrice = fontData.nanumFont18();
+		
+		Color customColor = Color.BLACK;
+		Color customColorForPrice = Color.WHITE;
+		
+		currentCountLabel.setFont(customFont);
+		currentPriceLabel.setFont(customFontForPrice);
+		
+		currentCountLabel.setForeground(customColor);
+		currentPriceLabel.setForeground(customColorForPrice);
+		
+		currentCountLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		currentPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		// 레이블 및 버튼 위치 설정
 		labelBounds();
 		// 레이블 및 버튼을 JLayeredPane에 추가
@@ -90,12 +103,7 @@ public class BuyPage extends JDialog {
 		moreActionListener();
 		backActionListener();
 
-		addCount = SELECT_NUM_DATA.getSelectNumData().size();
 
-		//추가하기 버튼 클릭시 addCount(로또개수) 0이 아니면 해당연산을 수행한다.
-		if(addCount != 0) {
-			price = addCount * 10000;
-		}
 		//로또개수와 가격표시
 		showCurrentCountPrice();
 		//추가하기버튼 액션메소드
@@ -125,7 +133,7 @@ public class BuyPage extends JDialog {
 				int index = SELECT_NUM_DATA.getLastIndex();
 				SELECT_NUM_DATA.removeSelectNumData(index);
 				showSelectNum();
-			
+				showCurrentCountPrice();
 			}
 		});
 
@@ -258,6 +266,8 @@ public class BuyPage extends JDialog {
 		layeredPane.add(moreButton, new Integer(2));
 		layeredPane.add(backButton, new Integer(2));
 		layeredPane.add(cancleButton, new Integer(2));
+		layeredPane.add(currentCountLabel, new Integer(3));
+		layeredPane.add(currentPriceLabel, new Integer(3));
 		
 		
 
@@ -279,6 +289,8 @@ public class BuyPage extends JDialog {
 		label.setBounds(0, 0, icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight());
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i].setBounds(52 + i * 50, 680, 40, 40);
+			currentCountLabel.setBounds(125, 13, 100, 100);
+			currentPriceLabel.setBounds(250, 13, 125, 100);
 
 		}
 
@@ -309,6 +321,8 @@ public class BuyPage extends JDialog {
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i] = new JLabel();
 		}
+		currentCountLabel = new JLabel(currentCount + "개");
+		currentPriceLabel = new JLabel(currentPrice + " 원");
 
 	}
 
@@ -322,69 +336,32 @@ public class BuyPage extends JDialog {
 		utility.setButtonProperties(cancleButton);
 	}
 
-	public void resetCount() {
-		count = 0;
-	}
 
 	private void showCurrentCountPrice() {
-		String currentCount = addCount + "개";
-		System.out.println(currentCount);
-
-		Font customFont = fontData.nanumFont25();
-		Color customColor = Color.BLACK;
-		
-		Font customFontForPrice = fontData.nanumFont18();
-		Color customColorForPrice = Color.WHITE;
-		
-		currentCountLabel = new JLabel(addCount + " 개");
-		currentPriceLabel = new JLabel(price + " 원");
-		
-
-		currentCountLabel = new JLabel("0개");
-		currentCountLabel.setText(currentCount);
-
-		currentCountLabel.setFont(customFont);
-		currentPriceLabel.setFont(customFontForPrice);
-		
-		currentCountLabel.setForeground(customColor);
-		currentPriceLabel.setForeground(customColorForPrice);
-		
-		currentCountLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		currentPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		currentCountLabel.setBounds(125, 13, 100, 100);
-		currentPriceLabel.setBounds(250, 13, 125, 100);
-		
-		layeredPane.add(currentCountLabel, new Integer(3));
-		layeredPane.add(currentPriceLabel, new Integer(3));
+		System.out.println("진입");
+		currentCount = SELECT_NUM_DATA.getSelectNumData().size();
+		currentCountLabel.setText(currentCount + "개");
+		currentPriceLabel.setText(currentCount*10000 + "원");
+		System.out.println("세팅함");
 	}
 	public void addBtnAction() {
 		addButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				addCount++;
-				price = addCount * 10000;
-				
-				currentCount = addCount + " 개";
-				currentPrice = price + " 원";
-				
-				currentCountLabel.setText(currentCount);
-				currentPriceLabel.setText(currentPrice);
 				
 				if (selectedCount.get()==6) {
 					List<Integer> selectList = new ArrayList<>();
 					for (int i = 0; i < selectNum.length; i++) {
 						if (selectNum[i].isSelected()) {
 							selectList.add(i);
-
-
 						}
 					}
 					autoCountCheck();
 					
 					BuyPage.SELECT_NUM_DATA.addSelectNum(selectList, isAuto);
 					showSelectNum();
+					showCurrentCountPrice();
 				}
 			}
 			private void autoCountCheck() {
