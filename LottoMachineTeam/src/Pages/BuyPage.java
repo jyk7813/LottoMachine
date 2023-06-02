@@ -12,6 +12,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -130,12 +131,18 @@ public class BuyPage extends JDialog {
 		pack();
 	}
 	private void showSelectNum() {
-		List<Integer> sortedList = (List<Integer>) SELECT_NUM_DATA.getLastSelectNum().getSelectNum();
-		Collections.sort(sortedList);
-		System.out.println(sortedList);
-		for (int i = 0; i < sortedList.size(); i++) {
-			int element = sortedList.get(i);
-			selectEmptyJLabels[i].setIcon(icon.LCIcons()[element]);
+		if (SELECT_NUM_DATA.getLastSelectNum() == null) {
+			for (int i = 0; i < selectEmptyJLabels.length; i++) {
+				selectEmptyJLabels[i].setIcon(null);
+			}
+		}else {
+			List<Integer> sortedList = (List<Integer>) SELECT_NUM_DATA.getLastSelectNum().getSelectNum();
+			Collections.sort(sortedList);
+			System.out.println(sortedList);
+			for (int i = 0; i < sortedList.size(); i++) {
+				int element = sortedList.get(i);
+				selectEmptyJLabels[i].setIcon(icon.LCIcons()[element]);
+			}
 		}
 
 	}
