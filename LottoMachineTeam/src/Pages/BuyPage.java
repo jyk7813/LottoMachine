@@ -51,7 +51,7 @@ public class BuyPage extends JDialog {
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	public static final PaymentNumData PAYMENT_NUM_DATA = new PaymentNumData();
 	private FontData fontData = new FontData();
-	private int addCount = 0;
+	private int addCount;
 	private String currentCount;
 	private JLabel currentCountLabel;
 
@@ -89,8 +89,6 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
-
-		addCount = SELECT_NUM_DATA.getSelectNumData().size();
 
 		//추가하기 버튼 클릭시 addCount(로또개수) 0이 아니면 해당연산을 수행한다.
 		if(addCount != 0) {
@@ -338,9 +336,7 @@ public class BuyPage extends JDialog {
 		
 		currentCountLabel = new JLabel(addCount + " 개");
 		currentPriceLabel = new JLabel(price + " 원");
-		
 
-		currentCountLabel = new JLabel("0개");
 		currentCountLabel.setText(currentCount);
 
 		currentCountLabel.setFont(customFont);
@@ -366,9 +362,9 @@ public class BuyPage extends JDialog {
 				addCount++;
 				price = addCount * 10000;
 				
-				currentCount = addCount + " 개";
-				currentPrice = price + " 원";
-				
+//				currentCount = addCount + " 개";
+//				currentPrice = price + " 원";
+//				
 				currentCountLabel.setText(currentCount);
 				currentPriceLabel.setText(currentPrice);
 				
