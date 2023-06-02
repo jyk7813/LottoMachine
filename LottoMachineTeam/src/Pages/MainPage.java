@@ -32,7 +32,7 @@ public class MainPage extends JFrame {
 	
 	private IconData iconData = new IconData();
 	private Utility utility = new Utility();
-	private JButton buyButton;
+	private JButton buyButton; 
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
