@@ -124,18 +124,10 @@ public class SelectNumPage extends JDialog {
 		}
 
 		for (int i = 0; i < keyLabels.length; i++) {
-			keyLabels[i].setBounds(10, 117 + i * 70, 40, 40);
+		    int y = 117 + i * 70;
+		    keyLabels[i].setBounds(10, y, 40, 40);
+		    keyLabels[i].setText(String.valueOf(i + 1));
 		}
-		keyLabels[0].setText("1");
-		keyLabels[1].setText("2");
-		keyLabels[2].setText("3");
-		keyLabels[3].setText("4");
-		keyLabels[4].setText("5");
-		keyLabels[5].setText("6");
-		keyLabels[6].setText("7");
-		keyLabels[7].setText("8");
-		keyLabels[8].setText("9");
-		keyLabels[9].setText("10");
 
 		for (int i = 0; i < keyLabels.length; i++) {
 			layeredPane.add(keyLabels[i], new Integer(2));
@@ -185,15 +177,6 @@ public class SelectNumPage extends JDialog {
 			}
 		});
 		pack();
-		for (int i = 0; i < cancelButton.length; i++) {
-			cancelButton[i].addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-				}
-			});
-		}
 		
 		for (int i = 0; i < cancelButton.length; i++) {
 			cancelButton[i].addActionListener(new ActionListener() {
@@ -205,9 +188,8 @@ public class SelectNumPage extends JDialog {
 					while (bringKey.hasNext()) {
 						Integer change = bringKey.next();
 						map.remove(change);
-						System.out.println(SELECT_NUM_DATA);
+						break;
 					}
-					
 				}
 			});
 		}
