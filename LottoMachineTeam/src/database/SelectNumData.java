@@ -50,6 +50,9 @@ public class SelectNumData {
 	    return !selectNumList.isEmpty() ? selectNumList.size()-1 : -1;
 	}
 	public SelectNum getLastSelectNum() {
+		if (getLastIndex()==-1) {
+			return null;
+		}
 		return selectNumList.get(getLastIndex());
 	}
 	public SelectNum getSelectNum(int index) {
