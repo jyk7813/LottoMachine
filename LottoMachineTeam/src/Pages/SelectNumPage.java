@@ -205,8 +205,9 @@ public class SelectNumPage extends JDialog {
 					while (bringKey.hasNext()) {
 						Integer change = bringKey.next();
 						map.remove(change);
-						System.out.println(SELECT_NUM_DATA);
+						break;						
 					}
+					
 					
 				}
 			});
