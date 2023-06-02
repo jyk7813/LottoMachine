@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import Pages.BuyErrorPage;
+import Pages.BuyLimitPage;
 import Pages.BuyPage;
 
 public class SelectNumData {
@@ -24,6 +26,10 @@ public class SelectNumData {
 			selectNumList.add(selectNum);
 		}else {
 			System.out.println("데이터를 더이상 저장할 수 없습니다.");
+			
+			BuyLimitPage buyLimitPage = new BuyLimitPage();
+			buyLimitPage.setAlwaysOnTop(true);
+			buyLimitPage.setVisible(true);
 		}
 	}
 
