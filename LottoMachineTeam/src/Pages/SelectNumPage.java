@@ -177,15 +177,6 @@ public class SelectNumPage extends JDialog {
 			}
 		});
 		pack();
-		for (int i = 0; i < cancelButton.length; i++) {
-			cancelButton[i].addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-				}
-			});
-		}
 		
 		for (int i = 0; i < cancelButton.length; i++) {
 			cancelButton[i].addActionListener(new ActionListener() {
