@@ -93,9 +93,8 @@ public class BuyPage extends JDialog {
 		Font customFont = fontData.nanumFont25();
 		Color customColor = Color.BLACK;
 		
-		currentCountLabel = new JLabel(" 0개");
+		currentCountLabel = new JLabel(currentCount);
 		
-		currentCountLabel.setText(currentCount);
 		currentCountLabel.setFont(customFont);
 		currentCountLabel.setForeground(customColor);
 		
@@ -156,7 +155,8 @@ public class BuyPage extends JDialog {
 			}
 
 		});
-		
+		currentCount = addCount + " 개";
+		currentCountLabel.setText(currentCount);
 		
 
 
