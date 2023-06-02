@@ -113,6 +113,10 @@ public class BuyPage extends JDialog {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					addCount++;
+					currentCount = addCount + " 개";
+					currentCountLabel.setText(currentCount);
+					
 					if (selectedCount.get()==6) {
 						List<Integer> selectList = new ArrayList<>();
 						for (int i = 0; i < selectNum.length; i++) {
