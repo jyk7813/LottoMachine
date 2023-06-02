@@ -85,7 +85,7 @@ public class BuyPage extends JDialog {
 		currentCountLabel.setForeground(customColor);
 		currentPriceLabel.setForeground(customColorForPrice);
 
-		currentCountLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		currentCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		currentPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		// 레이블 및 버튼 위치 설정
 		labelBounds();
@@ -285,7 +285,7 @@ public class BuyPage extends JDialog {
 		label.setBounds(0, 0, icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight());
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i].setBounds(52 + i * 50, 680, 40, 40);
-			currentCountLabel.setBounds(125, 13, 100, 100);
+			currentCountLabel.setBounds(105, 13, 100, 100);
 			currentPriceLabel.setBounds(250, 13, 125, 100);
 
 		}
