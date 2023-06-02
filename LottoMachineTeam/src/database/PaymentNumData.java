@@ -8,6 +8,7 @@ public class PaymentNumData {
 	//나의결제 개수의 Key값,선택번호와 자동인지확인하는 번호인 [] value값
 	Collection<PaymentNum> paymentset = new HashSet<>();
 	 private final static int MAX_SIZE = 10;
+	 private int price = 0;
 	
 	/**
 	 * 외부로부터 보호하면서 읽기전용으로 접근만 가능함
@@ -47,6 +48,9 @@ public class PaymentNumData {
 	@Override
 	public String toString() {
 		return "PaymentNumData [paymentset=" + paymentset + "]";
+	}
+	public int getPrice() {
+		return price;
 	}
 
 

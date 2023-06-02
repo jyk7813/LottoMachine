@@ -53,6 +53,9 @@ public class BuyPage extends JDialog {
 	private int addCount = 0;
 	private String currentCount;
 	private JLabel currentCountLabel;
+	private JLabel currentPriceLabel;
+	private int price = 0;
+	private String currentPrice;
 	
 
 	/**
@@ -85,69 +88,23 @@ public class BuyPage extends JDialog {
 		autoActionListener();
 		moreActionListener();
 		backActionListener();
-		
-		
 		addCount = SELECT_NUM_DATA.getSelectNumData().size();
-		currentCount = addCount + " 개";
+		price = PAYMENT_NUM_DATA.getPrice();
+
 		System.out.println(currentCount);
-		
-		Font customFont = fontData.nanumFont25();
-		Color customColor = Color.BLACK;
-		
-		currentCountLabel = new JLabel(currentCount);
-		
-		currentCountLabel.setFont(customFont);
-		currentCountLabel.setForeground(customColor);
-		
-		currentCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		currentCountLabel.setBounds(144, 13, 100, 100);
-		layeredPane.add(currentCountLabel, new Integer(3));
-		
+		System.out.println(currentPrice);
+
+		showCurrentCountPrice();
+		addBtnAction();
 		
 		
 		if (SELECT_NUM_DATA.getLastIndex() != -1) {
 			showSelectNum();
 		}
 		
-			addButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					addCount++;
-					currentCount = addCount + " 개";
-					currentCountLabel.setText(currentCount);
-					
-					if (selectedCount.get()==6) {
-						List<Integer> selectList = new ArrayList<>();
-						for (int i = 0; i < selectNum.length; i++) {
-							if (selectNum[i].isSelected()) {
-								selectList.add(i);
-
-							}
-						}
-						autoCountCheck();
-						
-						BuyPage.SELECT_NUM_DATA.addSelectNum(selectList, isAuto);
-						showSelectNum();
-						showCurrentCountPrice();
-					}
-				}
-				private void autoCountCheck() {
-					if (autoCount == 6)
-						isAuto = 1;
-					if (0 < autoCount && autoCount < 6)
-						isAuto = 2;
-					if (autoCount == 0)
-						isAuto = 3;
-				
-			}
-
-		});
-		currentCount = addCount + " 개";
-		currentCountLabel.setText(currentCount);
+			
+			
 		
-
-
 		lbuyButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -286,6 +243,8 @@ public class BuyPage extends JDialog {
 		layeredPane.add(moreButton, new Integer(2));
 		layeredPane.add(backButton, new Integer(2));
 		layeredPane.add(cancleButton, new Integer(2));
+		
+		
 
 		for (int i = 0; i < selectNum.length; i++) {
 			selectNum[i] = new JToggleButton();
@@ -352,18 +311,70 @@ public class BuyPage extends JDialog {
 		count = 0;
 	}
 	private void showCurrentCountPrice() {
-		int addCount = SELECT_NUM_DATA.getSelectNumData().size();
-		String currentCount = "현재 : " + addCount + "개";
-		System.out.println(currentCount);
-		
 		Font customFont = fontData.nanumFont25();
-		Color customColor = Color.WHITE;
+		Color customColor = Color.BLACK;
 		
-		JLabel currentCountLabel = new JLabel("0개");
-		currentCountLabel.setText(currentCount);
+		Font customFontForPrice = fontData.nanumFont25();
+		Color customColorForPrice = Color.WHITE;
+		
+		currentCountLabel = new JLabel(addCount + " 개");
+		currentPriceLabel = new JLabel(price + " 원");
+		
 		currentCountLabel.setFont(customFont);
+		currentPriceLabel.setFont(customFontForPrice);
+		
 		currentCountLabel.setForeground(customColor);
+		currentPriceLabel.setForeground(customColorForPrice);
+		
+		currentCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		currentPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		currentCountLabel.setBounds(144, 13, 100, 100);
+		currentPriceLabel.setBounds(250, 13, 125, 100);
+		
+		layeredPane.add(currentCountLabel, new Integer(3));
+		layeredPane.add(currentPriceLabel, new Integer(3));
 	}
+	public void addBtnAction() {
+		addButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addCount++;
+				price = PAYMENT_NUM_DATA.getPrice();
+				price = addCount * 
+				
+				currentCount = addCount + " 개";
+				currentPrice = price + " 원";
+				
+				currentCountLabel.setText(currentCount);
+				currentPriceLabel.setText(currentPrice);
+				
+				if (selectedCount.get()==6) {
+					List<Integer> selectList = new ArrayList<>();
+					for (int i = 0; i < selectNum.length; i++) {
+						if (selectNum[i].isSelected()) {
+							selectList.add(i);
 
+						}
+					}
+					autoCountCheck();
+					
+					BuyPage.SELECT_NUM_DATA.addSelectNum(selectList, isAuto);
+					showSelectNum();
+				}
+			}
+			private void autoCountCheck() {
+				if (autoCount == 6)
+					isAuto = 1;
+				if (0 < autoCount && autoCount < 6)
+					isAuto = 2;
+				if (autoCount == 0)
+					isAuto = 3;
+			
+		}
+
+	});
+	}
 	
 }
