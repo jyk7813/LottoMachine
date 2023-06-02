@@ -33,8 +33,27 @@ public class SelectNumPage extends JDialog {
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
 	private List<Integer> selectList;
 	private IconData iconData = new IconData();
-	BuyPage buyPage = new BuyPage();
-
+	public BuyPage buyPage = new BuyPage();
+	
+	private void iconChange() {
+		Map<Integer, SelectNum> map = BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();
+	      Set<Integer> set = map.keySet();
+	      Iterator<Integer> hh = set.iterator();
+	      int num2 = 0;
+	      while (hh.hasNext()) {
+	         Collection<Integer> selNum = map.get(hh.next()).getSelectNum();
+	         Iterator<Integer> hhh = selNum.iterator();
+	         int num = 0;
+	         while (hhh.hasNext()) {
+	            Integer putNum = hhh.next();
+	            
+	            numLabels[num][num2].setIcon(iconData.LCIcons()[putNum]);
+	            num++;
+	         }
+	         num2++;
+	      }		
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -61,7 +80,7 @@ public class SelectNumPage extends JDialog {
 
 		for (int i = 0; i < numLabels.length; i++) { // 로또 번호 저장 Label
 			for (int j = 0; j < numLabels[i].length; j++) {
-				numLabels[i][j] = new JLabel(numIcon);
+				numLabels[i][j] = new JLabel();
 			}
 		}
 
@@ -140,16 +159,6 @@ public class SelectNumPage extends JDialog {
 		}
 
 		// 버튼 ActionListener
-		cancelButton[0].addActionListener(new ActionListener() {
-			Map<Integer, SelectNum> map2 = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-
 		backButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -176,7 +185,32 @@ public class SelectNumPage extends JDialog {
 			}
 		});
 		pack();
-
+		for (int i = 0; i < cancelButton.length; i++) {
+			cancelButton[i].addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					BuyPage.SELECT_NUM_DATA.getSelectNumHashMap();
+				}
+			});
+		}
+		
+		for (int i = 0; i < cancelButton.length; i++) {
+			cancelButton[i].addActionListener(new ActionListener() {
+				Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
+				Set<Integer> set = map.keySet();
+				Iterator<Integer> bringKey = set.iterator();
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					while (bringKey.hasNext()) {
+						Integer change = bringKey.next();
+						map.remove(change);
+						System.out.println(SELECT_NUM_DATA);
+					}
+					
+				}
+			});
+		}
 	}
 
 	// 자동 여부
@@ -189,23 +223,5 @@ public class SelectNumPage extends JDialog {
 			return MANUAL;
 		return -1;
 	}
-
-	private void iconChange() {
-		Map<Integer, SelectNum> map = buyPage.SELECT_NUM_DATA.getSelectNumHashMap();
-	      Set<Integer> set = map.keySet();
-	      Iterator<Integer> hh = set.iterator();
-	      int num2 = 0;
-	      while (hh.hasNext()) {
-	         Collection<Integer> selNum = map.get(hh.next()).getSelectNum();
-	         Iterator<Integer> hhh = selNum.iterator();
-	         int num = 0;
-	         while (hhh.hasNext()) {
-	            Integer putNum = hhh.next();
-	            
-	            numLabels[num][num2].setIcon(iconData.LCIcons()[putNum]);
-	            num++;
-	         }
-	         num2++;
-	      }		
-	}
+	
 }

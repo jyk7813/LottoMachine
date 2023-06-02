@@ -26,6 +26,7 @@ public class SelectNumData {
 	
 	public void removeSelectNumHashMAp(int key) {
 		selectNumHashMap.remove(key);
+		count--;
 	}
 
 	public Set<Integer> getKey() {
@@ -60,5 +61,8 @@ public class SelectNumData {
 	}
 	public void resetCount() {
 		count = 0;
+	}
+	public void minusCount() {
+		count--;
 	}
 }

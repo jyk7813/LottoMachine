@@ -5,22 +5,22 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class PaymentNum {
-	Integer[] paymentNum;
+	Integer[] Num;
 	int autoStat;
 	SelectNumData numData;
 	
 	public PaymentNum(Integer[] array, int autoValue) {
-		this.paymentNum = array;
+		this.Num = array;
 		this.autoStat = autoValue;
 	}
-	public Integer[] getPaymentNum() {
-		return paymentNum;
+	public Integer[] getNum() {
+		return Num;
 	}
 	public int getAutoStat() {
 		return autoStat;
 	}
 	public Collection<Integer> getPaymentNumCollection() {
-        return Collections.unmodifiableCollection(Arrays.asList(paymentNum));
+        return Collections.unmodifiableCollection(Arrays.asList(Num));
     }
 
 	public SelectNumData getNumberData() {
@@ -29,7 +29,7 @@ public class PaymentNum {
 
 	@Override
 	public String toString() {
-		return "PaymentNum [selectNum=" + Arrays.toString(paymentNum) + ", autoStat=" + autoStat + "]";
+		return "PaymentNum [paymentNum=" + Arrays.toString(Num) + ", autoStat=" + autoStat + "]";
 	}
 	public void name() {
 		

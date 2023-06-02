@@ -1,6 +1,7 @@
 package Pages;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import java.util.stream.IntStream;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JToggleButton;
@@ -63,8 +65,7 @@ public class BuyPage extends JDialog {
 		// 버튼만들기
 		makeButten();
 		layeredPane = new JLayeredPane();
-		layeredPane
-				.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
+		layeredPane.setPreferredSize(new Dimension(icon.buyPageIcon().getIconWidth(), icon.buyPageIcon().getIconHeight()));
 		// 레이블 및 버튼 위치 설정
 		labelBounds();
 		// 레이블 및 버튼을 JLayeredPane에 추가
@@ -92,12 +93,18 @@ public class BuyPage extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					
 					List<Integer> selectList = new ArrayList<Integer>();
-					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10 && SELECT_NUM_DATA.getCount()<10) {
-						if (selectedCount.get() == 6) {
-							for (int i = 0; i < selectNum.length; i++) {
-								if (selectNum[i].isSelected()) {
-									System.out.println("값저장 ");
-									selectList.add(i);
+					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+						System.out.println("size문제");
+						System.out.println(SELECT_NUM_DATA.getSelectNumHashMap().size());
+						System.out.println("getcount"+SELECT_NUM_DATA.getCount());
+						if (SELECT_NUM_DATA.getCount()<10) {
+							if (selectedCount.get() == 6) {
+								for (int i = 0; i < selectNum.length; i++) {
+									if (selectNum[i].isSelected()) {
+										System.out.println("값저장 ");
+										selectList.add(i);
+									}
+									
 								}
 								
 							}
@@ -112,11 +119,14 @@ public class BuyPage extends JDialog {
 						isAuto = 2;
 					if (autoCount == 0)
 						isAuto = 3;
-					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10&& SELECT_NUM_DATA.getCount()<10) {
-						if (selectedCount.get() == 6) {
-							SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+					if (SELECT_NUM_DATA.getSelectNumHashMap().size() < 10) {
+						if (SELECT_NUM_DATA.getCount()<10) {
 							
-						}						
+							if (selectedCount.get() == 6) {
+								SELECT_NUM_DATA.addSelectNumHashMap(selectList, isAuto);
+								
+							}						
+						}
 					}
 					System.out.println(SELECT_NUM_DATA);
 					
@@ -183,6 +193,15 @@ public class BuyPage extends JDialog {
 		autoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (selectedCount.get()==6) {
+					for (JToggleButton toggleButton : selectNum) {
+						toggleButton.setSelected(false);
+						toggleButton.setIcon(null); // 선택이 해제되었으므로 아이콘도 초기화합니다.
+					}
+					// 선택한 버튼 수도 초기화해야 합니다.
+					selectedCount.set(0);
+					autoCount = 0;
+				}
 				int[] num = new int[6 - selectedCount.get()];
 				int i = 0;
 				autoCount = 0;

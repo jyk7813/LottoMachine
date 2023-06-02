@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,6 +29,7 @@ import utility.Utility;
 public class MainPage extends JFrame {
 
 	public static final WinningNumData WINNING_NUM_DATA = new WinningNumData();
+	
 	private IconData iconData = new IconData();
 	private Utility utility = new Utility();
 	private JButton buyButton;
@@ -43,7 +45,6 @@ public class MainPage extends JFrame {
 	private JLabel curruntTurnLabel;
 	private String lastTurnString;
 	private String curruntTurnString;
-	private BuyPage buyPage = new BuyPage();
 	private FontData fontData = new FontData();
 	
 	
@@ -213,6 +214,7 @@ public class MainPage extends JFrame {
 		        WinningNumPage winningNumPage = new WinningNumPage();
 		        winningNumPage.setVisible(true);
 		        }
+		        nextBtnActivate();
 		    }
 		});
 	}
@@ -228,13 +230,14 @@ public class MainPage extends JFrame {
 					currentRound++;
 					curruntTurnString = currentRound+"회";
 					curruntTurnLabel.setText(curruntTurnString);
-					buyPage.PAYMENT_NUM_DATA.clearData();
-					buyPage.SELECT_NUM_DATA.resetCount();
+					BuyPage.PAYMENT_NUM_DATA.clearData();
+					BuyPage.SELECT_NUM_DATA.resetCount();
 					System.out.println(currentRound);
 					
 				}
 				buyButton.setIcon(iconData.buyIcon());
 				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
+				
 			}
 			
 		});
@@ -280,7 +283,16 @@ public class MainPage extends JFrame {
 		myNumButton.setBounds(30, 780, 111, 36);
 		makeLotteryButton = new JButton(iconData.makeLotteryIcon());
 		makeLotteryButton.setBounds(160, 780, 111, 36);
-		nextTurnButton = new JButton(iconData.nextTurnIcon());
+		nextTurnButton = new JButton(iconData.nextGrayTurnIcon());
 		nextTurnButton.setBounds(290, 780, 111, 36);
+	}
+	private void nextBtnActivate() {
+		if (WINNING_NUM_DATA.getLastTurn()!= currentRound) {
+			System.out.println("추첨 해야함 ");
+			nextTurnButton.setIcon(iconData.nextGrayTurnIcon());
+		} else {
+			System.out.println("추첨 안해도 됨");
+			nextTurnButton.setIcon(iconData.nextTurnIcon());
+		}
 	}
 }

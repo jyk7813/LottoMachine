@@ -4,7 +4,10 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.PaymentNum;
+import database.PaymentNumData;
 import database.SelectNum;
 import database.SelectNumData;
 import utility.IconData;
@@ -106,26 +110,48 @@ public class MyNumCheckPage extends JDialog {
 	}
 	private void showPaymentNum() {
 	    System.out.println("진입 showPaymentNum ");
-	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-	        Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
-	        System.out.println(key);
-	        Integer i = 0;
-	        for (Integer integer : paymentNum) {
-	                lottoNum2[i][key - 1].setIcon(iconData.SIcons()[integer]);
-	            i++;
-	            System.out.println(integer);
-	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
-	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
-	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
-	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
-	        }
-	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
-	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
-	        }
-
-	    }
+	    Set<PaymentNum> set = new HashSet(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
+	    Iterator<PaymentNum> iterator =  set.iterator();
+	    int count = 0;
+	    while (iterator.hasNext()) {
+			PaymentNum paymentNum = (PaymentNum) iterator.next();
+			System.out.println(paymentNum);
+			int numCount = 0;
+			for (Integer integer : paymentNum.getNum()) {
+				lottoNum2[numCount][count].setIcon(iconData.SIcons()[integer]);
+				numCount++;
+			}
+			if (paymentNum.getAutoStat()==1) {
+				lottoAutos[count].setIcon(iconData.autoIcon());
+			}
+			if (paymentNum.getAutoStat()==2) {
+				lottoAutos[count].setIcon(iconData.semiAutoIcon());
+			}
+			if (paymentNum.getAutoStat()==3) {
+				lottoAutos[count].setIcon(iconData.manualIcon());
+			}
+			count++;
+		}
+//	    for (Integer key : buyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
+//	        Integer[] paymentNum = buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
+//	        System.out.println(key);
+//	        Integer i = 0;
+//	        for (Integer integer : paymentNum) {
+//	                lottoNum2[i][key - 1].setIcon(iconData.SIcons()[integer]);
+//	            i++;
+//	            System.out.println(integer);
+//	        }
+//	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
+//	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
+//	        }
+//	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
+//	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
+//	        }
+//	        if (buyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
+//	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
+//	        }
+//
+//	    }
 	}
 
 
