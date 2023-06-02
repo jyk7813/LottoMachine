@@ -188,10 +188,8 @@ public class SelectNumPage extends JDialog {
 					while (bringKey.hasNext()) {
 						Integer change = bringKey.next();
 						map.remove(change);
-						break;						
+						break;
 					}
-					
-					
 				}
 			});
 		}
