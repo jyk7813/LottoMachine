@@ -249,7 +249,7 @@ public class BuyPage extends JDialog {
 			layeredPane.add(selectEmptyJLabels[i], new Integer(2));
 		}
 
-		layeredPane.add(resetButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가ㅁ
+		layeredPane.add(resetButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
 		layeredPane.add(autoButton, new Integer(2));
 		layeredPane.add(addButton, new Integer(2));
 		layeredPane.add(lbuyButton, new Integer(2));
