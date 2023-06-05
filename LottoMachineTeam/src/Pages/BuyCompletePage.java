@@ -14,7 +14,6 @@ public class BuyCompletePage extends JDialog {
 	private ImageIcon returnIcon;
 	private JLayeredPane layeredPane;
 	private JLabel buyCompletePageLabel;
-	private MainPage mainPage;
 	private Utility utility = new Utility();
 	/**
 	 * Create the frame.

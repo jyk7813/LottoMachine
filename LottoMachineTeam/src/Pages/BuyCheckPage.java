@@ -3,10 +3,7 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.PaymentNum;
-import database.PaymentNumData;
 import database.SelectNum;
 
 import database.SelectNumData;

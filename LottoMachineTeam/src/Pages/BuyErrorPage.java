@@ -15,7 +15,6 @@ public class BuyErrorPage extends JDialog {
 	private ImageIcon returnIcon;
 	private JLayeredPane layeredPane;
 	private JLabel buyErrorPageLabel;
-	private MainPage mainPage;
 	private Utility utility = new Utility();
 	/**
 	 * Create the frame.

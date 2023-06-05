@@ -31,18 +31,16 @@ public class PaymentNumData {
 	//로또개수만큼 계산
 
 	public void addSet(PaymentNum paymentNum) {
-		if (paymentset.size()<10) {
+		if (paymentset.size()<MAX_SIZE) {
 			paymentset.add(paymentNum);
 		} else {
 			System.out.println("더 이상 추가할 수 없습니다.");
 		}
-		
 	}
 	
 	public int getSize() {
 		return paymentset.size();
 	}
-
 
 	@Override
 	public String toString() {
