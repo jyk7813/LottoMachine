@@ -155,6 +155,7 @@ public class MainPage extends JFrame {
 		
 		pack();
 		System.out.println(winningPrice.totalPrice());
+		System.out.println(winningPrice.firstWinningPrice());
 
 	}
 	private void addLayeredPan() {
