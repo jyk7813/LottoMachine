@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +14,8 @@ import javax.swing.JLayeredPane;
 
 import database.PaymentNum;
 import database.SelectNum;
+
+import database.SelectNumData;
 
 public class BuyCheckPage extends JDialog {
 	private JButton backBtn;
@@ -24,6 +27,9 @@ public class BuyCheckPage extends JDialog {
 	private ImageIcon noIcon;
 	private JLabel buyCheckPageLabel;
 	private JLayeredPane layeredPane;
+
+	private SelectNumData numData;
+
 
 	/**
 	 * Create the frame.
@@ -57,6 +63,7 @@ public class BuyCheckPage extends JDialog {
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);
 				buyCompletePage.setVisible(true);
+				
 
 			}
 		});
@@ -140,14 +147,23 @@ public class BuyCheckPage extends JDialog {
 
 	private void copySelectNumData() {
 		System.out.println("진입");
-		for (SelectNum selectNum : BuyPage.SELECT_NUM_DATA.getSelectNumData()) {
-			Collection<Integer> selNum = selectNum.getSelectNum();
-			int autoValue = selectNum.getAutoValue();
-			Integer[] array = selNum.toArray(new Integer[0]);
+		
+		for (int i = 0; i < BuyPage.SELECT_NUM_DATA.getSelectNumData().size(); i++) {
+			List<Integer> selNumList = (List<Integer>) BuyPage.SELECT_NUM_DATA.getSelectNumData().get(i).getSelectNum();
+			int autoValue = BuyPage.SELECT_NUM_DATA.getSelectNum(i).getIsAuto();
+			Integer[] array = selNumList.toArray(new Integer[0]);
 			PaymentNum paymentNum = new PaymentNum(array, autoValue);
 			BuyPage.PAYMENT_NUM_DATA.addSet(paymentNum);
 			System.out.println("payment로 저장 완료 " + BuyPage.PAYMENT_NUM_DATA);
 		}
+//		for (SelectNum selectNum : BuyPage.SELECT_NUM_DATA.getSelectNumData()) {
+//			Collection<Integer> selNum = selectNum.getSelectNum();
+//			int autoValue = selectNum.getAutoValue();
+//			Integer[] array = selNum.toArray(new Integer[0]);
+//			PaymentNum paymentNum = new PaymentNum(array, autoValue);
+//			BuyPage.PAYMENT_NUM_DATA.addSet(paymentNum);
+//			System.out.println("payment로 저장 완료 " + BuyPage.PAYMENT_NUM_DATA);
+//		}
 	}
 
 }
