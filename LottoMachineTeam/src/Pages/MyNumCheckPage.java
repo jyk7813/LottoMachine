@@ -107,9 +107,8 @@ public class MyNumCheckPage extends JDialog {
 	}
 	private void showPaymentNum() {
 	    System.out.println("진입 showPaymentNum ");
-	    Set<PaymentNum> set = new HashSet(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
+	    List<PaymentNum> set = new ArrayList<>(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
 	    LinkedHashSet<PaymentNum> setLinked = new LinkedHashSet<>(set);
-	    List<PaymentNum> sortList = new ArrayList<>(setLinked);	    
 	    Iterator<PaymentNum> iterator =  setLinked.iterator();
 	    int count = 0;
 	    while (iterator.hasNext()) {
