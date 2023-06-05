@@ -3,10 +3,8 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -15,9 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import database.PaymentNum;
-import database.PaymentNumData;
-import database.SelectNum;
-import database.SelectNumData;
 import utility.IconData;
 import utility.Utility;
 
@@ -25,8 +20,6 @@ public class MyNumCheckPage extends JDialog {
 	private JLayeredPane layeredPane;
 	private Utility utility = new Utility();
 	private JLabel[][] lottoNum2;
-	private BuyPage buyPage = new BuyPage();
-	private PaymentNum[] payNumArr;
 	private JLabel[] lottoAutos;
 	private IconData iconData = new IconData();
 

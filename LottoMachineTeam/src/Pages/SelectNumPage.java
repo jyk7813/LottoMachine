@@ -1,16 +1,13 @@
 package Pages;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,8 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 
-import database.PaymentNum;
-import database.SelectNum;
 import database.SelectNumData;
 import utility.FontData;
 import utility.IconData;
@@ -37,7 +32,6 @@ public class SelectNumPage extends JDialog {
 	public static final int SEMIAUTO = 2;
 	public static final int MANUAL = 3;
 	public static final SelectNumData SELECT_NUM_DATA = new SelectNumData();
-	private List<Integer> selectList;
 	private IconData iconData = new IconData();
 	public BuyPage buyPage = new BuyPage();
 	private FontData fontData = new FontData();
@@ -131,6 +125,7 @@ public class SelectNumPage extends JDialog {
 
 		for (int i = 0; i < keyLabels.length; i++) {
 		    int y = 117 + i * 70;
+
 		    keyLabels[i].setBounds(10, y, 40, 40);
 		    keyLabels[i].setText(String.valueOf(i + 1 +"."));
 		}
