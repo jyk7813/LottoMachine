@@ -6,15 +6,16 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.font.TextLayout;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -136,7 +137,19 @@ public class MainPage extends JFrame {
 		System.out.println(WINNING_NUM_DATA.getLastTurn());
 		System.out.println(WINNING_NUM_DATA.getLastWinningNum());
 		
-		
+		layeredPane.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getButton()== MouseEvent.BUTTON3) {
+					eggCount++;
+					System.out.println(eggCount);
+					
+				}
+			}
+			
+			
+		});
 		
 		pack();
 
@@ -303,6 +316,7 @@ public class MainPage extends JFrame {
 	private void nextBtnActivate() {
 		if (WINNING_NUM_DATA.getLastTurn()!= currentRound) {
 			System.out.println("추첨 해야함 ");
+			eggCount = 0;
 			nextTurnButton.setIcon(iconData.nextGrayTurnIcon());
 		} else {
 			System.out.println("추첨 안해도 됨");
