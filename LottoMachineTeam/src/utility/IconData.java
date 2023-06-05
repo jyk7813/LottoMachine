@@ -8,6 +8,7 @@ public class IconData {
 	public ImageIcon mainIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("main(BG).png"));
 	}
+
 	public ImageIcon buyLimitIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buyLimit.png"));
 	}
@@ -15,11 +16,11 @@ public class IconData {
 	public ImageIcon buyIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buyBigBtn.png"));
 	}
-	
+
 	public ImageIcon buyErrorIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buyErrorBtn.png"));
 	}
-	
+
 	public ImageIcon winnerCheckIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("winnerCheckBtn.png"));
 	}
@@ -35,13 +36,17 @@ public class IconData {
 	public ImageIcon nextTurnIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("nextBtn.png"));
 	}
-	
+
 	public ImageIcon nextGrayTurnIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("nextGrayBtn.png"));
 	}
 
 	public ImageIcon buyPageIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("buy(BG).png"));
+	}
+
+	public ImageIcon subErrorIcon() {
+		return new ImageIcon(getClass().getClassLoader().getResource("subError(BG).png"));
 	}
 
 	public ImageIcon initBtnIcon() {
@@ -87,6 +92,7 @@ public class IconData {
 	public ImageIcon emptyLBtn() {
 		return new ImageIcon(getClass().getClassLoader().getResource("emptyLBtn.png"));
 	}
+
 	public ImageIcon skipBtn() {
 		return new ImageIcon(getClass().getClassLoader().getResource("skipBtn.png"));
 	}
@@ -98,10 +104,12 @@ public class IconData {
 	public ImageIcon myNumCheckIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("myNumCheck(BG).png"));
 	}
+
 	public ImageIcon underLotteryIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("underLottery(BG).png"));
 
 	}
+
 	public ImageIcon lottoMachineIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("lottoMachine.gif"));
 	}
@@ -109,30 +117,39 @@ public class IconData {
 	public ImageIcon rankingIcon1() {
 		return new ImageIcon(getClass().getClassLoader().getResource("ranking_1.png"));
 	}
+
 	public ImageIcon rankingIcon2() {
 		return new ImageIcon(getClass().getClassLoader().getResource("ranking_2.png"));
 	}
+
 	public ImageIcon rankingIcon3() {
 		return new ImageIcon(getClass().getClassLoader().getResource("ranking_3.png"));
 	}
+
 	public ImageIcon rankingIcon4() {
 		return new ImageIcon(getClass().getClassLoader().getResource("ranking_4.png"));
 	}
+
 	public ImageIcon rankingIcon5() {
 		return new ImageIcon(getClass().getClassLoader().getResource("ranking_5.png"));
 	}
+
 	public ImageIcon rankingIconFail() {
 		return new ImageIcon(getClass().getClassLoader().getResource("ranking_fail.png"));
 	}
+
 	public ImageIcon autoIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("autoBtn-1.png"));
 	}
+
 	public ImageIcon semiAutoIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("semiAutoBtn.png"));
 	}
+
 	public ImageIcon manualIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("manualBtn.png"));
 	}
+
 	public ImageIcon[] LCIcons() {
 		ImageIcon[] colorNumIcon = new ImageIcon[45];
 		for (int i = 0; i < colorNumIcon.length; i++) {
@@ -142,6 +159,7 @@ public class IconData {
 		return colorNumIcon;
 
 	}
+
 	public ImageIcon[] SCIcons() {
 		ImageIcon[] SCIcons = new ImageIcon[45];
 		for (int i = 0; i < SCIcons.length; i++) {
@@ -151,6 +169,7 @@ public class IconData {
 		return SCIcons;
 
 	}
+
 	public ImageIcon[] SIcons() {
 		ImageIcon[] SIcons = new ImageIcon[45];
 		for (int i = 0; i < SIcons.length; i++) {
@@ -158,6 +177,6 @@ public class IconData {
 			SIcons[i] = new ImageIcon(getClass().getClassLoader().getResource(filename));
 		}
 		return SIcons;
-		
+
 	}
 }

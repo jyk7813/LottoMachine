@@ -386,4 +386,7 @@ public class BuyPage extends JDialog {
 		}
 
 	}
+	public void subErrorPage() {
+		
+	}
 }
