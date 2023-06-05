@@ -372,12 +372,9 @@ public class BuyPage extends JDialog {
 			}
 
 			private void autoCountCheck() {
-				if (autoCount == 6)
-					isAuto = 1;
-				if (0 < autoCount && autoCount < 6)
-					isAuto = 2;
-				if (autoCount == 0)
-					isAuto = 3;
+				if (autoCount == 6) isAuto = 1;
+				if (0 < autoCount && autoCount < 6) isAuto = 2;
+				if (autoCount <= 0) isAuto = 3;
 
 			}
 

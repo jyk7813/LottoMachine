@@ -34,7 +34,6 @@ public class WinningNumPage extends JDialog {
 	private JLabel[] winnerNums;
 	private JLabel[] rankingLabels;
 	private JButton backBtn;
-	private boolean secondCheck;
 
 	/**
 	 * Create the frame.
