@@ -43,7 +43,7 @@ public class WinningPrice {
 	}
 
 	public void addPeople() {
-		NumOfPeople += random.nextInt(10000) + 100L;
+		NumOfPeople += random.nextInt(10);
 	}
 
 	private long fifthWinners() {
