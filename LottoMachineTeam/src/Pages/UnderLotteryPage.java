@@ -60,7 +60,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener {
 		timer = new Timer(800, this);
 		timer.start();
 		randomNums = new HashSet<>();
-		if (MainPage.eggCount == 10) {
+		if (MainPage.eggCount == 1) {
 			while (randomNums.size() < 6) {
 				eggNum = 0;
 				randomNums.add(eggNum);
@@ -155,7 +155,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener {
 	}
 
 	private void generateBonusNumber() {
-		if (MainPage.eggCount == 10) {
+		if (MainPage.eggCount == 1) {
 			bonusNum = 6;
 			MainPage.eggCount = 0;
 		} else {
