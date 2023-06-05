@@ -179,7 +179,6 @@ public class SelectNumPage extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int index = 0;
 				if (buyPage.SELECT_NUM_DATA.getSelectNumData().size() != 0) {
 					BuyCheckPage buyCheckPage = new BuyCheckPage();
 					dispose();
