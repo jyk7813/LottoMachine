@@ -1,6 +1,7 @@
 package Pages;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -124,6 +125,7 @@ public class SelectNumPage extends JDialog {
 
 		for (int i = 0; i < keyLabels.length; i++) {
 		    int y = 117 + i * 70;
+
 		    keyLabels[i].setBounds(10, y, 40, 40);
 		    keyLabels[i].setText(String.valueOf(i + 1 +"."));
 		}

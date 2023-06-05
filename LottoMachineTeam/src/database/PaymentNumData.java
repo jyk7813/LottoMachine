@@ -2,8 +2,6 @@ package database;
 import java.util.Collection;
 import java.util.HashSet;
 
-
-
 public class PaymentNumData {
 	//나의결제 개수의 Key값,선택번호와 자동인지확인하는 번호인 [] value값
 	Collection<PaymentNum> paymentset = new HashSet<>();
@@ -41,7 +39,7 @@ public class PaymentNumData {
 	public int getSize() {
 		return paymentset.size();
 	}
-
+	
 	@Override
 	public String toString() {
 		return "PaymentNumData [paymentset=" + paymentset + "]";
