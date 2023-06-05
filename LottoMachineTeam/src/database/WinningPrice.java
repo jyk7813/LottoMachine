@@ -10,6 +10,10 @@ public class WinningPrice {
 
 	private long NumOfPeople;
 	private long totalPrice;
+	
+	public WinningPrice() {
+		NumOfPeople = random.nextInt(10000) + 8200000;
+	}
 
 
 	public long totalFourthANdFifthWinnerPrice() {
@@ -37,13 +41,12 @@ public class WinningPrice {
 	}
 
 	public long totalPrice() {
-		NumOfPeople = random.nextInt(10000) + 8200000;
 		totalPrice = NumOfPeople * 10000;
 		return totalPrice;
 	}
 
 	public void addPeople() {
-		NumOfPeople += random.nextInt(10);
+		NumOfPeople += random.nextInt(500);
 	}
 
 	private long fifthWinners() {
@@ -66,6 +69,9 @@ public class WinningPrice {
         return (long)(NumOfPeople / 8145060.0);
     }
     
+    public long getNumOfPeople() {
+		return NumOfPeople;
+	}
 
    
 

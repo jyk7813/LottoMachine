@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 import database.WinningNumData;
 import database.WinningPrice;
@@ -31,10 +33,10 @@ import utility.Utility;
 public class MainPage extends JFrame {
 
 	public static final WinningNumData WINNING_NUM_DATA = new WinningNumData();
-	
+	private DecimalFormat decFormat = new DecimalFormat("###,###");
 	private IconData iconData = new IconData();
 	private Utility utility = new Utility();
-	private JButton buyButton; 
+	private JButton buyButton;
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
@@ -45,14 +47,18 @@ public class MainPage extends JFrame {
 	private JLabel mainBackGround;
 	private JLabel lastTurnLabel;
 	private JLabel curruntTurnLabel;
+	private JLabel firstWinnerPriceLabel;
 	private String lastTurnString;
 	private String curruntTurnString;
+	private String firstWinnerPriceString;
+	private long firstWinnerPriceCopy;
+	
 	private FontData fontData = new FontData();
-	public static int eggCount = 0; 
+	public static int eggCount = 0;
 	private JButton eggBtn;
 	private WinningPrice winningPrice = new WinningPrice();
-	
-	
+	private Timer timer2;
+	private Timer timer1;
 
 	/**
 	 * Launch the application.
@@ -78,25 +84,32 @@ public class MainPage extends JFrame {
 
 		setResizable(false);
 		
-		lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 결과";
-		curruntTurnString = currentRound+"회";
+		lastTurnString = WINNING_NUM_DATA.getLastTurn() + "회 당첨 결과";
+		curruntTurnString = currentRound + "회";
+		firstWinnerPriceString = decFormat.format(winningPrice.firstWinnersPrice());
 		mainBackGround = new JLabel(iconData.mainIcon());
 		lastWinningNums = new JLabel[6];
 		lastBonusNum = new JLabel();
 		lastTurnLabel = new JLabel("이전회차 당첨결과가 없습니다.");
 		curruntTurnLabel = new JLabel(curruntTurnString);
+		firstWinnerPriceLabel = new JLabel(firstWinnerPriceString);
+		
+		firstWinnerPriceCopy = winningPrice.firstWinnersPrice();
 		
 		Font customFont = fontData.nanumFont25();
+		Font nanum40 = fontData.nanumFont40();
 		Color customColor = Color.WHITE;
 		lastTurnLabel.setFont(customFont);
 		curruntTurnLabel.setFont(customFont);
-		
+		firstWinnerPriceLabel.setFont(nanum40);
+
 		lastTurnLabel.setForeground(customColor);
 		curruntTurnLabel.setForeground(customColor);
-		
+		firstWinnerPriceLabel.setForeground(customColor);
+
 		lastTurnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		curruntTurnLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		
+		firstWinnerPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 		btnBounds();
 		btnUnVisuable();
@@ -114,21 +127,20 @@ public class MainPage extends JFrame {
 		lastBonusNum.setBounds(357, 199, 40, 40);
 		lastTurnLabel.setBounds(15, 130, 400, 40);
 		curruntTurnLabel.setBounds(52, 411, 72, 31);
-		
+		firstWinnerPriceLabel.setBounds(14, 520, 402, 49);
+
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		addLayeredPan();
-	
-		
+
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
-	
 
 		buyBtn();
 		myNumBtn();
 		makeLotteryBtn();
 		nextTurnBtn();
 		eggBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				eggCount++;
@@ -138,20 +150,42 @@ public class MainPage extends JFrame {
 		System.out.println(WINNING_NUM_DATA);
 		System.out.println(WINNING_NUM_DATA.getLastTurn());
 		System.out.println(WINNING_NUM_DATA.getLastWinningNum());
-		
+
 		layeredPane.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getButton()== MouseEvent.BUTTON3) {
+				if (e.getButton() == MouseEvent.BUTTON3) {
 					eggCount++;
 					System.out.println(eggCount);
-					
+
 				}
 			}
-			
-			
+
 		});
+		timer1 = new Timer(1, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				firstWinnerPriceCopy += 1000;
+				firstWinnerPriceString = decFormat.format(firstWinnerPriceCopy);
+				firstWinnerPriceLabel.setText(firstWinnerPriceString);
+				if (firstWinnerPriceCopy > winningPrice.firstWinnersPrice()) {
+					timer1.stop();
+				}
+				
+			}
+		});
+		timer2 = new Timer(10000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(winningPrice.getNumOfPeople());
+				winningPrice.addPeople();
+				timer1.start();
+			}
+		});
+		timer2.start();
 		
 		pack();
 		System.out.println("총 당첨금" + winningPrice.totalPrice());
@@ -159,10 +193,11 @@ public class MainPage extends JFrame {
 		System.out.println("4등 당첨금 " + winningPrice.totalFourthWinningPrice());
 		System.out.println("4등 5등 합산 " + winningPrice.totalFourthANdFifthWinnerPrice());
 		System.out.println("총 상금에서 4,5등 상금 뺀거 " + winningPrice.totalPriceSubTotalFourthAndFifthWinnerPrice());
-		System.out.println("1등 상금 " +winningPrice.firstWinnersPrice());
+		System.out.println("1등 상금 " + winningPrice.firstWinnersPrice());
 		System.out.println("2등 상금 " + winningPrice.secondWinnersPrice());
 		System.out.println("3등 상금 " + winningPrice.thirdWinnersPrice());
 	}
+
 	private void addLayeredPan() {
 		layeredPane.add(mainBackGround, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
 		layeredPane.add(buyButton, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
@@ -173,40 +208,40 @@ public class MainPage extends JFrame {
 		layeredPane.add(lastTurnLabel, new Integer(2));
 		layeredPane.add(curruntTurnLabel, new Integer(2));
 		layeredPane.add(eggBtn, new Integer(2));
+		layeredPane.add(firstWinnerPriceLabel, new Integer(2));
 		for (int i = 0; i < lastWinningNums.length; i++) {
 			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
-		
+
 	}
 
-	
 	private void buyBtn() {
 		buyButton.addActionListener(e -> {
 			if (currentRound == WINNING_NUM_DATA.getLastTurn()) {
-				
+
 //				buyErrorBtn();
 //				layeredPane.add(buyErrorButton, new Integer(2));
 //				buyErrorButton = new JButton(iconData.buyErrorIcon());
 //				buyErrorButton.setBounds(76, 610, 280, 81);
 //				utility.setButtonProperties(buyErrorButton);
-				
+
 				new BuyErrorPage().setVisible(true);
-			    System.out.println("바이에러 페이로 넘어가기");
+				System.out.println("바이에러 페이로 넘어가기");
 			} else {
-				new BuyPage().setVisible(true); // pass this frame to the next one				
+				new BuyPage().setVisible(true); // pass this frame to the next one
 			}
 		});
-		
-		
+
 	}
+
 	private void myNumBtn() {
 
 		myNumButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(currentRound != WINNING_NUM_DATA.getLastTurn()) {
+
+				if (currentRound != WINNING_NUM_DATA.getLastTurn()) {
 					MyNumCheckPage myNumCheckPage = new MyNumCheckPage();
 					myNumCheckPage.setVisible(true);
 					System.out.println("나의번호로 넘어가기");
@@ -214,85 +249,87 @@ public class MainPage extends JFrame {
 					new WinningNumPage().setVisible(true);
 					System.out.println("위닝넘으로 넘어가기");
 				}
-				
+
 			}
 		});
-		
+
 	}
+
 	private void makeLotteryBtn() {
 		makeLotteryButton.addActionListener(new ActionListener() {
 
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        if (currentRound > WINNING_NUM_DATA.getLastTurn()) {
-		            UnderLotteryPage underLotteryPage = new UnderLotteryPage();
-		            underLotteryPage.addWindowListener(new WindowAdapter() {
-		                @Override
-		                public void windowClosed(WindowEvent e) {
-		                    if (WINNING_NUM_DATA.getLastWinningNum() != null) {
-		                        showWinningNum();
-		                    }
-		                    System.out.println("UnderLotteryPage 창이 닫힘");
-		                   
-		                   // buyButton.setEnabled(false);
-		                    buyButton.setIcon(iconData.buyErrorIcon());
-		                    makeLotteryButton.setIcon(iconData.winnerCheckIcon());
-		                    
-		                }
-		            });
-		            underLotteryPage.setVisible(true);
-		        	
-		        }
-		        	
-		        	WinningNumPage winningNumPage = new WinningNumPage();
-		        	winningNumPage.setVisible(true);
-				
-		        
-		        nextBtnActivate();
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (currentRound > WINNING_NUM_DATA.getLastTurn()) {
+					UnderLotteryPage underLotteryPage = new UnderLotteryPage();
+					underLotteryPage.addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowClosed(WindowEvent e) {
+							if (WINNING_NUM_DATA.getLastWinningNum() != null) {
+								showWinningNum();
+							}
+							System.out.println("UnderLotteryPage 창이 닫힘");
+
+							// buyButton.setEnabled(false);
+							buyButton.setIcon(iconData.buyErrorIcon());
+							makeLotteryButton.setIcon(iconData.winnerCheckIcon());
+
+						}
+					});
+					underLotteryPage.setVisible(true);
+
+				}
+
+				WinningNumPage winningNumPage = new WinningNumPage();
+				winningNumPage.setVisible(true);
+
+				nextBtnActivate();
+			}
 		});
 	}
+
 	private void nextTurnBtn() {
 
 		nextTurnButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (WINNING_NUM_DATA.getLastTurn()!= currentRound) {
+				if (WINNING_NUM_DATA.getLastTurn() != currentRound) {
 					System.out.println("추첨 진행 해라");
 				} else {
 					currentRound++;
-					curruntTurnString = currentRound+"회";
+					curruntTurnString = currentRound + "회";
 					curruntTurnLabel.setText(curruntTurnString);
 					BuyPage.PAYMENT_NUM_DATA.clearData();
 					BuyPage.SELECT_NUM_DATA.clearList();
 					System.out.println(currentRound);
-					
+
 				}
 				buyButton.setIcon(iconData.buyIcon());
 				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
 				nextBtnActivate();
 			}
-			
+
 		});
 	}
+
 	private void showWinningNum() {
 		System.out.println("진입");
 		Collection<Integer> set = WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
 		System.out.println(sortedList);
-		
+
 		for (int i = 0; i < sortedList.size(); i++) {
-		    int element = sortedList.get(i);
-		    // 원하는 작업 수행
-		    lastWinningNums[i].setIcon(iconData.LCIcons()[element]);
-		    
+			int element = sortedList.get(i);
+			// 원하는 작업 수행
+			lastWinningNums[i].setIcon(iconData.LCIcons()[element]);
+
 		}
 		lastBonusNum.setIcon(iconData.LCIcons()[WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
-		lastTurnString =  WINNING_NUM_DATA.getLastTurn()+"회 당첨 결과";
+		lastTurnString = WINNING_NUM_DATA.getLastTurn() + "회 당첨 결과";
 		lastTurnLabel.setText(lastTurnString);
-		
+
 	}
 
 	/**
@@ -322,8 +359,9 @@ public class MainPage extends JFrame {
 		eggBtn = new JButton();
 		eggBtn.setBounds(30, 30, 100, 40);
 	}
+
 	private void nextBtnActivate() {
-		if (WINNING_NUM_DATA.getLastTurn()!= currentRound) {
+		if (WINNING_NUM_DATA.getLastTurn() != currentRound) {
 			System.out.println("추첨 해야함 ");
 			eggCount = 0;
 			nextTurnButton.setIcon(iconData.nextGrayTurnIcon());
