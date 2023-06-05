@@ -31,15 +31,15 @@ public class BuyLimitPage extends JDialog {
 		setModal(true);
 		setResizable(false);
 		
-		Font customFont = fontData.nanumFont38();
+		Font customFont = fontData.nanumFont38();		
 		Color customColor = Color.WHITE;
 		
 		buyLimitLabel = new JLabel("회차 당 구매제한");
-		buyLimitLabel.setBounds(72, 312, 300, 80);
+		buyLimitLabel.setBounds(70, 295, 300, 80);
 		buyLimitLabel.setFont(customFont);
 		buyLimitLabel.setForeground(customColor);
 		buyLimitLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		
+			
 		// 이미지 아이콘 로드
 		iconSetting();
 
