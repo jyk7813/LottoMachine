@@ -111,8 +111,8 @@ public class WinningNumPage extends JDialog {
 
 			}
 		});
-		checkRank();
 		showPaymentNum();
+		checkRank();
 		pack();
 
 		utility.setButtonProperties(backBtn);
@@ -137,7 +137,7 @@ public class WinningNumPage extends JDialog {
 
 	private void showPaymentNum() {
 		System.out.println("진입 showPaymentNum ");
-		Set<PaymentNum> set = new HashSet(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
+		List<PaymentNum> set = new ArrayList<>(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
 		Iterator<PaymentNum> iterator = set.iterator();
 		int count = 0;
 		while (iterator.hasNext()) {
@@ -172,7 +172,7 @@ public class WinningNumPage extends JDialog {
 
 	private void checkRank() {
 		System.out.println("진입 checkRank ");
-		Set<PaymentNum> set = new HashSet(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
+		List<PaymentNum> set = new ArrayList<>(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
 		Iterator<PaymentNum> iterator = set.iterator();
 		int count = 0;
 		
