@@ -307,6 +307,7 @@ public class MainPage extends JFrame {
 		} else {
 			System.out.println("추첨 안해도 됨");
 			nextTurnButton.setIcon(iconData.nextTurnIcon());
+			eggCount = 0;
 		}
 	}
 }

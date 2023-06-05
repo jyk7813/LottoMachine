@@ -364,8 +364,10 @@ public class BuyPage extends JDialog {
 					BuyPage.SELECT_NUM_DATA.addSelectNum(selectList, isAuto);
 					showSelectNum();
 					showCurrentCountPrice();
+				} else {
+					subErrorPage();
 				}
-				errorMessage();
+				
 
 			}
 
@@ -382,14 +384,6 @@ public class BuyPage extends JDialog {
 		});
 	}
 
-	public void errorMessage() {
-		if (currentCount != 0) {
-			System.out.println("추가됩");
-		} else {
-			subErrorPage();
-		}
-
-	}
 	public void subErrorPage() {
 		subErrorPage = new JLabel(icon.subErrorIcon());
 		ImageIcon returnIcon = new ImageIcon(getClass().getClassLoader().getResource("returnBtn.png"));
