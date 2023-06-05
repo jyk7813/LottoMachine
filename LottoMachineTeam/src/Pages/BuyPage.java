@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -23,6 +24,7 @@ import java.awt.Color;
 
 import database.PaymentNumData;
 import database.SelectNumData;
+import sun.awt.WindowClosingListener;
 import utility.FontData;
 import utility.IconData;
 import utility.Utility;
@@ -56,7 +58,8 @@ public class BuyPage extends JDialog {
 	private JLabel currentPriceLabel;
 	private final static int PRICE = 10000;
 	private String currentPrice;
-
+	private JLabel subErrorPage;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -312,11 +315,13 @@ public class BuyPage extends JDialog {
 		cancleButton = new JButton(icon.cancleIcon());
 		cancleButton.setBounds(356, 682, 52, 36);
 		selectNum = new JToggleButton[45];
+		
 
 	}
 
 	private void makeLabel() {
 		label = new JLabel(icon.buyPageIcon());
+		
 		selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i] = new JLabel();
@@ -382,11 +387,27 @@ public class BuyPage extends JDialog {
 		if (currentCount != 0) {
 			System.out.println("추가됩");
 		} else {
-			
+			subErrorPage();
 		}
 
 	}
 	public void subErrorPage() {
+		subErrorPage = new JLabel(icon.subErrorIcon());
+		ImageIcon returnIcon = new ImageIcon(getClass().getClassLoader().getResource("returnBtn.png"));
+		JButton returnBtn = new JButton(returnIcon);
+		subErrorPage.setBounds(0, 0, icon.subErrorIcon().getIconWidth(), icon.subErrorIcon().getIconHeight());
+		returnBtn.setBounds(161, 458, 107, 41);
+		layeredPane.add(subErrorPage , new Integer(4));
+		layeredPane.add(returnBtn , new Integer(4));
+		returnBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				BuyPage buypage = new BuyPage();
+				buypage.setVisible(true);
+			}
+		});
 		
 	}
 }
