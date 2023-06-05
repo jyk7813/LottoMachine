@@ -15,6 +15,7 @@ import javax.swing.Timer;
 
 import database.WinningNumData;
 import utility.IconData;
+import utility.Utility;
 
 public class UnderLotteryPage extends JDialog implements ActionListener{
 	private static final WinningNumData WINNING_DATA = new WinningNumData();
@@ -30,6 +31,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 	private Set<Integer> randomNums;
 	private int bonusNum;
 	private JButton skipBtn;
+	private Utility utility = new Utility();
 	
 	/**
      * Create the frame.
@@ -54,6 +56,8 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
         // JLayeredPane을 프레임의 contentPane에 추가
         setContentPane(layeredPane);
         
+       
+        
         timer = new Timer(800, this);
         timer.start();
         randomNums = new HashSet<>();
@@ -62,11 +66,13 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
         	randomNums.add(num);
 		}
         
+        
         generateBonusNumber();
         WINNING_DATA.addWinningNum(randomNums, bonusNum);
         System.out.println(WINNING_DATA.getLastTurn());
         System.out.println(WINNING_DATA);
         System.out.println(WINNING_DATA.getWinningNum());
+        skipDispose();
         pack();
     }
     private void makeLabel() {
@@ -80,7 +86,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 		}
 		bonuseEmptyJLabels = new JLabel(iconData.emptyBtn());//empty보너스 라벨 1개
 		lottoMachineJLabel = new JLabel(iconData.lottoMachineIcon());
-		
+		skipBtn = new JButton(iconData.skipBtn());
     }
     private void labelBounds() {
     	//기본 페이지화면 위치와 크기설정
@@ -104,9 +110,8 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
     	}
     	layeredPane.add(bonuseEmptyJLabels, new Integer(2));
     	layeredPane.add(lottoMachineJLabel, new Integer(3));
-    	skipBtn = new JButton(iconData.skipBtn());
     	layeredPane.add(skipBtn, new Integer(3));
-    	
+    	utility.setButtonProperties(skipBtn);
 	}
     private void JLayeredPaneAdd() {
     	layeredPane = new JLayeredPane();
@@ -132,4 +137,14 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
             bonusNum = random.nextInt(45);
         } while (randomNums.contains(bonusNum));
     }
+    public void skipDispose() {
+		skipBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+	}
 }
