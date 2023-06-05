@@ -154,9 +154,14 @@ public class MainPage extends JFrame {
 		});
 		
 		pack();
-		System.out.println(winningPrice.totalPrice());
-		System.out.println(winningPrice.firstWinningPrice());
-
+		System.out.println("총 당첨금" + winningPrice.totalPrice());
+		System.out.println(winningPrice.totalFifthWinningPrice());
+		System.out.println("4등 당첨금 " + winningPrice.totalFourthWinningPrice());
+		System.out.println("4등 5등 합산 " + winningPrice.totalFourthANdFifthWinnerPrice());
+		System.out.println("총 상금에서 4,5등 상금 뺀거 " + winningPrice.totalPriceSubTotalFourthAndFifthWinnerPrice());
+		System.out.println("1등 상금 " +winningPrice.firstWinnersPrice());
+		System.out.println("2등 상금 " + winningPrice.secondWinnersPrice());
+		System.out.println("3등 상금 " + winningPrice.thirdWinnersPrice());
 	}
 	private void addLayeredPan() {
 		layeredPane.add(mainBackGround, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
