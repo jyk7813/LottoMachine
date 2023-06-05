@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -28,6 +29,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 	private Timer timer;
 	private Set<Integer> randomNums;
 	private int bonusNum;
+	private JButton skipBtn;
 	
 	/**
      * Create the frame.
@@ -70,6 +72,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
     private void makeLabel() {
     	label = new JLabel(iconData.underLotteryIcon());//기본 페이지화면
     	
+    	
     	//선택된 empty라벨 6개 배열선언
     	selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
@@ -77,6 +80,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 		}
 		bonuseEmptyJLabels = new JLabel(iconData.emptyBtn());//empty보너스 라벨 1개
 		lottoMachineJLabel = new JLabel(iconData.lottoMachineIcon());
+		
     }
     private void labelBounds() {
     	//기본 페이지화면 위치와 크기설정
@@ -89,6 +93,7 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 		}
 		//보너스번호 라벨 위치와 크기설정
 		bonuseEmptyJLabels.setBounds(358, 362, 40, 40);	
+		skipBtn.setBounds(322, 48, 83, 27);
 
 	} 
     private void addLabeleAndBtn() {
@@ -99,6 +104,8 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
     	}
     	layeredPane.add(bonuseEmptyJLabels, new Integer(2));
     	layeredPane.add(lottoMachineJLabel, new Integer(3));
+    	skipBtn = new JButton(iconData.skipBtn());
+    	layeredPane.add(skipBtn, new Integer(3));
     	
 	}
     private void JLayeredPaneAdd() {

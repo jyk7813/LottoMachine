@@ -87,6 +87,9 @@ public class IconData {
 	public ImageIcon emptyLBtn() {
 		return new ImageIcon(getClass().getClassLoader().getResource("emptyLBtn.png"));
 	}
+	public ImageIcon skipBtn() {
+		return new ImageIcon(getClass().getClassLoader().getResource("skipBtn.png"));
+	}
 
 	public ImageIcon winningNumIcon() {
 		return new ImageIcon(getClass().getClassLoader().getResource("winningNum(BG).png"));
