@@ -1,12 +1,16 @@
 package Pages;
 
 
+import java.awt.Color;
+import java.awt.Component;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.Font;
 import javax.swing.*;
 
+import utility.FontData;
 import utility.Utility;
 
 public class BuyLimitPage extends JDialog {
@@ -16,14 +20,26 @@ public class BuyLimitPage extends JDialog {
 	private JLayeredPane layeredPane;
 	private JLabel buyLimitPageLabel;
 	private Utility utility = new Utility();
+	private JLabel lbl;
+	private FontData fontData = new FontData();
+	
 	/**
 	 * Create the frame.
-	 */
-
+	 */	
 	public BuyLimitPage() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false);
+		
+		Font customFont = fontData.nanumFont38();
+		Color customColor = Color.WHITE;
+		
+		lbl = new JLabel("회차 당 구매제한");
+		lbl.setBounds(69, 312, 300, 80);
+		lbl.setFont(customFont);
+		lbl.setForeground(customColor);
+		lbl.setHorizontalTextPosition(SwingConstants.CENTER);
+		
 		// 이미지 아이콘 로드
 		iconSetting();
 
@@ -62,12 +78,14 @@ public class BuyLimitPage extends JDialog {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(new Dimension(430, 890));
 		layeredPane.add(buyLimitPageLabel, new Integer(1));
+		layeredPane.add(lbl, new Integer(2));
 		layeredPane.add(returnBtn, new Integer(2));
+		
 
 	}
 
 	private void iconSetting() {
-		buyLimitPage = new ImageIcon(getClass().getClassLoader().getResource("buyLimit(BG).png"));
+		buyLimitPage = new ImageIcon(getClass().getClassLoader().getResource("buyLimit.png"));
 		returnIcon = new ImageIcon(getClass().getClassLoader().getResource("returnBtn.png"));
 	}
 

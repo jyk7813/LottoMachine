@@ -9,7 +9,7 @@ public class IconData {
 		return new ImageIcon(getClass().getClassLoader().getResource("main(BG).png"));
 	}
 	public ImageIcon buyLimitIcon() {
-		return new ImageIcon(getClass().getClassLoader().getResource("buyLimit(BG).png"));
+		return new ImageIcon(getClass().getClassLoader().getResource("buyLimit.png"));
 	}
 
 	public ImageIcon buyIcon() {
