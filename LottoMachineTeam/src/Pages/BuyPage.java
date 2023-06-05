@@ -55,7 +55,7 @@ public class BuyPage extends JDialog {
 
 	private JLabel currentCountLabel;
 	private JLabel currentPriceLabel;
-	private final static int PRICE = 10000;
+	public final static int PRICE = 10000;
 	private String currentPrice;
 	private JLabel subErrorPage;
 	

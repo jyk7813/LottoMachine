@@ -23,6 +23,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 
 import database.WinningNumData;
+import database.WinningPrice;
 import utility.FontData;
 import utility.IconData;
 import utility.Utility;
@@ -49,6 +50,7 @@ public class MainPage extends JFrame {
 	private FontData fontData = new FontData();
 	public static int eggCount = 0; 
 	private JButton eggBtn;
+	private WinningPrice winningPrice = new WinningPrice();
 	
 	
 
@@ -152,6 +154,7 @@ public class MainPage extends JFrame {
 		});
 		
 		pack();
+		System.out.println(winningPrice.totalPrice());
 
 	}
 	private void addLayeredPan() {
