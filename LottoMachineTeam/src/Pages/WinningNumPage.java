@@ -29,7 +29,6 @@ public class WinningNumPage extends JDialog {
 	private IconData iconData = new IconData();
 	private JLayeredPane layeredPane;
 	private Utility utility = new Utility();
-	private MainPage mainPage;
 	private JLabel label;
 	private JLabel bonusNum;
 	private JLabel[][] lottoNums;
@@ -37,6 +36,7 @@ public class WinningNumPage extends JDialog {
 	private JLabel[] winnerNums;
 	private JLabel[] rankingLabels;
 	private JButton backBtn;
+	private boolean secondCheck;
 
 	/**
 	 * Create the frame.
@@ -111,8 +111,8 @@ public class WinningNumPage extends JDialog {
 
 			}
 		});
-		showPaymentNum();
 		checkRank();
+		showPaymentNum();
 		pack();
 
 		utility.setButtonProperties(backBtn);
@@ -121,7 +121,7 @@ public class WinningNumPage extends JDialog {
 
 	private void showWinningNum() {
 		System.out.println("진입");
-		Collection<Integer> set = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+		Collection<Integer> set = MainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
 		List<Integer> sortedList = new ArrayList<>(set);
 		Collections.sort(sortedList);
 		System.out.println("winningNum : " + sortedList);
@@ -130,9 +130,10 @@ public class WinningNumPage extends JDialog {
 			int element = sortedList.get(i);
 			winnerNums[i].setIcon(iconData.LCIcons()[element]);
 		}
-		bonusNum.setIcon(iconData.LCIcons()[mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
+		bonusNum.setIcon(iconData.LCIcons()[MainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum()]);
 
 	}
+	
 
 	private void showPaymentNum() {
 		System.out.println("진입 showPaymentNum ");
@@ -141,14 +142,18 @@ public class WinningNumPage extends JDialog {
 		int count = 0;
 		while (iterator.hasNext()) {
 			PaymentNum paymentNum = (PaymentNum) iterator.next();
+			int rank = getRank(paymentNum);
 			System.out.println(paymentNum);
 			int numCount = 0;
 			for (Integer integer : paymentNum.getNum()) {
-				if (mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum().contains(integer)) {
+				if (MainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum().contains(integer)) {
 	                lottoNums[numCount][count].setIcon(iconData.SCIcons()[integer]);
 	            } else {
 	                lottoNums[numCount][count].setIcon(iconData.SIcons()[integer]);
 	            }
+				if (rank == 2 && MainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum() == integer) {
+					   lottoNums[numCount][count].setIcon(iconData.SCIcons()[integer]);
+				}
 				numCount++;
 			}
 			if (paymentNum.getAutoStat() == 1) {
@@ -163,30 +168,6 @@ public class WinningNumPage extends JDialog {
 			count++;
 		}
 
-//	    for (Integer key : BuyPage.PAYMENT_NUM_DATA.getPaymentMap().keySet()) {
-//	        Integer[] paymentNum = BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getPaymentNum();
-//	        System.out.println(key);
-//	        Integer i = 0;
-//	        for (Integer integer : paymentNum) {
-//	            if (mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum().contains(integer)) {
-//	                lottoNums[i][key - 1].setIcon(iconData.SCIcons()[integer]);
-//	            } else {
-//	                lottoNums[i][key - 1].setIcon(iconData.SIcons()[integer]);
-//	            }
-//	            i++;
-//	            System.out.println(integer);
-//	        }
-//	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 1) {
-//	            lottoAutos[key - 1].setIcon(iconData.autoIcon());
-//	        }
-//	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 2) {
-//	            lottoAutos[key - 1].setIcon(iconData.semiAutoIcon());
-//	        }
-//	        if (BuyPage.PAYMENT_NUM_DATA.getPaymentMap().get(key).getAutoStat() == 3) {
-//	            lottoAutos[key - 1].setIcon(iconData.manualIcon());
-//	        }
-//
-//	    }
 	}
 
 	private void checkRank() {
@@ -225,12 +206,12 @@ public class WinningNumPage extends JDialog {
 	}
 
 	private boolean isFirstPlace(PaymentNum paymentNum) {
-		Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+		Collection<Integer> winningNum = MainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
 		return winningNum.containsAll(paymentNum.getPaymentNumCollection());
 	}
 
 	private int getRank(PaymentNum paymentNum) {
-		Collection<Integer> winningNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
+		Collection<Integer> winningNum = MainPage.WINNING_NUM_DATA.getLastWinningNum().getWinningNum();
 		int matchCount = 0;
 		for (Integer num : paymentNum.getPaymentNumCollection()) {
 			if (winningNum.contains(num)) {
@@ -240,7 +221,7 @@ public class WinningNumPage extends JDialog {
 		if (matchCount == 6) {
 			return 1; // 1등
 		} else if (matchCount == 5) {
-			int bonusNum = mainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum();
+			int bonusNum = MainPage.WINNING_NUM_DATA.getLastWinningNum().getBonusNum();
 			if (paymentNum.getPaymentNumCollection().contains(bonusNum)) {
 				return 2; // 2등
 			} else {
