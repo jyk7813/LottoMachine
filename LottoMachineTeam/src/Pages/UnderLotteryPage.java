@@ -62,8 +62,19 @@ public class UnderLotteryPage extends JDialog implements ActionListener {
 		randomNums = new HashSet<>();
 		if (MainPage.eggCount == 10) {
 			while (randomNums.size() < 6) {
+				eggNum = 0;
 				randomNums.add(eggNum);
-				eggNum++;
+				eggNum = 11;
+				randomNums.add(eggNum);
+				eggNum = 22;
+				randomNums.add(eggNum);
+				eggNum = 33;
+				randomNums.add(eggNum);
+				eggNum = 44;
+				randomNums.add(eggNum);
+				eggNum = 17;
+				randomNums.add(eggNum);
+				
 				System.out.println("반복?");
 			}
 		} else {
