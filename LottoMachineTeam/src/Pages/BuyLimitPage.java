@@ -35,7 +35,7 @@ public class BuyLimitPage extends JDialog {
 		Color customColor = Color.WHITE;
 		
 		lbl = new JLabel("회차 당 구매제한");
-		lbl.setBounds(69, 312, 300, 80);
+		lbl.setBounds(72, 312, 300, 80);
 		lbl.setFont(customFont);
 		lbl.setForeground(customColor);
 		lbl.setHorizontalTextPosition(SwingConstants.CENTER);
