@@ -24,7 +24,6 @@ import java.awt.Color;
 
 import database.PaymentNumData;
 import database.SelectNumData;
-import sun.awt.WindowClosingListener;
 import utility.FontData;
 import utility.IconData;
 import utility.Utility;

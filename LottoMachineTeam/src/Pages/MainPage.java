@@ -46,6 +46,8 @@ public class MainPage extends JFrame {
 	private String lastTurnString;
 	private String curruntTurnString;
 	private FontData fontData = new FontData();
+	public static int eggCount = 0; 
+	private JButton eggBtn;
 	
 	
 
@@ -109,7 +111,7 @@ public class MainPage extends JFrame {
 		lastBonusNum.setBounds(357, 199, 40, 40);
 		lastTurnLabel.setBounds(15, 130, 400, 40);
 		curruntTurnLabel.setBounds(52, 411, 72, 31);
-
+		
 		// 레이블 및 버튼을 JLayeredPane에 추가
 		addLayeredPan();
 	
@@ -122,7 +124,14 @@ public class MainPage extends JFrame {
 		myNumBtn();
 		makeLotteryBtn();
 		nextTurnBtn();
-		
+		eggBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eggCount++;
+				System.out.println(eggCount);
+			}
+		});
 		System.out.println(WINNING_NUM_DATA);
 		System.out.println(WINNING_NUM_DATA.getLastTurn());
 		System.out.println(WINNING_NUM_DATA.getLastWinningNum());
@@ -141,6 +150,7 @@ public class MainPage extends JFrame {
 		layeredPane.add(lastBonusNum, new Integer(2));
 		layeredPane.add(lastTurnLabel, new Integer(2));
 		layeredPane.add(curruntTurnLabel, new Integer(2));
+		layeredPane.add(eggBtn, new Integer(2));
 		for (int i = 0; i < lastWinningNums.length; i++) {
 			layeredPane.add(lastWinningNums[i], new Integer(2));
 		}
@@ -272,7 +282,7 @@ public class MainPage extends JFrame {
 		utility.setButtonProperties(myNumButton);
 		utility.setButtonProperties(makeLotteryButton);
 		utility.setButtonProperties(nextTurnButton);
-		
+		utility.setButtonProperties(eggBtn);
 	}
 
 	/**
@@ -287,6 +297,8 @@ public class MainPage extends JFrame {
 		makeLotteryButton.setBounds(160, 780, 111, 36);
 		nextTurnButton = new JButton(iconData.nextGrayTurnIcon());
 		nextTurnButton.setBounds(290, 780, 111, 36);
+		eggBtn = new JButton();
+		eggBtn.setBounds(30, 30, 100, 40);
 	}
 	private void nextBtnActivate() {
 		if (WINNING_NUM_DATA.getLastTurn()!= currentRound) {

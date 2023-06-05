@@ -17,7 +17,7 @@ import database.WinningNumData;
 import utility.IconData;
 import utility.Utility;
 
-public class UnderLotteryPage extends JDialog implements ActionListener{
+public class UnderLotteryPage extends JDialog implements ActionListener {
 	private static final WinningNumData WINNING_DATA = new WinningNumData();
 	private JLabel label;
 	private JLabel selectEmptyJLabels[];
@@ -32,118 +32,135 @@ public class UnderLotteryPage extends JDialog implements ActionListener{
 	private int bonusNum;
 	private JButton skipBtn;
 	private Utility utility = new Utility();
-	
+	private int eggNum = 0;
+
 	/**
-     * Create the frame.
-     */
-    public UnderLotteryPage() {
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setModal(true);
-        setResizable(false); // 창 크기 변경을 비활성화
+	 * Create the frame.
+	 */
+	public UnderLotteryPage() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setModal(true);
+		setResizable(false); // 창 크기 변경을 비활성화
 
-        // 이미지 아이콘을 사용하는 레이블 생성
-        makeLabel();
-        
-        // JLayeredPane 생성 및 설정
-        JLayeredPaneAdd();
+		// 이미지 아이콘을 사용하는 레이블 생성
+		makeLabel();
 
-        // 레이블 및 버튼 위치 설정
-        labelBounds();
-        
-        // 레이블 및 버튼을 JLayeredPane에 추가
-        addLabeleAndBtn();
-        
-        // JLayeredPane을 프레임의 contentPane에 추가
-        setContentPane(layeredPane);
-        
-       
-        
-        timer = new Timer(800, this);
-        timer.start();
-        randomNums = new HashSet<>();
-        while (randomNums.size() < 6) {
-        	int num = random.nextInt(45);
-        	randomNums.add(num);
+		// JLayeredPane 생성 및 설정
+		JLayeredPaneAdd();
+
+		// 레이블 및 버튼 위치 설정
+		labelBounds();
+
+		// 레이블 및 버튼을 JLayeredPane에 추가
+		addLabeleAndBtn();
+
+		// JLayeredPane을 프레임의 contentPane에 추가
+		setContentPane(layeredPane);
+
+		timer = new Timer(800, this);
+		timer.start();
+		randomNums = new HashSet<>();
+		if (MainPage.eggCount == 10) {
+			while (randomNums.size() < 6) {
+				randomNums.add(eggNum);
+				eggNum++;
+				System.out.println("반복?");
+			}
+		} else {
+			while (randomNums.size() < 6) {
+				int num = random.nextInt(45);
+				randomNums.add(num);
+			}
 		}
-        
-        
-        generateBonusNumber();
-        WINNING_DATA.addWinningNum(randomNums, bonusNum);
-        System.out.println(WINNING_DATA.getLastTurn());
-        System.out.println(WINNING_DATA);
-        System.out.println(WINNING_DATA.getWinningNum());
-        skipDispose();
-        pack();
-    }
-    private void makeLabel() {
-    	label = new JLabel(iconData.underLotteryIcon());//기본 페이지화면
-    	
-    	
-    	//선택된 empty라벨 6개 배열선언
-    	selectEmptyJLabels = new JLabel[6];
+
+		generateBonusNumber();
+		WINNING_DATA.addWinningNum(randomNums, bonusNum);
+		System.out.println(WINNING_DATA.getLastTurn());
+		System.out.println(WINNING_DATA);
+		System.out.println(WINNING_DATA.getWinningNum());
+		skipDispose();
+		pack();
+	}
+
+	private void makeLabel() {
+		label = new JLabel(iconData.underLotteryIcon());// 기본 페이지화면
+
+		// 선택된 empty라벨 6개 배열선언
+		selectEmptyJLabels = new JLabel[6];
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i] = new JLabel(iconData.emptyBtn());
 		}
-		bonuseEmptyJLabels = new JLabel(iconData.emptyBtn());//empty보너스 라벨 1개
+		bonuseEmptyJLabels = new JLabel(iconData.emptyBtn());// empty보너스 라벨 1개
 		lottoMachineJLabel = new JLabel(iconData.lottoMachineIcon());
 		skipBtn = new JButton(iconData.skipBtn());
-    }
-    private void labelBounds() {
-    	//기본 페이지화면 위치와 크기설정
+	}
+
+	private void labelBounds() {
+		// 기본 페이지화면 위치와 크기설정
 		label.setBounds(0, 0, iconData.underLotteryIcon().getIconWidth(), iconData.underLotteryIcon().getIconHeight());
 		lottoMachineJLabel.setBounds(20, 420, 400, 400);
-		//선택된 empty라벨 위치와 크기설정
+		// 선택된 empty라벨 위치와 크기설정
 		for (int i = 0; i < selectEmptyJLabels.length; i++) {
 			selectEmptyJLabels[i].setBounds(34 + i * 50, 362, 40, 40);
 
 		}
-		//보너스번호 라벨 위치와 크기설정
-		bonuseEmptyJLabels.setBounds(358, 362, 40, 40);	
+		// 보너스번호 라벨 위치와 크기설정
+		bonuseEmptyJLabels.setBounds(358, 362, 40, 40);
 		skipBtn.setBounds(322, 48, 83, 27);
 
-	} 
-    private void addLabeleAndBtn() {
-    	layeredPane.add(label, new Integer(1));
-    	//empty라벨6개 레이어에 추가
-    	for (int i = 0; i < selectEmptyJLabels.length; i++) {
-			layeredPane.add(selectEmptyJLabels[i], new Integer(2));
-    	}
-    	layeredPane.add(bonuseEmptyJLabels, new Integer(2));
-    	layeredPane.add(lottoMachineJLabel, new Integer(3));
-    	layeredPane.add(skipBtn, new Integer(3));
-    	utility.setButtonProperties(skipBtn);
 	}
-    private void JLayeredPaneAdd() {
-    	layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(430, 890)); 
-    }
-    @Override
+
+	private void addLabeleAndBtn() {
+		layeredPane.add(label, new Integer(1));
+		// empty라벨6개 레이어에 추가
+		for (int i = 0; i < selectEmptyJLabels.length; i++) {
+			layeredPane.add(selectEmptyJLabels[i], new Integer(2));
+		}
+		layeredPane.add(bonuseEmptyJLabels, new Integer(2));
+		layeredPane.add(lottoMachineJLabel, new Integer(3));
+		layeredPane.add(skipBtn, new Integer(3));
+		utility.setButtonProperties(skipBtn);
+	}
+
+	private void JLayeredPaneAdd() {
+		layeredPane = new JLayeredPane();
+		layeredPane.setPreferredSize(new Dimension(430, 890));
+	}
+
+	@Override
 	public void actionPerformed(ActionEvent e) {
-    	
-    	if (count < 6) {
+
+		if (count < 6) {
 			selectEmptyJLabels[count].setIcon(iconData.LCIcons()[randomNums.toArray(new Integer[0])[count]]);
 		}
-    	if (count == 6) {
+		if (count == 6) {
 			bonuseEmptyJLabels.setIcon(iconData.LCIcons()[bonusNum]);
 		}
-    	if (count > 6) {
+		if (count > 6) {
 			timer.stop();
 			dispose();
 		}
-    	count++;
+		count++;
 	}
-    private void generateBonusNumber() {
-        do {
-            bonusNum = random.nextInt(45);
-        } while (randomNums.contains(bonusNum));
-    }
-    public void skipDispose() {
+
+	private void generateBonusNumber() {
+		if (MainPage.eggCount == 10) {
+			bonusNum = 6;
+			MainPage.eggCount = 0;
+		} else {
+			do {
+				bonusNum = random.nextInt(45);
+			} while (randomNums.contains(bonusNum));
+		}
+	}
+
+	public void skipDispose() {
 		skipBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
+
 			}
 		});
 	}
