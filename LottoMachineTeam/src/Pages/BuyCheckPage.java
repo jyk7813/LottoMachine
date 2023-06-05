@@ -14,8 +14,6 @@ import javax.swing.JLayeredPane;
 import database.PaymentNum;
 import database.SelectNum;
 
-import database.SelectNumData;
-
 public class BuyCheckPage extends JDialog {
 	private JButton backBtn;
 	private JButton yesBtn;
@@ -26,9 +24,6 @@ public class BuyCheckPage extends JDialog {
 	private ImageIcon noIcon;
 	private JLabel buyCheckPageLabel;
 	private JLayeredPane layeredPane;
-
-	private SelectNumData numData;
-
 
 	/**
 	 * Create the frame.
@@ -62,7 +57,6 @@ public class BuyCheckPage extends JDialog {
 				dispose();
 				buyCompletePage.setAlwaysOnTop(true);
 				buyCompletePage.setVisible(true);
-				
 
 			}
 		});

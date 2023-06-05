@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
@@ -116,12 +117,12 @@ public class BuyPage extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (SELECT_NUM_DATA.getSelectNumData().size()!=0) {
+				if (SELECT_NUM_DATA.getSelectNumData().size() != 0) {
 					BuyCheckPage buyCheckPage = new BuyCheckPage();
 					dispose();
 					buyCheckPage.setAlwaysOnTop(true);
 					buyCheckPage.setVisible(true);
-					
+
 				}
 
 			}
@@ -346,6 +347,7 @@ public class BuyPage extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				if (selectedCount.get() == 6) {
 					List<Integer> selectList = new ArrayList<>();
 					for (int i = 0; i < selectNum.length; i++) {
@@ -359,6 +361,8 @@ public class BuyPage extends JDialog {
 					showSelectNum();
 					showCurrentCountPrice();
 				}
+				errorMessage();
+
 			}
 
 			private void autoCountCheck() {
@@ -374,4 +378,12 @@ public class BuyPage extends JDialog {
 		});
 	}
 
+	public void errorMessage() {
+		if (currentCount != 0) {
+			JOptionPane.showMessageDialog(null, "추가 되었습니다.");
+		} else {
+			JOptionPane.showMessageDialog(null, "추가된 번호가 없습니다 확인 후 다시 '추가하기' 버튼을 눌러주세요.");
+		}
+
+	}
 }

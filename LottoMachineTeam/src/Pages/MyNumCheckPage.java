@@ -3,8 +3,12 @@ package Pages;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -104,7 +108,9 @@ public class MyNumCheckPage extends JDialog {
 	private void showPaymentNum() {
 	    System.out.println("진입 showPaymentNum ");
 	    Set<PaymentNum> set = new HashSet(BuyPage.PAYMENT_NUM_DATA.getPaymentData());
-	    Iterator<PaymentNum> iterator =  set.iterator();
+	    LinkedHashSet<PaymentNum> setLinked = new LinkedHashSet<>(set);
+	    List<PaymentNum> sortList = new ArrayList<>(setLinked);	    
+	    Iterator<PaymentNum> iterator =  setLinked.iterator();
 	    int count = 0;
 	    while (iterator.hasNext()) {
 			PaymentNum paymentNum = (PaymentNum) iterator.next();

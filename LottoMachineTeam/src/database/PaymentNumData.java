@@ -2,6 +2,8 @@ package database;
 import java.util.Collection;
 import java.util.HashSet;
 
+
+
 public class PaymentNumData {
 	//나의결제 개수의 Key값,선택번호와 자동인지확인하는 번호인 [] value값
 	Collection<PaymentNum> paymentset = new HashSet<>();
@@ -29,17 +31,19 @@ public class PaymentNumData {
 	//로또개수만큼 계산
 
 	public void addSet(PaymentNum paymentNum) {
-		if (paymentset.size()<MAX_SIZE) {
+		if (paymentset.size()<10) {
 			paymentset.add(paymentNum);
 		} else {
 			System.out.println("더 이상 추가할 수 없습니다.");
 		}
+		
 	}
 	
 	public int getSize() {
 		return paymentset.size();
 	}
-	
+
+
 	@Override
 	public String toString() {
 		return "PaymentNumData [paymentset=" + paymentset + "]";
