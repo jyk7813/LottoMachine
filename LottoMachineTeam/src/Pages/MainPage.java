@@ -8,11 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.font.TextLayout;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -112,7 +114,7 @@ public class MainPage extends JFrame {
 		addLayeredPan();
 	
 		
-		// JLayeredPane을 프레임의 contentPane에 추가a
+		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 	
 
@@ -208,10 +210,12 @@ public class MainPage extends JFrame {
 		            });
 		            underLotteryPage.setVisible(true);
 		        	
-		        } else {		        
-		        WinningNumPage winningNumPage = new WinningNumPage();
-		        winningNumPage.setVisible(true);
 		        }
+		        	
+		        	WinningNumPage winningNumPage = new WinningNumPage();
+		        	winningNumPage.setVisible(true);
+				
+		        
 		        nextBtnActivate();
 		    }
 		});
