@@ -96,7 +96,7 @@ public class BuyPage extends JDialog {
 		maxSelect();
 		// 버튼 안보이게 하기
 		removeButtonVisualEffects();
-		// JLayeredPane을 프레임의 contentPane에 추가
+		// JLayeredPane을 프레임의 contentPane에 추가ㅁ
 		setContentPane(layeredPane);
 
 		resetActionListener();
@@ -380,9 +380,9 @@ public class BuyPage extends JDialog {
 
 	public void errorMessage() {
 		if (currentCount != 0) {
-			JOptionPane.showMessageDialog(null, "추가 되었습니다.");
+			System.out.println("추가됩");
 		} else {
-			JOptionPane.showMessageDialog(null, "추가된 번호가 없습니다 확인 후 다시 '추가하기' 버튼을 눌러주세요.");
+			
 		}
 
 	}
