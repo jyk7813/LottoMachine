@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class WinningPrice {
 	private Random random = new Random();
-	private final static int fifthWinningPrice = 50000;
-	private final static int fourthWinningPrice = 500000;
+	public final static int FIFTH_WINNING_PRICE = 50000;
+	public final static int FOURTH_WINNING_PRICE = 500000;
 
 	private long NumOfPeople;
 	private long totalPrice;
@@ -24,11 +24,11 @@ public class WinningPrice {
 	}
 
 	public long totalFourthWinningPrice() {
-		return fourthWinners() * fourthWinningPrice;
+		return fourthWinners() * FOURTH_WINNING_PRICE;
 	}
 
 	public long totalFifthWinningPrice() {
-		return fifthWinners() * fifthWinningPrice;
+		return fifthWinners() * FIFTH_WINNING_PRICE;
 	}
 	public long firstWinnersPrice() {
 		return (long)(totalPriceSubTotalFourthAndFifthWinnerPrice()*75/100/firstWinners());

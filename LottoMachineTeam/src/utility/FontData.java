@@ -74,5 +74,39 @@ public class FontData {
 		}
 		
 	}
+	public Font nanumFont28() {
+		try {
+			// 폰트 파일 로드
+			InputStream is = getClass().getClassLoader().getResourceAsStream("NanumSquareNeo-eHv.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+			
+			// 폰트 크기 및 스타일 설정
+			Font customFont = font.deriveFont(Font.BOLD, 28);
+			return customFont;
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+			// 폰트 로드에 실패하면 기본 폰트를 반환하거나 예외를 처리할 수 있습니다.
+			// 여기서는 null을 반환합니다.
+			return null;
+		}
+		
+	}
+	public Font nanumFont(int num) {
+		try {
+			// 폰트 파일 로드
+			InputStream is = getClass().getClassLoader().getResourceAsStream("NanumSquareNeo-dEb.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+			
+			// 폰트 크기 및 스타일 설정
+			Font customFont = font.deriveFont(Font.BOLD, num);
+			return customFont;
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+			// 폰트 로드에 실패하면 기본 폰트를 반환하거나 예외를 처리할 수 있습니다.
+			// 여기서는 null을 반환합니다.
+			return null;
+		}
+		
+	}
 	
 }

@@ -5,9 +5,12 @@
 
 package Pages;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,8 +21,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.SwingConstants;
 
 import database.PaymentNum;
+import database.WinningPrice;
+import utility.FontData;
 import utility.IconData;
 import utility.Utility;
 
@@ -34,6 +40,16 @@ public class WinningNumPage extends JDialog {
 	private JLabel[] winnerNums;
 	private JLabel[] rankingLabels;
 	private JButton backBtn;
+	private JLabel currentJLabel;
+	private JLabel titleJLabel;
+	private JLabel congratulationJLabel;
+	private JLabel winningPriceJLabel;
+	private FontData fontData = new FontData();
+	private String currentNumString;
+	private String winningPriceString;
+	private boolean isInRank;
+	private long totalPrice;
+	private DecimalFormat decFormat = new DecimalFormat("###,###");
 
 	/**
 	 * Create the frame.
@@ -43,16 +59,44 @@ public class WinningNumPage extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setResizable(false); // 창 크기 변경을 비활성화
-
+		isInRank = false;
+		
+		currentNumString = "로또 6/45 제 "+ MainPage.currentRound + "회";
 		label = new JLabel(iconData.winningNumIcon());
-
+		currentJLabel = new JLabel(currentNumString);
+		titleJLabel = new JLabel("당첨번호");
+		congratulationJLabel = new JLabel();
+		winningPriceJLabel = new JLabel();
+		bonusNum = new JLabel();
+		Font nanumFont28 = fontData.nanumFont(28);
+		Font nanumFont18 = fontData.nanumFont(18);
+		Color white = Color.WHITE;
+		
+		currentJLabel.setFont(nanumFont28);
+		titleJLabel.setFont(nanumFont18);
+		congratulationJLabel.setFont(nanumFont18);
+		winningPriceJLabel.setFont(nanumFont18);
+		
+		currentJLabel.setForeground(white);
+		titleJLabel.setForeground(white);
+		congratulationJLabel.setForeground(white);
+		winningPriceJLabel.setForeground(white);
+		
+		currentJLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleJLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		congratulationJLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		winningPriceJLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		lottoNums = new JLabel[8][10];
 		lottoAutos = new JLabel[10];
 		winnerNums = new JLabel[10];
 		rankingLabels = new JLabel[10];
 
-		bonusNum = new JLabel();
-		bonusNum.setBounds(357, 225, 40, 40);
+		bonusNum.setBounds(357, 204, 40, 40);
+		currentJLabel.setBounds(0, 119, 430, 31);
+		titleJLabel.setBounds(0, 167, 430, 20);
+		congratulationJLabel.setBounds(0, 256, 430, 20);
+		winningPriceJLabel.setBounds(0, 290, 430, 20);
 
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(
@@ -75,7 +119,7 @@ public class WinningNumPage extends JDialog {
 
 		for (int i = 0; i < winnerNums.length; i++) {
 			winnerNums[i] = new JLabel();
-			winnerNums[i].setBounds(33 + (i * 50), 225, 40, 40);
+			winnerNums[i].setBounds(33 + (i * 50), 204, 40, 40);
 			layeredPane.add(winnerNums[i], new Integer(2));
 		}
 
@@ -95,7 +139,10 @@ public class WinningNumPage extends JDialog {
 		layeredPane.add(label, new Integer(1)); // 레이블은 뒤쪽 레이어에 추가
 		layeredPane.add(backBtn, new Integer(2)); // 버튼은 앞쪽 레이어에 추가
 		layeredPane.add(bonusNum, new Integer(2));
-
+		layeredPane.add(congratulationJLabel, new Integer(2));
+		layeredPane.add(currentJLabel, new Integer(2));
+		layeredPane.add(titleJLabel, new Integer(2));
+		layeredPane.add(winningPriceJLabel, new Integer(2));
 		// JLayeredPane을 프레임의 contentPane에 추가
 		setContentPane(layeredPane);
 		showWinningNum();
@@ -110,10 +157,23 @@ public class WinningNumPage extends JDialog {
 		});
 		showPaymentNum();
 		checkRank();
+		congratulationJLabel.setText(congratulation());
+		winningPriceString = "총 "+decFormat.format(totalPrice)+"원";
+		if (isInRank) {
+			winningPriceJLabel.setText(winningPriceString);
+		}
 		pack();
+		System.out.println(totalPrice);
 
 		utility.setButtonProperties(backBtn);
 
+	}
+	private String congratulation() {
+		if (isInRank) {
+			return "축하합니다!";
+		} else {
+			return "아쉽네요, 다음기회에 도전하세요!";
+		}
 	}
 
 	private void showWinningNum() {
@@ -178,20 +238,30 @@ public class WinningNumPage extends JDialog {
 			if (isFirstPlace(paymentNum)) {
 				System.out.println("1등 확인?");
 				rankingLabels[count].setIcon(iconData.rankingIcon1());
+				isInRank = true;
+				totalPrice += MainPage.WINNING_PRICE.firstWinnersPrice();
 			} else {
 				int rank = getRank(paymentNum);
 				if (rank == 2) {
 					System.out.println("2등 확인?");
 					rankingLabels[count].setIcon(iconData.rankingIcon2());
+					isInRank = true;
+					totalPrice += MainPage.WINNING_PRICE.secondWinnersPrice();
 				} else if (rank == 3) {
 					System.out.println("3등 확인?");
 					rankingLabels[count].setIcon(iconData.rankingIcon3());
+					isInRank = true;
+					totalPrice += MainPage.WINNING_PRICE.thirdWinnersPrice();
 				} else if (rank == 4) {
 					System.out.println("4등 확인?");
 					rankingLabels[count].setIcon(iconData.rankingIcon4());
+					isInRank = true;
+					totalPrice += WinningPrice.FOURTH_WINNING_PRICE;
 				} else if (rank == 5) {
 					System.out.println("5등 확인?");
 					rankingLabels[count].setIcon(iconData.rankingIcon5());
+					isInRank = true;
+					totalPrice += WinningPrice.FIFTH_WINNING_PRICE;
 				} else {
 					System.out.println("낙첨");
 					rankingLabels[count].setIcon(iconData.rankingIconFail());

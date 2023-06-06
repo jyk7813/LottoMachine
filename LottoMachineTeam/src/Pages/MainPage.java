@@ -40,7 +40,7 @@ public class MainPage extends JFrame {
 	private JButton myNumButton;
 	private JButton makeLotteryButton;
 	private JButton nextTurnButton;
-	private static Integer currentRound = 1;
+	public static Integer currentRound = 1;
 	private JLabel[] lastWinningNums;
 	private JLabel lastBonusNum;
 	private JLayeredPane layeredPane;
@@ -56,7 +56,7 @@ public class MainPage extends JFrame {
 	private FontData fontData = new FontData();
 	public static int eggCount = 0;
 	private JButton eggBtn;
-	private WinningPrice winningPrice = new WinningPrice();
+	public static final WinningPrice WINNING_PRICE = new WinningPrice();
 	private Timer timer2;
 	private Timer timer1;
 
@@ -86,7 +86,7 @@ public class MainPage extends JFrame {
 		
 		lastTurnString = WINNING_NUM_DATA.getLastTurn() + "회 당첨 결과";
 		curruntTurnString = currentRound + "회";
-		firstWinnerPriceString = decFormat.format(winningPrice.firstWinnersPrice());
+		firstWinnerPriceString = decFormat.format(WINNING_PRICE.firstWinnersPrice());
 		mainBackGround = new JLabel(iconData.mainIcon());
 		lastWinningNums = new JLabel[6];
 		lastBonusNum = new JLabel();
@@ -94,7 +94,7 @@ public class MainPage extends JFrame {
 		curruntTurnLabel = new JLabel(curruntTurnString);
 		firstWinnerPriceLabel = new JLabel(firstWinnerPriceString);
 		
-		firstWinnerPriceCopy = winningPrice.firstWinnersPrice();
+		firstWinnerPriceCopy = WINNING_PRICE.firstWinnersPrice();
 		
 		Font customFont = fontData.nanumFont25();
 		Font nanum40 = fontData.nanumFont40();
@@ -170,7 +170,7 @@ public class MainPage extends JFrame {
 				firstWinnerPriceCopy += 1000;
 				firstWinnerPriceString = decFormat.format(firstWinnerPriceCopy);
 				firstWinnerPriceLabel.setText(firstWinnerPriceString);
-				if (firstWinnerPriceCopy > winningPrice.firstWinnersPrice()) {
+				if (firstWinnerPriceCopy > WINNING_PRICE.firstWinnersPrice()) {
 					timer1.stop();
 				}
 				
@@ -180,22 +180,22 @@ public class MainPage extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(winningPrice.getNumOfPeople());
-				winningPrice.addPeople();
+				System.out.println(WINNING_PRICE.getNumOfPeople());
+				WINNING_PRICE.addPeople();
 				timer1.start();
 			}
 		});
 		timer2.start();
 		
 		pack();
-		System.out.println("총 당첨금" + winningPrice.totalPrice());
-		System.out.println(winningPrice.totalFifthWinningPrice());
-		System.out.println("4등 당첨금 " + winningPrice.totalFourthWinningPrice());
-		System.out.println("4등 5등 합산 " + winningPrice.totalFourthANdFifthWinnerPrice());
-		System.out.println("총 상금에서 4,5등 상금 뺀거 " + winningPrice.totalPriceSubTotalFourthAndFifthWinnerPrice());
-		System.out.println("1등 상금 " + winningPrice.firstWinnersPrice());
-		System.out.println("2등 상금 " + winningPrice.secondWinnersPrice());
-		System.out.println("3등 상금 " + winningPrice.thirdWinnersPrice());
+		System.out.println("총 당첨금" + WINNING_PRICE.totalPrice());
+		System.out.println(WINNING_PRICE.totalFifthWinningPrice());
+		System.out.println("4등 당첨금 " + WINNING_PRICE.totalFourthWinningPrice());
+		System.out.println("4등 5등 합산 " + WINNING_PRICE.totalFourthANdFifthWinnerPrice());
+		System.out.println("총 상금에서 4,5등 상금 뺀거 " + WINNING_PRICE.totalPriceSubTotalFourthAndFifthWinnerPrice());
+		System.out.println("1등 상금 " + WINNING_PRICE.firstWinnersPrice());
+		System.out.println("2등 상금 " + WINNING_PRICE.secondWinnersPrice());
+		System.out.println("3등 상금 " + WINNING_PRICE.thirdWinnersPrice());
 	}
 
 	private void addLayeredPan() {
@@ -303,8 +303,8 @@ public class MainPage extends JFrame {
 					BuyPage.PAYMENT_NUM_DATA.clearData();
 					BuyPage.SELECT_NUM_DATA.clearList();
 					System.out.println(currentRound);
-					winningPrice.resetWinningPrice();
-					firstWinnerPriceCopy = winningPrice.firstWinnersPrice();
+					WINNING_PRICE.resetWinningPrice();
+					firstWinnerPriceCopy = WINNING_PRICE.firstWinnersPrice();
 					firstWinnerPriceString = decFormat.format(firstWinnerPriceCopy);
 					firstWinnerPriceLabel.setText(firstWinnerPriceString);
 					timer2.start();
