@@ -44,6 +44,9 @@ public class WinningPrice {
 		totalPrice = NumOfPeople * 10000;
 		return totalPrice;
 	}
+	public void resetWinningPrice() {
+		NumOfPeople = random.nextInt(10000) + 8200000;
+	}
 
 	public void addPeople() {
 		NumOfPeople += random.nextInt(500);

@@ -273,7 +273,7 @@ public class MainPage extends JFrame {
 							// buyButton.setEnabled(false);
 							buyButton.setIcon(iconData.buyErrorIcon());
 							makeLotteryButton.setIcon(iconData.winnerCheckIcon());
-
+							timer2.stop();
 						}
 					});
 					underLotteryPage.setVisible(true);
@@ -303,7 +303,11 @@ public class MainPage extends JFrame {
 					BuyPage.PAYMENT_NUM_DATA.clearData();
 					BuyPage.SELECT_NUM_DATA.clearList();
 					System.out.println(currentRound);
-
+					winningPrice.resetWinningPrice();
+					firstWinnerPriceCopy = winningPrice.firstWinnersPrice();
+					firstWinnerPriceString = decFormat.format(firstWinnerPriceCopy);
+					firstWinnerPriceLabel.setText(firstWinnerPriceString);
+					timer2.start();
 				}
 				buyButton.setIcon(iconData.buyIcon());
 				makeLotteryButton.setIcon(iconData.makeLotteryIcon());
