@@ -49,7 +49,7 @@ public class WinningPrice {
 	}
 
 	public void addPeople() {
-		NumOfPeople += random.nextInt(500);
+		NumOfPeople += random.nextInt(100);
 	}
 
 	private long fifthWinners() {
